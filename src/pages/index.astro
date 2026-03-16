@@ -76,6 +76,7 @@ const stats = [
   { value: '0', label: 'Sign-ups Needed' },
   { value: '±5%', label: 'Accuracy Target' },
 ];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <BaseLayout
@@ -106,7 +107,7 @@ const stats = [
             </svg>
             Browse Calculators
           </a>
-          <a href="/concrete-calculator/" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-3 rounded-lg transition-colors text-base border border-white/10">
+          <a href={`${base}/concrete-calculator/`} class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-3 rounded-lg transition-colors text-base border border-white/10">
             🏗️ Concrete Calculator
           </a>
         </div>
@@ -218,7 +219,7 @@ const stats = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
       <h2 class="text-3xl font-extrabold text-white mb-3">Ready to estimate your project?</h2>
       <p class="text-brand-100 mb-6">Start with our most popular concrete calculator — free, instant, no sign-up.</p>
-      <a href="/concrete-calculator/"
+      <a href={`${base}/concrete-calculator/`}
         class="inline-flex items-center gap-2 bg-white text-brand-600 font-bold px-8 py-4 rounded-xl hover:bg-brand-50 transition-colors text-lg">
         🏗️ Open Concrete Calculator
       </a>

@@ -4,6 +4,7 @@ interface Props {
   calculators?: Array<{ label: string; href: string; icon: string }>;
 }
 const { items, calculators } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const entries = items
   ? items.map(i => ({ title: i.title, href: i.href, icon: i.icon }))
   : (calculators ?? []).map(c => ({ title: c.label, href: c.href, icon: c.icon }));
@@ -16,7 +17,7 @@ const entries = items
   <ul class="divide-y divide-slate-100">
     {entries.map(item => (
       <li>
-        <a href={item.href} class="flex items-center gap-3 px-5 py-3.5 hover:bg-slate-50 transition-colors group">
+        <a href={`${base}${item.href}`} class="flex items-center gap-3 px-5 py-3.5 hover:bg-slate-50 transition-colors group">
           <span class="text-xl">{item.icon}</span>
           <div class="min-w-0">
             <p class="text-sm font-semibold text-navy-800 group-hover:text-brand-600 transition-colors truncate">{item.title}</p>
