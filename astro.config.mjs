@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://franruiloz-lab.github.io',
+  site: 'https://constructioncalculate.com',
   integrations: [
     react(),
     tailwind(),
