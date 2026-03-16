@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import WallpaperCalc from '../components/calculators/WallpaperCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many rolls of wallpaper do I need?", a: "Calculate your total wall area (perimeter × height), subtract openings for doors (21 sq ft each) and windows (15 sq ft each), then divide by the roll coverage. Add 15% for pattern matching waste. Our calculator does this for any roll size." },
+  { q: "What is a standard wallpaper roll size?", a: "US single rolls: 21\" wide × 27 ft long = 4.75 sq ft. European single rolls: 20.5\" wide × 33 ft long = 5.6 sq ft. Wallpaper is often sold in double rolls (2× the length). Always verify with your specific product." },
+  { q: "What is a double roll of wallpaper?", a: "A double roll contains twice as much wallpaper as a single roll but is priced as one unit. This reduces the number of seams and is actually more economical. When contractors quote 'rolls needed,' they typically mean single rolls." },
+  { q: "How much does wallpaper installation cost?", a: "Professional wallpaper installation costs $1–$7 per sq ft for labor, depending on pattern complexity and wall condition. Simple wallpaper runs $1–$3/sq ft to install. Budget wallpaper materials: $25–$50/single roll. Premium: $75–$150+/roll." },
+  { q: "How do I measure walls for wallpaper?", a: "Measure each wall's width and height. Calculate total square footage, then subtract openings. For rooms with many windows and doors, you may only need 60–70% of the gross wall area covered. Always use actual measurements, not estimated room size." },
+];
+const related = [
+  { href: '/paint-calculator', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/drywall-calculator', label: 'Drywall Calculator', icon: '🧱' },
+  { href: '/flooring-calculator', label: 'Flooring Calculator', icon: '🏠' },
+];
+---
+<CalculatorLayout
+  title="Wallpaper Calculator – Single & Double Rolls Needed"
+  description="Calculate how many wallpaper rolls you need for any room. Supports any roll size, accounts for doors and windows, and adds 15% for pattern matching waste."
+  heading="Wallpaper Calculator"
+  subheading="Calculate single rolls, double rolls, and material cost for any wallpaper project"
+  icon="🖼️"
+  breadcrumb="Wallpaper Calculator"
+  schema={{
+    name: "Wallpaper Calculator",
+    description: "Calculate wallpaper rolls needed for any room size and roll dimensions",
+    url: "https://constructioncalc.com/wallpaper-calculator"
+  }}
+>
+  <WallpaperCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Wallpaper</h2>
+    <p>Wallpaper calculation is more complex than paint because roll sizes vary by manufacturer and pattern matching adds significant waste. Always measure the actual roll dimensions before calculating.</p>
+
+    <div class="formula-box">
+      <strong>Wallpaper Formula</strong><br/>
+      Wall Area = (2L + 2W) × H − Doors×21 − Windows×15<br/>
+      Roll Coverage = (Roll Length × Roll Width) ÷ 144<br/>
+      Rolls Needed = ⌈(Wall Area ÷ Roll Coverage) × 1.15⌉
+    </div>
+
+    <h2>Standard Roll Size Reference</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Roll Type</th><th class="p-2 text-left border">Width</th><th class="p-2 text-left border">Length</th><th class="p-2 text-left border">Coverage</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">US Single Roll</td><td class="p-2 border">21"</td><td class="p-2 border">27 ft</td><td class="p-2 border">~36 sq ft</td></tr>
+        <tr><td class="p-2 border">European Single</td><td class="p-2 border">20.5"</td><td class="p-2 border">33 ft</td><td class="p-2 border">~45 sq ft</td></tr>
+        <tr><td class="p-2 border">Wide Wallpaper</td><td class="p-2 border">27"</td><td class="p-2 border">27 ft</td><td class="p-2 border">~45 sq ft</td></tr>
+        <tr><td class="p-2 border">Commercial</td><td class="p-2 border">54"</td><td class="p-2 border">30 ft</td><td class="p-2 border">~135 sq ft</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Wallpaper Installation Tips</h2>
+    <ul>
+      <li>Order all rolls from the same batch (run/dye lot) to ensure color consistency</li>
+      <li>Prepare walls: fill holes, sand smooth, and apply sizing or primer</li>
+      <li>Start in a corner that's not highly visible (like behind a door)</li>
+      <li>Use a plumb line to ensure the first strip is perfectly vertical</li>
+      <li>Match patterns at eye level (4–5 ft from floor) for the best visual result</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

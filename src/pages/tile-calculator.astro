@@ -1,0 +1,68 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import TileCalc from '../components/calculators/TileCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How do I calculate how many tiles I need?", a: "Divide the total area by the area of one tile, then add your waste percentage (10% for simple layouts, 15% for diagonal patterns). Our calculator does this automatically based on tile size and waste factor." },
+  { q: "How much waste should I add for tile?", a: "Add 10% for straight layouts. For diagonal (45°) or herringbone patterns, add 15–20%. For complex shapes, irregular rooms, or large format tiles, add 15–20% regardless of pattern." },
+  { q: "What size tile is best for a small bathroom?", a: "Smaller tiles (4\"×4\" to 12\"×12\") work well in small spaces because fewer cuts are needed. However, larger tiles (12\"×24\" or bigger) can actually make small rooms feel larger by creating fewer grout lines." },
+  { q: "How much does tile installation cost?", a: "Tile material costs $1–$20+ per sq ft. Professional installation adds $5–$15 per sq ft for labor. Simple bathroom floor installs run $10–$20/sq ft total. Complex patterns, heated floors, or wall tile can double the cost." },
+  { q: "How many boxes of tile do I need?", a: "Find the coverage per box on the tile label (usually listed in sq ft). Divide your total tile area (with waste) by that number. Our calculator estimates based on standard box sizes of 10 or 15 tiles per box." },
+];
+const related = [
+  { href: '/flooring-calculator', label: 'Flooring Calculator', icon: '🏠' },
+  { href: '/grout-calculator', label: 'Grout Calculator', icon: '🔲' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/sand-calculator', label: 'Sand Calculator', icon: '🏖️' },
+];
+---
+<CalculatorLayout
+  title="Tile Calculator – Tiles Needed & Cost Estimator"
+  description="Calculate tiles needed for floors, walls, and backsplashes. Input any tile size in inches or cm, set your waste factor, and get instant tile count and cost estimates."
+  heading="Tile Calculator"
+  subheading="Calculate tile quantity, boxes needed, and material cost for floors, walls, and backsplashes"
+  icon="🔲"
+  breadcrumb="Tile Calculator"
+  schema={{
+    name: "Tile Calculator",
+    description: "Calculate tile quantity and cost for flooring and wall tile projects",
+    url: "https://constructioncalc.com/tile-calculator"
+  }}
+>
+  <TileCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Tile Quantity</h2>
+    <p>Tile calculation is straightforward: divide the total area by the individual tile area, then add a waste buffer for cuts and breakage. Getting this right prevents expensive shortages mid-project.</p>
+
+    <div class="formula-box">
+      <strong>Tile Count Formula</strong><br/>
+      Tile Area = (Tile Width × Tile Height) ÷ 144 (if inches)<br/>
+      Tiles Needed = ⌈Room Area × (1 + Waste%) ÷ Tile Area⌉
+    </div>
+
+    <h2>Recommended Waste Factors</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Layout Pattern</th><th class="p-2 text-left border">Waste %</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Straight (grid)</td><td class="p-2 border">10%</td></tr>
+        <tr><td class="p-2 border">Diagonal (45°)</td><td class="p-2 border">15%</td></tr>
+        <tr><td class="p-2 border">Herringbone</td><td class="p-2 border">15–20%</td></tr>
+        <tr><td class="p-2 border">Basketweave</td><td class="p-2 border">10–15%</td></tr>
+        <tr><td class="p-2 border">Irregular room</td><td class="p-2 border">15%</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tile Size Selection Guide</h2>
+    <ul>
+      <li><strong>Small mosaic (1\"–4\")</strong> — Shower floors, decorative backsplashes, pool tiles</li>
+      <li><strong>Medium (4\"–12\")</strong> — Bathroom floors and walls, kitchen backsplashes</li>
+      <li><strong>Large (12\"–24\")</strong> — Living rooms, open floor plans, modern aesthetics</li>
+      <li><strong>Extra large (24\"+)</strong> — Commercial spaces, premium residential installs</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

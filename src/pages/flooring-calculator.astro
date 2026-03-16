@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import FlooringCalc from '../components/calculators/FlooringCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much flooring do I need?", a: "Measure each room's length and width and multiply to get square footage. Add 10% for waste from cuts and defects. For diagonal installations, add 15%. For irregular rooms or complex layouts, add 15–20%." },
+  { q: "What is the best flooring for high-traffic areas?", a: "Luxury Vinyl Plank (LVP) is the top choice for high-traffic areas: it's water-resistant, highly durable, comfortable underfoot, and easy to clean. Porcelain tile and hardwood are also excellent. Carpet shows wear quickly in high-traffic zones." },
+  { q: "How much does it cost to install hardwood flooring?", a: "Solid hardwood costs $6–$15 per sq ft for materials, plus $4–$8/sq ft for professional installation. Total installed cost: $10–$23 per sq ft. Engineered hardwood is somewhat less expensive. Labor costs vary significantly by region." },
+  { q: "What is LVP flooring?", a: "LVP (Luxury Vinyl Plank) is a multi-layer synthetic flooring product that realistically mimics wood or stone. It's 100% waterproof, click-lock installation is DIY-friendly, very durable (up to 12 mil wear layer), and costs $2–$7/sq ft. It's the fastest-growing flooring category." },
+  { q: "Can I install flooring over existing flooring?", a: "Floating floors (LVP, laminate, engineered wood) can often go over existing flooring if it's flat, firm, and less than 1/8\" height variation per 6 feet. You cannot install over carpet or multiple layers of flooring. Always check manufacturer specs." },
+];
+const related = [
+  { href: '/tile-calculator', label: 'Tile Calculator', icon: '🔲' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/paint-calculator', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/construction-calculator', label: 'Building Cost Calculator', icon: '🏗️' },
+];
+---
+<CalculatorLayout
+  title="Flooring Calculator – Square Feet & Cost Estimator"
+  description="Calculate flooring for any room. Get square footage, material cost, and installation estimates for hardwood, LVP, laminate, carpet, tile, and engineered wood flooring."
+  heading="Flooring Calculator"
+  subheading="Calculate flooring square footage and cost for hardwood, LVP, laminate, carpet, and tile"
+  icon="🏠"
+  breadcrumb="Flooring Calculator"
+  schema={{
+    name: "Flooring Calculator",
+    description: "Calculate flooring quantity and cost for any room",
+    url: "https://constructioncalc.com/flooring-calculator"
+  }}
+>
+  <FlooringCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Flooring</h2>
+    <p>Flooring is sold by the square foot. Measure your room's length and width, multiply for total square footage, then add 10% for waste from cuts and any defective planks.</p>
+
+    <div class="formula-box">
+      <strong>Flooring Formula</strong><br/>
+      Room Area = Length (ft) × Width (ft)<br/>
+      Order Quantity = Room Area × 1.10 (includes 10% waste)
+    </div>
+
+    <h2>Flooring Cost Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Type</th><th class="p-2 text-left border">Material/Sq Ft</th><th class="p-2 text-left border">Install/Sq Ft</th><th class="p-2 text-left border">Lifespan</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Solid Hardwood</td><td class="p-2 border">$6–15</td><td class="p-2 border">$4–8</td><td class="p-2 border">50–100 yrs (refinishable)</td></tr>
+        <tr><td class="p-2 border">Engineered Wood</td><td class="p-2 border">$4–10</td><td class="p-2 border">$3–7</td><td class="p-2 border">25–30 yrs</td></tr>
+        <tr><td class="p-2 border">LVP / LVT</td><td class="p-2 border">$2–7</td><td class="p-2 border">$2–4</td><td class="p-2 border">15–25 yrs</td></tr>
+        <tr><td class="p-2 border">Laminate</td><td class="p-2 border">$1–5</td><td class="p-2 border">$2–5</td><td class="p-2 border">15–25 yrs</td></tr>
+        <tr><td class="p-2 border">Carpet</td><td class="p-2 border">$2–6</td><td class="p-2 border">$1–3</td><td class="p-2 border">5–15 yrs</td></tr>
+        <tr><td class="p-2 border">Porcelain Tile</td><td class="p-2 border">$2–10</td><td class="p-2 border">$4–9</td><td class="p-2 border">50+ yrs</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Flooring Selection Guide</h2>
+    <ul>
+      <li><strong>Bathrooms/Kitchens:</strong> LVP or porcelain tile — moisture resistance is non-negotiable</li>
+      <li><strong>Living rooms/bedrooms:</strong> Hardwood, engineered wood, or LVP for warmth and durability</li>
+      <li><strong>Basements:</strong> LVP only (waterproof) — hardwood and laminate will warp from moisture</li>
+      <li><strong>Kids' rooms:</strong> LVP or low-pile carpet for durability and comfort</li>
+      <li><strong>Home offices:</strong> Hardwood or LVP — easy to clean, professional look</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

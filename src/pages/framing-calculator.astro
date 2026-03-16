@@ -1,0 +1,67 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import FramingCalc from '../components/calculators/FramingCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many studs do I need per linear foot of wall?", a: "At 16\" on-center (OC) spacing, you need approximately 0.75 studs per linear foot plus 1 extra stud per wall for corners. A 20-ft wall at 16\" OC needs about 16 studs. At 24\" OC, you need about 0.5 studs per linear foot." },
+  { q: "What is the difference between 2x4 and 2x6 framing?", a: "2×4 framing is the standard for interior partitions and exterior walls in most climates. 2×6 framing is used in colder climates to allow for 5.5\" of insulation (R-19 vs. R-13 for 2×4). 2×6 framing costs about 50% more but significantly improves energy efficiency." },
+  { q: "What does 16\" on center mean?", a: "On-center (OC) means the measurement from the center of one stud to the center of the next stud. At 16\" OC, the face-to-face gap between 1.5\" thick studs is 14.5\". Standard drywall (4×8 sheets) aligns perfectly with 16\" and 24\" OC framing." },
+  { q: "How many 2x4 studs do I need for a 12-foot wall?", a: "A 12-ft wall at 16\" OC needs: 12 ft × 0.75 + 1 = 10 studs. Add 2 extra for the corners = 12 studs total. Add more for any window or door headers (king studs, jack studs). Always round up and buy a few extra." },
+  { q: "How much does lumber framing cost?", a: "A standard 8-ft 2×4 stud costs $5–$9 depending on region and market. 2×6 studs run $9–$15 each. Lumber prices are volatile — always get current pricing. Expect 10–15% over the calculated quantity for waste and extras." },
+];
+const related = [
+  { href: '/plywood-calculator', label: 'Plywood Calculator', icon: '🪵' },
+  { href: '/drywall-calculator', label: 'Drywall Calculator', icon: '🧱' },
+  { href: '/construction-calculator', label: 'Building Cost Calculator', icon: '🏗️' },
+  { href: '/board-foot-calculator', label: 'Board Foot Calculator', icon: '🪵' },
+];
+---
+<CalculatorLayout
+  title="Framing Calculator – Studs, Plates & Lumber Cost"
+  description="Calculate wall studs, top and bottom plates, and lumber cost for any wall framing project. Supports 2x4 and 2x6 at 12, 16, and 24 inch on-center spacing."
+  heading="Framing Calculator"
+  subheading="Calculate studs, plates, and lumber cost for wall framing projects"
+  icon="🔨"
+  breadcrumb="Framing Calculator"
+  schema={{
+    name: "Framing Calculator",
+    description: "Calculate wall framing lumber quantities and cost",
+    url: "https://constructioncalc.com/framing-calculator"
+  }}
+>
+  <FramingCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Framing Lumber</h2>
+    <p>Wall framing requires studs plus top and bottom plates. The calculator estimates studs based on spacing and wall length, plus 3 plates per wall run (single bottom plate + double top plate).</p>
+
+    <div class="formula-box">
+      <strong>Stud Count Formula</strong><br/>
+      Studs per Wall = (Wall Length ÷ Stud Spacing) + 1 + Corner Studs<br/>
+      Plate Linear Feet = Total Wall Length × 3 (bottom + double top)
+    </div>
+
+    <h2>Stud Spacing Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Spacing</th><th class="p-2 text-left border">Studs per 10 ft</th><th class="p-2 text-left border">Best For</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">12" OC</td><td class="p-2 border">11 studs</td><td class="p-2 border">Heavy loads, masonry veneer, tall walls</td></tr>
+        <tr><td class="p-2 border">16" OC</td><td class="p-2 border">8–9 studs</td><td class="p-2 border">Standard residential — most common</td></tr>
+        <tr><td class="p-2 border">24" OC</td><td class="p-2 border">6 studs</td><td class="p-2 border">Advanced framing (OVE), reduces lumber use</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Framing Best Practices</h2>
+    <ul>
+      <li>Use a chalk line to snap layout marks on the plates before standing walls</li>
+      <li>Mark both plates simultaneously to ensure perfect alignment</li>
+      <li>Crown all studs (slight bow) in the same direction — toward the room</li>
+      <li>Use structural screws or 16d nails for load-bearing walls</li>
+      <li>Install blocking at 4 ft height for drywall backing and fire blocking as required by code</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

@@ -1,0 +1,90 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import GravelCalc from '../components/calculators/GravelCalc';
+
+const faqs = [
+  { q: 'How many tons of gravel do I need for a driveway?', a: 'A standard single-car driveway (10 ft × 20 ft) at 4 inches deep requires about 2.5 cubic yards or 3.5 tons of gravel. A two-car driveway (20 ft × 20 ft) at 4 inches needs about 5 cubic yards or 7 tons. Our calculator handles any size.' },
+  { q: 'How deep should gravel be for a driveway?', a: 'For a residential driveway, use 3–4 inches of compacted gravel as a base layer, plus 2–3 inches of surface gravel on top, for a total of 5–7 inches. For heavy traffic or soft soil, increase the base to 6 inches.' },
+  { q: 'How much does a cubic yard of gravel weigh?', a: 'It depends on the type. Pea gravel and river rock: about 1.4 tons per yard. Crushed stone (limestone/granite): 1.5 tons per yard. Sand: about 1.35 tons per yard. Topsoil: 1.1 tons per yard.' },
+  { q: 'How many cubic yards are in a ton of gravel?', a: 'Divide 1 ton by the density. For standard gravel (1.4 tons/yard), 1 ton equals about 0.71 cubic yards. For crushed stone (1.5 tons/yard), 1 ton equals about 0.67 cubic yards.' },
+  { q: 'Can I use the gravel calculator for sand?', a: 'Yes! Our calculator includes sand as a material option with its specific density (1.35 tons/yard). Just select "Sand" from the material dropdown and enter your dimensions.' },
+];
+
+const related = [
+  { title: 'Concrete Calculator', href: '/concrete-calculator/', icon: '🏗️', description: 'Calculate concrete over gravel base' },
+  { title: 'Cubic Feet Calculator', href: '/cubic-feet-calculator/', icon: '📦', description: 'General volume calculations' },
+  { title: 'Mulch Calculator', href: '/mulch-calculator/', icon: '🍂', description: 'Landscaping material estimator' },
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Calculate your area first' },
+];
+---
+
+<CalculatorLayout
+  title="Gravel Calculator — Cubic Yards & Tons for Driveways & Landscaping"
+  description="Free gravel calculator for driveways, paths, and landscaping. Calculate cubic yards and tons of gravel, crushed stone, or sand with cost estimates."
+  heading="Gravel Calculator"
+  subheading="Calculate how much gravel, crushed stone, or sand you need in cubic yards and tons. Includes material density options and cost estimates."
+  icon="🪨"
+  category="Construction"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <GravelCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Gravel Calculator Formula</h2>
+    <div class="formula-box">
+      Volume (ft³) = Length (ft) × Width (ft) × Depth (ft)<br/>
+      Volume (yd³) = Volume (ft³) ÷ 27<br/>
+      Weight (tons) = Volume (yd³) × Density (tons/yd³)
+    </div>
+
+    <h2>Gravel Depth Guide by Application</h2>
+    <table>
+      <thead><tr><th>Application</th><th>Recommended Depth</th><th>Coverage per ton</th></tr></thead>
+      <tbody>
+        <tr><td>Residential driveway (base)</td><td>4–6 inches</td><td>~80 sq ft at 4"</td></tr>
+        <tr><td>Driveway surface (top layer)</td><td>2–3 inches</td><td>~160 sq ft at 2"</td></tr>
+        <tr><td>Garden path</td><td>2–3 inches</td><td>~160 sq ft at 2"</td></tr>
+        <tr><td>Landscape beds</td><td>2 inches</td><td>~240 sq ft at 2"</td></tr>
+        <tr><td>French drain / drainage</td><td>6–12 inches</td><td>~40 sq ft at 12"</td></tr>
+        <tr><td>Concrete sub-base</td><td>4 inches</td><td>~80 sq ft at 4"</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Gravel Density Reference</h2>
+    <table>
+      <thead><tr><th>Material</th><th>Tons per Cubic Yard</th><th>Lbs per Cubic Foot</th></tr></thead>
+      <tbody>
+        <tr><td>Pea Gravel</td><td>1.35–1.45</td><td>100–107</td></tr>
+        <tr><td>Crushed Stone (limestone)</td><td>1.4–1.5</td><td>103–111</td></tr>
+        <tr><td>Crushed Granite</td><td>1.45–1.55</td><td>107–115</td></tr>
+        <tr><td>River Rock</td><td>1.35–1.45</td><td>100–107</td></tr>
+        <tr><td>Sand (dry)</td><td>1.3–1.45</td><td>96–107</td></tr>
+        <tr><td>Fill Dirt</td><td>1.0–1.2</td><td>74–89</td></tr>
+        <tr><td>Mulch (shredded)</td><td>0.35–0.45</td><td>26–33</td></tr>
+      </tbody>
+    </table>
+
+    <h2>How to Lay a Gravel Driveway</h2>
+    <ol>
+      <li><strong>Excavate</strong> — Remove 6–8 inches of topsoil from the driveway area.</li>
+      <li><strong>Grade and compact</strong> — Ensure proper drainage slope (at least 2% grade away from structures).</li>
+      <li><strong>Install landscape fabric</strong> — Prevents weeds without blocking drainage.</li>
+      <li><strong>Base layer</strong> — Add 4 inches of compacted crushed stone (Class 2 or 3/4" crusher run).</li>
+      <li><strong>Middle layer</strong> — Add 2 inches of smaller crushed stone (1/2" minus).</li>
+      <li><strong>Top layer</strong> — Finish with 2 inches of pea gravel or decorative stone.</li>
+      <li><strong>Install edging</strong> — Metal or plastic edging keeps gravel in place.</li>
+    </ol>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Install <strong>landscape fabric</strong> first to prevent weeds</li>
+      <li>✅ Use <strong>3 layers</strong> for driveways: base, mid, surface</li>
+      <li>✅ Add <strong>10% extra</strong> for compaction and settling</li>
+      <li>✅ Slope driveways <strong>2% away</strong> from structures</li>
+    </ul>
+  </div>
+</CalculatorLayout>

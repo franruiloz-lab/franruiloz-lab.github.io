@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import RebarCalc from '../components/calculators/RebarCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "What size rebar do I need for a concrete slab?", a: "#4 rebar (1/2\" diameter) is the most common choice for residential concrete slabs like driveways, patios, and floors. #3 rebar is used for lighter applications like sidewalks. #5 and larger are for structural elements like foundations and retaining walls." },
+  { q: "How far apart should rebar be spaced?", a: "For residential slabs: 12\" on center is standard. Driveways and high-traffic areas often use 6\"–8\" spacing. Consult a structural engineer for load-bearing applications. Building codes typically require 12\"–18\" maximum spacing for slabs." },
+  { q: "How much does rebar cost?", a: "Rebar costs roughly $0.40–$0.70 per linear foot for #4 rebar (the most common size). A 20-ft stick of #4 rebar costs $8–$14. Prices fluctuate with steel markets — check current prices at your local supplier." },
+  { q: "Do I need rebar in a concrete slab?", a: "Residential slabs under 4\" thick (like sidewalks) sometimes use wire mesh instead. For driveways, patios, garage floors, and anything structural, rebar is strongly recommended. It significantly increases crack resistance and load capacity." },
+  { q: "What is the weight of #4 rebar per foot?", a: "#4 rebar weighs 0.668 lbs per linear foot. #3: 0.376 lbs/ft. #5: 1.043 lbs/ft. #6: 1.502 lbs/ft. #8: 2.670 lbs/ft. Weight matters for delivery planning and for calculating structural loads." },
+];
+const related = [
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/construction-calculator', label: 'Building Cost Calculator', icon: '🏗️' },
+  { href: '/framing-calculator', label: 'Framing Calculator', icon: '🔨' },
+];
+---
+<CalculatorLayout
+  title="Rebar Calculator – Linear Feet, Bars & Weight"
+  description="Calculate rebar for concrete slabs: linear feet, 20-ft bars to buy, total weight, and cost. Supports #3, #4, #5, and #6 rebar at any OC spacing."
+  heading="Rebar Calculator"
+  subheading="Calculate rebar linear footage, bar count, weight, and cost for concrete slabs"
+  icon="⚙️"
+  breadcrumb="Rebar Calculator"
+  schema={{
+    name: "Rebar Calculator",
+    description: "Calculate rebar quantity and cost for concrete slab reinforcement",
+    url: "https://constructioncalc.com/rebar-calculator"
+  }}
+>
+  <RebarCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Rebar for a Slab</h2>
+    <p>Rebar for a concrete slab runs in two directions (a grid). Calculate the total linear feet needed by finding how many bars run in each direction and multiplying by the slab dimension.</p>
+
+    <div class="formula-box">
+      <strong>Rebar Grid Formula</strong><br/>
+      Bars along Length = ⌈Width ÷ Spacing⌉ + 1<br/>
+      Bars along Width = ⌈Length ÷ Spacing⌉ + 1<br/>
+      Linear Feet = (Bars along Length × Length) + (Bars along Width × Width)
+    </div>
+
+    <h2>Rebar Size Reference</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Bar Size</th><th class="p-2 text-left border">Diameter</th><th class="p-2 text-left border">Weight (lbs/ft)</th><th class="p-2 text-left border">Common Use</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">#3</td><td class="p-2 border">3/8"</td><td class="p-2 border">0.376</td><td class="p-2 border">Sidewalks, light slabs</td></tr>
+        <tr><td class="p-2 border">#4</td><td class="p-2 border">1/2"</td><td class="p-2 border">0.668</td><td class="p-2 border">Driveways, patios, floors</td></tr>
+        <tr><td class="p-2 border">#5</td><td class="p-2 border">5/8"</td><td class="p-2 border">1.043</td><td class="p-2 border">Foundations, walls</td></tr>
+        <tr><td class="p-2 border">#6</td><td class="p-2 border">3/4"</td><td class="p-2 border">1.502</td><td class="p-2 border">Structural elements</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Rebar Installation Tips</h2>
+    <ul>
+      <li>Use rebar chairs or dobies to keep rebar at the correct height (1/3 from bottom for slabs)</li>
+      <li>Overlap bars by at least 24 bar diameters at splices (12\" for #4)</li>
+      <li>Wire-tie intersections to maintain spacing during the pour</li>
+      <li>Keep rebar at least 1.5\" from the edges of the slab</li>
+      <li>Order 10% extra to account for overlap, waste, and cutting</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

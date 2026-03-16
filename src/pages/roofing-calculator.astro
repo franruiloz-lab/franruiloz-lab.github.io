@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import RoofingCalc from '../components/calculators/RoofingCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "What is a roofing square?", a: "A roofing square equals 100 square feet of roof surface area. Roofing materials like shingles and metal panels are priced and sold by the square. A 2,000 sq ft roof equals 20 squares." },
+  { q: "How do I calculate roof area from floor area?", a: "Multiply your home's footprint area by a pitch factor. A 4/12 pitch has a factor of 1.054; a 6/12 pitch = 1.118; an 8/12 pitch = 1.202; a 12/12 pitch = 1.414. Our calculator lets you select the pitch and does this automatically." },
+  { q: "How many bundles of shingles per square?", a: "Standard 3-tab asphalt shingles come 3 bundles per square. Architectural/dimensional shingles also come 3 bundles per square, but some heavier products come 4 bundles per square. Always verify with your supplier." },
+  { q: "How much does a new roof cost?", a: "A new asphalt shingle roof costs $4–$8 per sq ft installed, or $8,000–$16,000 for a typical 2,000 sq ft home. Metal roofing runs $8–$14/sq ft. Tile is $10–$20/sq ft. Premium materials like slate start at $20/sq ft." },
+  { q: "How long do different roofing materials last?", a: "3-tab asphalt: 20–25 years. Architectural asphalt: 25–30 years. Metal (standing seam): 40–70 years. Clay tile: 50–100 years. Slate: 75–150+ years. Wood shake: 20–30 years with maintenance." },
+];
+const related = [
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/construction-calculator', label: 'Building Cost Calculator', icon: '🏗️' },
+  { href: '/drywallcalculator', label: 'Drywall Calculator', icon: '🧱' },
+  { href: '/paint-calculator', label: 'Paint Calculator', icon: '🎨' },
+];
+---
+<CalculatorLayout
+  title="Roofing Calculator – Squares, Shingles & Cost Estimate"
+  description="Calculate roofing squares, shingle bundles, and material costs for any roof pitch. Covers asphalt, metal, tile, slate, and wood shake roofing materials."
+  heading="Roofing Calculator"
+  subheading="Calculate roofing squares, shingle bundles, and installation cost for any roof"
+  icon="🏚️"
+  breadcrumb="Roofing Calculator"
+  schema={{
+    name: "Roofing Calculator",
+    description: "Calculate roofing materials and cost estimates for residential and commercial roofs",
+    url: "https://constructioncalc.com/roofing-calculator"
+  }}
+>
+  <RoofingCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Measure Roof Area</h2>
+    <p>Roof area is always larger than the floor footprint below it because of the roof pitch (slope). The steeper the pitch, the larger the actual roof surface. Use a pitch multiplier to convert floor area to roof area.</p>
+
+    <div class="formula-box">
+      <strong>Roof Area Formula</strong><br/>
+      Roof Area = Floor Footprint × Pitch Multiplier<br/>
+      Squares = Roof Area ÷ 100
+    </div>
+
+    <h2>Roof Pitch Multipliers</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Pitch (Rise/Run)</th><th class="p-2 text-left border">Multiplier</th><th class="p-2 text-left border">Classification</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">3/12</td><td class="p-2 border">1.031</td><td class="p-2 border">Low slope</td></tr>
+        <tr><td class="p-2 border">4/12</td><td class="p-2 border">1.054</td><td class="p-2 border">Low slope</td></tr>
+        <tr><td class="p-2 border">6/12</td><td class="p-2 border">1.118</td><td class="p-2 border">Medium slope</td></tr>
+        <tr><td class="p-2 border">8/12</td><td class="p-2 border">1.202</td><td class="p-2 border">Medium slope</td></tr>
+        <tr><td class="p-2 border">10/12</td><td class="p-2 border">1.302</td><td class="p-2 border">Steep slope</td></tr>
+        <tr><td class="p-2 border">12/12</td><td class="p-2 border">1.414</td><td class="p-2 border">Steep slope (45°)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Roofing Material Comparison</h2>
+    <ul>
+      <li><strong>Architectural shingles</strong> — Best value, 25–30 yr life, widest color selection</li>
+      <li><strong>Metal (standing seam)</strong> — Premium longevity (40–70 yrs), energy efficient, higher cost</li>
+      <li><strong>Clay/concrete tile</strong> — Excellent in hot climates, heavy (need structural check)</li>
+      <li><strong>Slate</strong> — The ultimate lifespan (100+ yrs), most expensive, requires specialized installers</li>
+      <li><strong>Wood shake</strong> — Beautiful natural look, requires annual treatment in wet climates</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import ConcreteBlockCalc from '../components/calculators/ConcreteBlockCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many concrete blocks do I need per square foot?", a: "Standard 8\"×8\"×16\" CMU blocks cover 0.889 sq ft each, so you need approximately 1.125 blocks per sq ft of wall. Add 5% for waste and cuts. Our calculator handles this automatically." },
+  { q: "How much mortar do I need for concrete block?", a: "One 60 lb bag of mortar covers approximately 35 concrete blocks for joints. Divide your total block count by 35 to get the number of bags. For a 100-block project, you'd need about 3 bags of mortar." },
+  { q: "What is the difference between CMU and cinder block?", a: "CMU (Concrete Masonry Unit) is the modern term for what was once called cinder block. Today's CMU blocks are made with Portland cement and aggregate (not cinders). They are structurally superior to old cinder blocks." },
+  { q: "How thick is a standard concrete block wall?", a: "An 8-inch CMU wall (single wythe) is 8\" thick. For structural walls, cores are typically filled with grout and reinforced with rebar. A solid grouted 8\" CMU wall with rebar is very strong and used for foundations, retaining walls, and commercial construction." },
+  { q: "Can you use concrete blocks for a retaining wall?", a: "Yes, 8\" CMU blocks are excellent for retaining walls up to 4 feet tall without engineering. For walls over 4 feet, an engineer should design the reinforcement schedule and footing. Always include drainage behind the wall." },
+];
+const related = [
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/retaining-wall-calculator', label: 'Retaining Wall Calculator', icon: '🪨' },
+  { href: '/brick-calculator', label: 'Brick Calculator', icon: '🧱' },
+  { href: '/rebar-calculator', label: 'Rebar Calculator', icon: '⚙️' },
+];
+---
+<CalculatorLayout
+  title="Concrete Block Calculator – CMU Blocks & Mortar"
+  description="Calculate concrete blocks (CMU) and mortar bags for any wall size. Supports standard, half, corner, and bond beam blocks with 5% waste factor."
+  heading="Concrete Block Calculator"
+  subheading="Calculate CMU blocks, mortar bags, and material cost for block wall construction"
+  icon="🧱"
+  breadcrumb="Concrete Block Calculator"
+  schema={{
+    name: "Concrete Block Calculator",
+    description: "Calculate concrete masonry units (CMU) and mortar for block walls",
+    url: "https://constructioncalc.com/concrete-block-calculator"
+  }}
+>
+  <ConcreteBlockCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Concrete Blocks</h2>
+    <p>Standard CMU blocks measure 8\"×8\"×16\" (actual dimensions: 7.625\"×7.625\"×15.625\" plus 3/8\" mortar joints). Each block covers 0.889 sq ft of wall face.</p>
+
+    <div class="formula-box">
+      <strong>CMU Block Formula</strong><br/>
+      Wall Area = Length (ft) × Height (ft)<br/>
+      Blocks = ⌈Wall Area ÷ 0.889 × 1.05⌉<br/>
+      Mortar Bags = ⌈Blocks ÷ 35⌉
+    </div>
+
+    <h2>CMU Block Types</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Block Type</th><th class="p-2 text-left border">Size</th><th class="p-2 text-left border">Use</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Standard Stretcher</td><td class="p-2 border">8×8×16"</td><td class="p-2 border">Main field of wall</td></tr>
+        <tr><td class="p-2 border">Half Block</td><td class="p-2 border">8×8×8"</td><td class="p-2 border">Corners, course ends</td></tr>
+        <tr><td class="p-2 border">Corner Block</td><td class="p-2 border">8×8×16"</td><td class="p-2 border">Clean outside corners</td></tr>
+        <tr><td class="p-2 border">Bond Beam</td><td class="p-2 border">8×8×16"</td><td class="p-2 border">Horizontal rebar and grout</td></tr>
+        <tr><td class="p-2 border">Lintel Block</td><td class="p-2 border">8×8×16"</td><td class="p-2 border">Above doors and windows</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Block Wall Construction Tips</h2>
+    <ul>
+      <li>Start with a solid poured concrete footing (typically 16\"×8\" for 8\" block)</li>
+      <li>Fill all cores with grout and #5 rebar every 48\" for structural walls</li>
+      <li>Use bond beams every 4 ft of height for walls over 6 ft</li>
+      <li>Install horizontal joint reinforcement (ladder wire) every other course</li>
+      <li>Cure mortar joints by misting with water in hot weather to prevent cracking</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

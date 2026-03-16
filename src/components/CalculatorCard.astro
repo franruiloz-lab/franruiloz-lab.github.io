@@ -1,0 +1,34 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  icon: string;
+  volume?: string;
+  badge?: string;
+}
+const { title, description, href, icon, volume, badge } = Astro.props;
+---
+
+<a href={href} class="calc-card group bg-white border border-slate-200 rounded-xl p-5 flex flex-col gap-3 hover:border-brand-300 relative overflow-hidden">
+  {badge && (
+    <span class="absolute top-3 right-3 text-xs font-semibold bg-brand-500 text-white px-2 py-0.5 rounded-full">
+      {badge}
+    </span>
+  )}
+  <div class="w-11 h-11 bg-brand-50 group-hover:bg-brand-100 rounded-xl flex items-center justify-center text-2xl transition-colors duration-150 border border-brand-100">
+    {icon}
+  </div>
+  <div>
+    <h3 class="font-bold text-navy-900 text-base group-hover:text-brand-600 transition-colors duration-150">{title}</h3>
+    <p class="text-slate-500 text-sm mt-1 leading-relaxed">{description}</p>
+  </div>
+  {volume && (
+    <div class="flex items-center gap-1 text-xs text-slate-400 mt-auto pt-1 border-t border-slate-100">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+      </svg>
+      <span>{volume}/mo searches</span>
+    </div>
+  )}
+</a>

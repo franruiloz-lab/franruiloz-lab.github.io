@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import DeckCalc from '../components/calculators/DeckCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much does it cost to build a deck?", a: "Pressure-treated wood decks cost $15–$25 per sq ft installed. Cedar decks run $20–$35/sq ft. Composite decking costs $35–$60/sq ft. These are total installed prices including materials and labor." },
+  { q: "How many deck boards do I need?", a: "Divide the deck area (sq ft) by the board width in feet, then multiply by 1.10 for waste. A 200 sq ft deck with 6\" boards needs: 200 ÷ 0.5 × 1.10 = 440 linear feet of decking boards." },
+  { q: "How many joists do I need for a deck?", a: "Joists are typically spaced 16\" on-center. For a 12-ft wide deck, you need 12 ft ÷ 1.33 ft = approximately 9 joists plus 2 rim joists. Always add blocking at the mid-span for spans over 8 feet." },
+  { q: "Do I need a permit to build a deck?", a: "Most jurisdictions require a permit for decks attached to the home or raised more than 30\" above grade. Check your local building department. Permits typically require stamped plans and inspections at footing, framing, and completion stages." },
+  { q: "What is the best decking material?", a: "Pressure-treated pine is the most affordable (15–20 yr life). Composite (Trex, TimberTech) costs more upfront but lasts 25–30 years with minimal maintenance. Ipe hardwood lasts 40–75 years but is expensive and difficult to work with." },
+];
+const related = [
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/fence-calculator', label: 'Fence Calculator', icon: '🪧' },
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/board-foot-calculator', label: 'Board Foot Calculator', icon: '🪵' },
+];
+---
+<CalculatorLayout
+  title="Deck Calculator – Boards, Joists & Cost Estimator"
+  description="Calculate deck boards, linear feet, joists, and total cost for any deck size. Covers pressure-treated, cedar, composite, redwood, and ipe decking materials."
+  heading="Deck Calculator"
+  subheading="Calculate decking boards, linear footage, and material cost for your deck project"
+  icon="🏡"
+  breadcrumb="Deck Calculator"
+  schema={{
+    name: "Deck Calculator",
+    description: "Calculate deck materials and cost for residential deck construction",
+    url: "https://constructioncalc.com/deck-calculator"
+  }}
+>
+  <DeckCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Deck Boards</h2>
+    <p>Deck boards are purchased in linear feet. To find how many you need, divide the deck area by the board coverage per linear foot, then add waste for end cuts and defects.</p>
+
+    <div class="formula-box">
+      <strong>Deck Board Formula</strong><br/>
+      Coverage per LF = Board Width (in) ÷ 12<br/>
+      Linear Feet = (Deck Area × 1.10) ÷ Coverage per LF
+    </div>
+
+    <h2>Decking Material Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Material</th><th class="p-2 text-left border">Cost/Sq Ft (installed)</th><th class="p-2 text-left border">Lifespan</th><th class="p-2 text-left border">Maintenance</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Pressure Treated</td><td class="p-2 border">$15–25</td><td class="p-2 border">15–20 yrs</td><td class="p-2 border">Annual stain/seal</td></tr>
+        <tr><td class="p-2 border">Cedar</td><td class="p-2 border">$20–35</td><td class="p-2 border">15–20 yrs</td><td class="p-2 border">Annual stain/seal</td></tr>
+        <tr><td class="p-2 border">Redwood</td><td class="p-2 border">$30–50</td><td class="p-2 border">20–30 yrs</td><td class="p-2 border">Every 2–3 yrs</td></tr>
+        <tr><td class="p-2 border">Composite</td><td class="p-2 border">$35–60</td><td class="p-2 border">25–30 yrs</td><td class="p-2 border">Low (wash annually)</td></tr>
+        <tr><td class="p-2 border">Ipe (Hardwood)</td><td class="p-2 border">$50–90</td><td class="p-2 border">40–75 yrs</td><td class="p-2 border">Annual oil</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Deck Building Tips</h2>
+    <ul>
+      <li>Use hot-dipped galvanized or stainless steel fasteners — regular screws will rust</li>
+      <li>Leave 1/8\"–1/4\" gap between boards for drainage and expansion</li>
+      <li>Set concrete footings below the frost line to prevent heaving</li>
+      <li>Check joist span tables for your lumber species — don't guess</li>
+      <li>Install ledger flashing correctly — improper flashing is the #1 cause of deck rot</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

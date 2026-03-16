@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import PaintCalc from '../components/calculators/PaintCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much area does a gallon of paint cover?", a: "One gallon of paint covers approximately 350–400 square feet with one coat on smooth, previously painted surfaces. Rough or unpainted surfaces may only get 250–300 sq ft per gallon. Our calculator uses 350 sq ft/gallon as the standard." },
+  { q: "How many coats of paint do I need?", a: "Most interior paint jobs require 2 coats for full, even coverage. When painting a dark color over light (or vice versa), 3 coats may be needed. New drywall should always get a primer coat before painting." },
+  { q: "How do I calculate how much paint I need for a room?", a: "Calculate wall area: perimeter × ceiling height, then subtract doors (21 sq ft each) and windows (15 sq ft each). Divide by 350 (sq ft per gallon) and multiply by number of coats. Always add 10% for waste." },
+  { q: "What is the difference between paint finishes?", a: "Flat/matte is best for ceilings and low-traffic areas. Eggshell and satin are ideal for living rooms and bedrooms — slightly washable. Semi-gloss is great for trim and kitchens. Gloss is for doors, cabinets, and high-moisture areas." },
+  { q: "How much does paint cost?", a: "Interior latex paint ranges from $20–$80 per gallon depending on brand and quality. Premium paints ($50–$80/gal) often provide better coverage and require fewer coats, which can lower the total cost." },
+];
+const related = [
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/drywall-calculator', label: 'Drywall Calculator', icon: '🧱' },
+  { href: '/wallpaper-calculator', label: 'Wallpaper Calculator', icon: '🖼️' },
+  { href: '/flooring-calculator', label: 'Flooring Calculator', icon: '🏠' },
+];
+---
+<CalculatorLayout
+  title="Paint Calculator – Gallons Needed & Cost Estimator"
+  description="Calculate how many gallons of paint you need for any room. Accounts for doors, windows, coats, and finish type. Get instant material cost estimates."
+  heading="Paint Calculator"
+  subheading="Calculate paint coverage, gallons needed, and material cost for interior and exterior painting"
+  icon="🎨"
+  breadcrumb="Paint Calculator"
+  schema={{
+    name: "Paint Calculator",
+    description: "Calculate paint gallons needed and cost for any room or surface",
+    url: "https://constructioncalc.com/paint-calculator"
+  }}
+>
+  <PaintCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Paint Coverage</h2>
+    <p>Calculating paint correctly prevents two costly mistakes: running out mid-job and buying too much. The key number is <strong>350 sq ft per gallon</strong> for a standard smooth, primed surface with one coat.</p>
+
+    <div class="formula-box">
+      <strong>Paint Gallons Formula</strong><br/>
+      Wall Area = (2 × Length + 2 × Width) × Height<br/>
+      Net Area = Wall Area − (Doors × 21) − (Windows × 15)<br/>
+      Gallons = (Net Area × Coats) ÷ 350
+    </div>
+
+    <h2>Paint Finish Guide</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Finish</th><th class="p-2 text-left border">Sheen Level</th><th class="p-2 text-left border">Best For</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Flat / Matte</td><td class="p-2 border">No sheen</td><td class="p-2 border">Ceilings, low-traffic rooms</td></tr>
+        <tr><td class="p-2 border">Eggshell</td><td class="p-2 border">Slight sheen</td><td class="p-2 border">Living rooms, bedrooms</td></tr>
+        <tr><td class="p-2 border">Satin</td><td class="p-2 border">Soft sheen</td><td class="p-2 border">Hallways, kids' rooms</td></tr>
+        <tr><td class="p-2 border">Semi-Gloss</td><td class="p-2 border">Medium sheen</td><td class="p-2 border">Kitchens, bathrooms, trim</td></tr>
+        <tr><td class="p-2 border">High Gloss</td><td class="p-2 border">Mirror-like</td><td class="p-2 border">Doors, cabinets, furniture</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Pro Painting Tips</h2>
+    <ul>
+      <li>Always prime new drywall, bare wood, and major color changes before painting</li>
+      <li>Buy all your paint at once from the same batch to ensure consistent color</li>
+      <li>Roll in a "W" pattern and back-roll for even texture and coverage</li>
+      <li>Two thin coats always outperform one thick coat</li>
+      <li>Save leftover paint in a sealed container for touch-ups — label it with the room name</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

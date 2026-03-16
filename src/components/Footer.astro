@@ -1,0 +1,80 @@
+---
+const calculators = [
+  { label: 'Concrete Calculator', href: '/concrete-calculator/' },
+  { label: 'Square Footage Calculator', href: '/square-footage-calculator/' },
+  { label: 'Gravel Calculator', href: '/gravel-calculator/' },
+  { label: 'Cubic Feet Calculator', href: '/cubic-feet-calculator/' },
+  { label: 'Mulch Calculator', href: '/mulch-calculator/' },
+  { label: 'Stair Calculator', href: '/stair-calculator/' },
+  { label: 'Board Foot Calculator', href: '/board-foot-calculator/' },
+  { label: 'Construction Calculator', href: '/construction-calculator/' },
+];
+---
+
+<footer class="bg-navy-900 text-slate-400 mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-navy-800">
+      <!-- Brand -->
+      <div>
+        <a href="/" class="flex items-center gap-2.5 mb-4">
+          <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M3 9L12 2L21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 22V12H15V22" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="text-white font-extrabold text-lg">
+            Construction<span class="text-brand-400">Calc</span>
+          </span>
+        </a>
+        <p class="text-sm leading-relaxed text-slate-500">
+          Free, accurate construction calculators built for professionals and serious DIYers. Estimate materials, costs and dimensions with confidence.
+        </p>
+        <div class="flex items-center gap-3 mt-5">
+          <div class="flex items-center gap-1.5 text-xs bg-navy-800 px-3 py-1.5 rounded-full">
+            <span class="text-green-400">✓</span>
+            <span>Free forever</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-xs bg-navy-800 px-3 py-1.5 rounded-full">
+            <span class="text-green-400">✓</span>
+            <span>No signup needed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculators -->
+      <div>
+        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Calculators</h3>
+        <ul class="space-y-2">
+          {calculators.map(calc => (
+            <li>
+              <a href={calc.href} class="text-sm hover:text-brand-400 transition-colors duration-150">
+                {calc.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">About</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about/" class="hover:text-brand-400 transition-colors">About Us</a></li>
+          <li><a href="/privacy/" class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="/disclaimer/" class="hover:text-brand-400 transition-colors">Disclaimer</a></li>
+        </ul>
+        <div class="mt-6 p-4 bg-navy-800 rounded-xl">
+          <p class="text-xs text-slate-500 leading-relaxed">
+            All calculations are provided for informational purposes only. Always consult a licensed professional before starting construction projects.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+      <p>© {new Date().getFullYear()} ConstructionCalc. All rights reserved.</p>
+      <p>Made for builders, by builders 🏗️</p>
+    </div>
+  </div>
+</footer>

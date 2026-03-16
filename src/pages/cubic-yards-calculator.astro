@@ -1,0 +1,72 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import CubicYardsCalc from '../components/calculators/CubicYardsCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many cubic feet are in a cubic yard?", a: "There are exactly 27 cubic feet in one cubic yard (3 ft × 3 ft × 3 ft = 27 ft³). To convert cubic feet to cubic yards, divide by 27. To convert cubic yards to cubic feet, multiply by 27." },
+  { q: "How do I calculate cubic yards for a concrete slab?", a: "Multiply Length (ft) × Width (ft) × Thickness (ft), then divide by 27. For a 10×10 ft slab that's 4\" thick: 10 × 10 × 0.333 ÷ 27 = 1.23 cubic yards. Always round up and add 10% for waste." },
+  { q: "How much does a cubic yard of material weigh?", a: "Concrete: ~4,050 lbs/yd³. Gravel: ~2,800–3,000 lbs/yd³. Sand: ~2,600–2,800 lbs/yd³. Topsoil: ~2,000–2,200 lbs/yd³. Mulch: ~400–800 lbs/yd³. Weight varies significantly with moisture content." },
+  { q: "How many square feet does a cubic yard cover?", a: "One cubic yard covers: 324 sq ft at 1\" depth, 162 sq ft at 2\" depth, 108 sq ft at 3\" depth, 81 sq ft at 4\" depth. This coverage applies to concrete, gravel, mulch, soil, or any bulk material." },
+  { q: "What is the difference between cubic yards and cubic feet?", a: "Cubic feet (ft³) measures smaller volumes and is often used for concrete mix and individual bags. Cubic yards (yd³) is used for bulk material orders (ready-mix concrete, gravel, soil, mulch). 1 cubic yard = 27 cubic feet = 0.7646 cubic meters." },
+];
+const related = [
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+  { href: '/mulch-calculator', label: 'Mulch Calculator', icon: '🌱' },
+  { href: '/soil-calculator', label: 'Soil Calculator', icon: '🌿' },
+];
+---
+<CalculatorLayout
+  title="Cubic Yards Calculator – Convert to Cubic Feet & Meters"
+  description="Calculate cubic yards from any measurement unit (feet, inches, meters, centimeters, yards). Instant conversion to cubic feet, cubic meters, and cubic inches."
+  heading="Cubic Yards Calculator"
+  subheading="Calculate cubic yards from length, width, and depth — converts to all volume units"
+  icon="📐"
+  breadcrumb="Cubic Yards Calculator"
+  schema={{
+    name: "Cubic Yards Calculator",
+    description: "Calculate cubic yards and convert to cubic feet, meters, and inches",
+    url: "https://constructioncalc.com/cubic-yards-calculator"
+  }}
+>
+  <CubicYardsCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Cubic Yards</h2>
+    <p>Cubic yards is the standard unit for ordering bulk construction materials like concrete, gravel, soil, sand, and mulch. It's easy to calculate once you have your dimensions in feet.</p>
+
+    <div class="formula-box">
+      <strong>Cubic Yards Formula</strong><br/>
+      Cubic Feet = Length (ft) × Width (ft) × Depth (ft)<br/>
+      Cubic Yards = Cubic Feet ÷ 27<br/>
+      Cubic Meters = Cubic Feet × 0.0283168
+    </div>
+
+    <h2>Material Coverage per Cubic Yard</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Depth</th><th class="p-2 text-left border">Coverage (1 yd³)</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">1" deep</td><td class="p-2 border">324 sq ft</td></tr>
+        <tr><td class="p-2 border">2" deep</td><td class="p-2 border">162 sq ft</td></tr>
+        <tr><td class="p-2 border">3" deep</td><td class="p-2 border">108 sq ft</td></tr>
+        <tr><td class="p-2 border">4" deep</td><td class="p-2 border">81 sq ft</td></tr>
+        <tr><td class="p-2 border">6" deep</td><td class="p-2 border">54 sq ft</td></tr>
+        <tr><td class="p-2 border">12" deep</td><td class="p-2 border">27 sq ft</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Unit Conversion Reference</h2>
+    <ul>
+      <li>1 cubic yard = 27 cubic feet</li>
+      <li>1 cubic yard = 46,656 cubic inches</li>
+      <li>1 cubic yard = 0.7646 cubic meters</li>
+      <li>1 cubic foot = 0.037 cubic yards</li>
+      <li>1 cubic meter = 1.308 cubic yards</li>
+      <li>1 cubic yard = 764.6 liters</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

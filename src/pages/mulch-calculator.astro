@@ -1,0 +1,86 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import MulchCalc from '../components/calculators/MulchCalc';
+
+const faqs = [
+  { q: 'How many bags of mulch do I need for a 100 sq ft area?', a: 'At 3 inches deep, 100 sq ft needs about 25 cubic feet of mulch, which is approximately 13 bags of 2-cubic-foot bags. At 2 inches deep, you need 9 bags. At 4 inches deep, you need 17 bags.' },
+  { q: 'How deep should mulch be?', a: 'The ideal mulch depth is 2–4 inches. Less than 2 inches won\'t suppress weeds effectively. More than 4 inches can suffocate plant roots and create a harbor for pests. For playground safety, use 6–12 inches of wood chips per ASTM standards.' },
+  { q: 'How many cubic yards are in a scoop/bucket of mulch?', a: 'A standard dump truck "scoop" from a landscape supply yard is typically 1 cubic yard. Some yards sell half-scoops (0.5 yd³). A small pickup truck can hold about 1 cubic yard. A large dump truck holds 10–15 cubic yards.' },
+  { q: 'Does mulch need to be replaced every year?', a: 'Most mulches last 1–2 years before decomposing significantly. Wood chip and bark mulches typically last 1–2 years. Cedar and cypress mulch can last 3–4 years due to their natural oils. Rubber mulch lasts 10+ years but provides no soil benefits.' },
+];
+
+const related = [
+  { title: 'Gravel Calculator', href: '/gravel-calculator/', icon: '🪨', description: 'Stone and gravel for beds' },
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Measure your landscape beds' },
+  { title: 'Cubic Feet Calculator', href: '/cubic-feet-calculator/', icon: '📦', description: 'Convert volume units' },
+  { title: 'Soil Calculator', href: '/construction-calculator/', icon: '🌱', description: 'Topsoil for raised beds' },
+];
+---
+
+<CalculatorLayout
+  title="Mulch Calculator — How Many Bags or Cubic Yards Do You Need?"
+  description="Free mulch calculator. Find cubic yards and bag counts for any landscaping project. Includes depth guide for weed prevention, moisture retention, and playgrounds."
+  heading="Mulch Calculator"
+  subheading="Calculate how much mulch you need in cubic yards, cubic feet, and bags. Includes a depth guide for weed prevention, moisture retention, and decorative landscaping."
+  icon="🍂"
+  category="Landscaping"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <MulchCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Mulch Calculator Formula</h2>
+    <div class="formula-box">
+      Volume (ft³) = Length (ft) × Width (ft) × (Depth (in) ÷ 12)<br/>
+      Volume (yd³) = Volume (ft³) ÷ 27<br/>
+      Bags (2 ft³) = Volume (ft³) ÷ 2
+    </div>
+
+    <h2>Mulch Coverage by Depth</h2>
+    <table>
+      <thead><tr><th>Depth</th><th>1 Cubic Yard Covers</th><th>1 Bag (2 ft³) Covers</th></tr></thead>
+      <tbody>
+        <tr><td>1 inch</td><td>324 sq ft</td><td>24 sq ft</td></tr>
+        <tr><td>2 inches</td><td>162 sq ft</td><td>12 sq ft</td></tr>
+        <tr><td>3 inches</td><td>108 sq ft</td><td>8 sq ft</td></tr>
+        <tr><td>4 inches</td><td>81 sq ft</td><td>6 sq ft</td></tr>
+        <tr><td>6 inches</td><td>54 sq ft</td><td>4 sq ft</td></tr>
+        <tr><td>12 inches</td><td>27 sq ft</td><td>2 sq ft</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Types of Mulch Compared</h2>
+    <table>
+      <thead><tr><th>Type</th><th>Lifespan</th><th>Best For</th><th>Avg Cost/yd³</th></tr></thead>
+      <tbody>
+        <tr><td>Shredded Hardwood</td><td>1–2 years</td><td>Trees, shrubs, beds</td><td>$25–45</td></tr>
+        <tr><td>Wood Chips</td><td>2–3 years</td><td>Paths, playgrounds</td><td>$20–35</td></tr>
+        <tr><td>Cedar / Cypress</td><td>3–4 years</td><td>Pest resistance</td><td>$30–55</td></tr>
+        <tr><td>Pine Straw</td><td>1–2 years</td><td>Acid-loving plants</td><td>$15–30</td></tr>
+        <tr><td>Rubber</td><td>10+ years</td><td>Playgrounds</td><td>$100–200</td></tr>
+        <tr><td>River Rock</td><td>Permanent</td><td>Decorative, low water</td><td>$35–65</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Mulching Best Practices</h2>
+    <ul>
+      <li>Keep mulch 2–3 inches away from plant stems and tree trunks to prevent rot ("mulch volcanos" kill trees).</li>
+      <li>Apply mulch after soil has warmed in spring to retain heat, not lock out cold.</li>
+      <li>Remove old mulch or fluff it before adding new mulch to prevent matting.</li>
+      <li>For new beds, lay 4–6 layers of wet newspaper under mulch to suppress weeds without chemicals.</li>
+      <li>Bulk mulch from landscape suppliers is significantly cheaper per yard than bag mulch from hardware stores.</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Keep mulch <strong>2–3" away</strong> from plant stems</li>
+      <li>✅ <strong>3 inches</strong> is the sweet spot for most beds</li>
+      <li>✅ Bulk mulch is <strong>30–50% cheaper</strong> than bags</li>
+      <li>✅ Refresh mulch every <strong>1–2 years</strong></li>
+    </ul>
+  </div>
+</CalculatorLayout>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  items: Array<{ q: string; a: string }>;
+}
+const { items } = Astro.props;
+---
+
+<section>
+  <h2 class="text-xl font-bold text-navy-900 mb-4 flex items-center gap-2">
+    <span class="text-brand-500">?</span> Frequently Asked Questions
+  </h2>
+  <div class="space-y-2">
+    {items.map((item, i) => (
+      <details class="group bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer hover:bg-slate-50 transition-colors">
+          <span class="font-semibold text-navy-900 text-sm">{item.q}</span>
+          <svg class="flex-shrink-0 text-slate-400 group-open:rotate-180 transition-transform duration-200" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </summary>
+        <div class="px-5 pb-4 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3">
+          {item.a}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import RetainingWallCalc from '../components/calculators/RetainingWallCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much does a retaining wall cost?", a: "Retaining wall costs range from $20–$80 per sq ft of wall face depending on material and complexity. Concrete block: $25–$45/sq ft. Natural stone: $35–$65/sq ft. Timber: $20–$35/sq ft. Walls over 4 ft require engineering, which adds cost." },
+  { q: "How tall can a retaining wall be without a permit?", a: "Most jurisdictions allow walls up to 3–4 feet tall without a permit. Check your local codes — rules vary widely. Walls over 4 feet almost always require permits and structural engineering, especially near property lines or structures." },
+  { q: "Do retaining walls need drainage?", a: "Yes, drainage is critical. Without it, hydrostatic pressure from saturated soil will push over virtually any wall. Use gravel backfill (crusher run or clean crushed stone), perforated drain pipe at the base, and gravel filter fabric to prevent soil migration." },
+  { q: "What is a deadman anchor for retaining walls?", a: "Deadman anchors (also called deadmen or tie-backs) are horizontal elements that extend back into the slope at right angles to the wall. For concrete block walls, they're placed every 6 feet horizontally and every 2 ft of wall height. They dramatically increase wall stability against overturning." },
+  { q: "How long does a retaining wall last?", a: "Concrete block walls last 50–100 years with proper drainage. Natural stone can last centuries. Timber/railroad tie walls last 15–25 years before the wood rots and needs replacement — they should be treated or naturally rot-resistant wood (cedar, redwood)." },
+];
+const related = [
+  { href: '/concrete-block-calculator', label: 'Concrete Block Calculator', icon: '🧱' },
+  { href: '/brick-calculator', label: 'Brick Calculator', icon: '🧱' },
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+];
+---
+<CalculatorLayout
+  title="Retaining Wall Calculator – Materials & Cost Estimator"
+  description="Calculate retaining wall materials and cost for concrete block, natural stone, timber, boulders, and brick. Includes drainage gravel and deadman anchor estimates."
+  heading="Retaining Wall Calculator"
+  subheading="Calculate retaining wall materials, drainage, and cost for any wall height and material"
+  icon="🪨"
+  breadcrumb="Retaining Wall Calculator"
+  schema={{
+    name: "Retaining Wall Calculator",
+    description: "Calculate retaining wall materials and cost estimates",
+    url: "https://constructioncalc.com/retaining-wall-calculator"
+  }}
+>
+  <RetainingWallCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Retaining Wall Materials</h2>
+    <p>Retaining wall material quantities are based on wall face area (length × height). Budget separately for the drainage system (gravel, pipe, filter fabric) which is critical for long-term performance.</p>
+
+    <div class="formula-box">
+      <strong>Retaining Wall Formula</strong><br/>
+      Wall Face Area = Length (ft) × Height (ft)<br/>
+      Drainage Gravel (yd³) = Length × Height × 1 ft ÷ 27
+    </div>
+
+    <h2>Retaining Wall Material Guide</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Material</th><th class="p-2 text-left border">Cost/Sq Ft</th><th class="p-2 text-left border">Max DIY Height</th><th class="p-2 text-left border">Lifespan</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Concrete Block</td><td class="p-2 border">$25–45</td><td class="p-2 border">4 ft</td><td class="p-2 border">50–100 yrs</td></tr>
+        <tr><td class="p-2 border">Natural Stone</td><td class="p-2 border">$35–65</td><td class="p-2 border">3 ft (dry stack)</td><td class="p-2 border">100+ yrs</td></tr>
+        <tr><td class="p-2 border">Timber</td><td class="p-2 border">$20–35</td><td class="p-2 border">4 ft</td><td class="p-2 border">15–25 yrs</td></tr>
+        <tr><td class="p-2 border">Boulders</td><td class="p-2 border">$40–80</td><td class="p-2 border">3 ft (gravity)</td><td class="p-2 border">Indefinite</td></tr>
+        <tr><td class="p-2 border">Brick</td><td class="p-2 border">$30–55</td><td class="p-2 border">3 ft</td><td class="p-2 border">50–100 yrs</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Critical Drainage Requirements</h2>
+    <ul>
+      <li>Use 3/4\" clean crushed stone for backfill — never use native clay soil</li>
+      <li>Install 4\" perforated PVC pipe at the base of the wall, sloped to drain</li>
+      <li>Wrap gravel in filter fabric to prevent soil migration (fines blocking drainage)</li>
+      <li>Add weep holes in concrete block and brick walls every 6 feet for water escape</li>
+      <li>Slope the soil surface away from the wall top to divert surface water</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

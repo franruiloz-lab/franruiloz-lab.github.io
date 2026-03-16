@@ -1,0 +1,90 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import StairCalc from '../components/calculators/StairCalc';
+
+const faqs = [
+  { q: 'What is the standard riser height for stairs?', a: 'Per the International Residential Code (IRC 2021), the maximum riser height is 7¾ inches (196 mm) and the minimum is 4 inches (102 mm). The recommended "comfortable" riser height is 7 inches. Risers within a single flight of stairs must not vary more than ⅜ inch from each other.' },
+  { q: 'What is the standard tread depth for stairs?', a: 'The minimum tread depth per IRC 2021 is 10 inches (254 mm), measured from the front of one nosing to the front of the next. The most comfortable tread depth is 10–11 inches. For exterior stairs, 11–12 inches is common for a more gradual slope.' },
+  { q: 'What is the rule of thumb for stair rise and run?', a: 'The most widely used rule of thumb is: Rise + Run = 17–18 inches. Another common formula is: 2 × Rise + Run = 24–25 inches. So if your riser is 7 inches, the ideal run would be 11 inches (7 + 11 = 18).' },
+  { q: 'How do I calculate the number of stairs I need?', a: 'Divide the total rise (floor to floor height) by your desired riser height. For example, a 9-foot ceiling (108 inches) with 7-inch risers: 108 ÷ 7 = 15.4, which rounds to 15 or 16 steps. Divide 108 by the rounded number to get the exact riser height.' },
+  { q: 'What is a stringer in stair construction?', a: 'A stringer is the diagonal structural board that supports the treads and risers. Most residential stairs have 3 stringers. The stringer length equals the hypotenuse of the triangle formed by the total rise and total run: √(rise² + run²).' },
+];
+
+const related = [
+  { title: 'Concrete Calculator', href: '/concrete-calculator/', icon: '🏗️', description: 'Concrete for stair footings' },
+  { title: 'Board Foot Calculator', href: '/board-foot-calculator/', icon: '🪵', description: 'Lumber for stair stringers' },
+  { title: 'Construction Calculator', href: '/construction-calculator/', icon: '💰', description: 'Estimate total project cost' },
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Landing area calculation' },
+];
+---
+
+<CalculatorLayout
+  title="Stair Calculator — Risers, Runs, Stringers & IRC Code Check"
+  description="Free stair calculator for risers, run depth, total run, and stringer length. Automatically checks IRC 2021 building code compliance. Imperial and metric."
+  heading="Stair Calculator"
+  subheading="Calculate the perfect stair dimensions — risers, tread depth, total run, and stringer length. Includes automatic IRC 2021 code compliance check."
+  icon="🪜"
+  category="Construction"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <StairCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Stair Calculation Formulas</h2>
+    <div class="formula-box">
+      Number of Steps = Total Rise ÷ Desired Riser Height (rounded)<br/>
+      Actual Riser = Total Rise ÷ Number of Steps<br/>
+      Total Run = Number of Steps × Tread Depth<br/>
+      Stringer Length = √(Total Rise² + Total Run²)
+    </div>
+
+    <h2>IRC 2021 Stair Code Requirements</h2>
+    <table>
+      <thead><tr><th>Requirement</th><th>Minimum</th><th>Maximum</th><th>Recommended</th></tr></thead>
+      <tbody>
+        <tr><td>Riser height</td><td>4 inches</td><td>7¾ inches</td><td>7 inches</td></tr>
+        <tr><td>Tread depth</td><td>10 inches</td><td>No limit</td><td>10–11 inches</td></tr>
+        <tr><td>Stair width</td><td>36 inches</td><td>No limit</td><td>36–42 inches</td></tr>
+        <tr><td>Headroom clearance</td><td>6 ft 8 in</td><td>No limit</td><td>7 ft</td></tr>
+        <tr><td>Handrail height</td><td>34 inches</td><td>38 inches</td><td>36 inches</td></tr>
+        <tr><td>Riser variation</td><td colspan="2">Max ⅜" variation between risers</td><td>&lt; ¼"</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The Stair Rule of 17–18</h2>
+    <p>Ergonomics research shows the most comfortable stairs follow this rule:</p>
+    <div class="formula-box">Rise + Run = 17 to 18 inches</div>
+    <table>
+      <thead><tr><th>Riser Height</th><th>Ideal Tread Depth</th><th>Rise + Run</th><th>Feel</th></tr></thead>
+      <tbody>
+        <tr><td>6.0 inches</td><td>11.5 inches</td><td>17.5</td><td>Gradual / exterior</td></tr>
+        <tr><td>6.5 inches</td><td>11.0 inches</td><td>17.5</td><td>Comfortable</td></tr>
+        <tr><td>7.0 inches</td><td>10.5 inches</td><td>17.5</td><td>Standard residential</td></tr>
+        <tr><td>7.5 inches</td><td>10.0 inches</td><td>17.5</td><td>Steeper / space-saving</td></tr>
+        <tr><td>7.75 inches</td><td>10.0 inches</td><td>17.75</td><td>Maximum code (steepest)</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Types of Stairs</h2>
+    <ul>
+      <li><strong>Straight stairs</strong> — Most common, simplest to build, requires the most horizontal space.</li>
+      <li><strong>L-shaped (quarter turn)</strong> — Turns 90° with a landing or winder treads. Good for corners.</li>
+      <li><strong>U-shaped (half turn)</strong> — Turns 180° with a landing. Elegant, requires significant space.</li>
+      <li><strong>Spiral stairs</strong> — Compact footprint, decorative. Limited to secondary use per most codes.</li>
+      <li><strong>Floating stairs</strong> — Modern cantilevered design. Requires structural engineering.</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Rise + Run should equal <strong>17–18"</strong></li>
+      <li>✅ Max riser: <strong>7¾"</strong> per IRC 2021</li>
+      <li>✅ Risers must be <strong>within ⅜"</strong> of each other</li>
+      <li>✅ Min stair width: <strong>36"</strong></li>
+      <li>✅ Always pull a <strong>building permit</strong> for new stairs</li>
+    </ul>
+  </div>
+</CalculatorLayout>

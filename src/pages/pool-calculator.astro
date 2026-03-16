@@ -1,0 +1,72 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import PoolCalc from '../components/calculators/PoolCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many gallons is a typical pool?", a: "A standard 12×24 ft rectangular pool with a 4–8 ft average depth holds approximately 15,000–20,000 gallons. An 18×36 ft pool holds around 30,000–40,000 gallons. Use our calculator for precise estimates." },
+  { q: "How much chlorine do I need to start up a pool?", a: "For initial chlorination (shock), add 3 lbs of granular chlorine per 10,000 gallons. For a 20,000 gallon pool, you need about 6 lbs. Shock the pool to 10 ppm, then maintain at 1–3 ppm for regular use." },
+  { q: "How long does it take to fill a pool?", a: "At 1,000 gallons per hour (typical garden hose), a 20,000 gallon pool takes 20 hours. City water at 5 gallons per minute (300 gph) would take 67 hours. Some municipalities require water delivery for pools over 10,000 gallons." },
+  { q: "How do I calculate pool volume for an oval pool?", a: "Use the formula: π × (Length/2) × (Width/2) × Average Depth for the cubic feet, then multiply by 7.481 for gallons. Our calculator handles oval, rectangle, circle, and kidney shapes automatically." },
+  { q: "How much filter sand do I need?", a: "Sand filters typically need about 200 lbs of filter sand per 10,000 gallons of pool water. A 20,000 gallon pool requires approximately 400 lbs of #20 silica sand. Replace filter sand every 3–5 years." },
+];
+const related = [
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/sand-calculator', label: 'Sand Calculator', icon: '🏖️' },
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+];
+---
+<CalculatorLayout
+  title="Pool Volume Calculator – Gallons, Liters & Chemicals"
+  description="Calculate pool volume in gallons and liters for any pool shape. Get chlorine and filter sand estimates for initial pool startup. Supports rectangle, circle, oval, and kidney pools."
+  heading="Pool Volume Calculator"
+  subheading="Calculate pool volume in gallons and liters, plus chemical estimates for startup"
+  icon="🏊"
+  breadcrumb="Pool Calculator"
+  schema={{
+    name: "Pool Volume Calculator",
+    description: "Calculate swimming pool volume and chemical requirements",
+    url: "https://constructioncalc.com/pool-calculator"
+  }}
+>
+  <PoolCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Pool Volume</h2>
+    <p>Pool volume depends on shape, dimensions, and depth. Most pools have a shallow end and deep end, so we use the average depth in calculations.</p>
+
+    <div class="formula-box">
+      <strong>Pool Volume Formulas</strong><br/>
+      Rectangle: Length × Width × Avg Depth × 7.481 = Gallons<br/>
+      Circle: π × (Diameter/2)² × Avg Depth × 7.481 = Gallons<br/>
+      Oval: π × (L/2) × (W/2) × Avg Depth × 7.481 = Gallons<br/>
+      Kidney: 0.85 × Length × Width × Avg Depth × 7.481 = Gallons
+    </div>
+
+    <h2>Pool Size Reference Chart</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Pool Size</th><th class="p-2 text-left border">Avg Depth</th><th class="p-2 text-left border">Volume (Gallons)</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">12×24 ft Rectangle</td><td class="p-2 border">5.5 ft</td><td class="p-2 border">~14,900</td></tr>
+        <tr><td class="p-2 border">16×32 ft Rectangle</td><td class="p-2 border">5.5 ft</td><td class="p-2 border">~26,500</td></tr>
+        <tr><td class="p-2 border">18×36 ft Rectangle</td><td class="p-2 border">5.5 ft</td><td class="p-2 border">~33,500</td></tr>
+        <tr><td class="p-2 border">20 ft Circle</td><td class="p-2 border">5 ft</td><td class="p-2 border">~11,780</td></tr>
+        <tr><td class="p-2 border">15×30 ft Oval</td><td class="p-2 border">5 ft</td><td class="p-2 border">~13,250</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Pool Chemical Startup Checklist</h2>
+    <ul>
+      <li>Shock chlorine: 3 lbs per 10,000 gallons to reach ~10 ppm</li>
+      <li>Alkalinity increaser: 1.5 lbs per 10,000 gallons to reach 80–120 ppm</li>
+      <li>pH adjustment: raise to 7.4–7.6 (use pH up or pH down as needed)</li>
+      <li>Calcium hardness: 175–225 ppm (calcium chloride if low)</li>
+      <li>Stabilizer/CYA: 30–50 ppm for outdoor pools</li>
+      <li>Filter sand: 200 lbs per 10,000 gallons</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

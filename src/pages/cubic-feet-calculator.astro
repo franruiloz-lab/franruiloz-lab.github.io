@@ -1,0 +1,83 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import CubicFeetCalc from '../components/calculators/CubicFeetCalc';
+
+const faqs = [
+  { q: 'How do I calculate cubic feet?', a: 'Multiply the length × width × height of the space in feet. For example, a box 3 ft long × 2 ft wide × 1.5 ft tall = 9 cubic feet. If your measurements are in inches, divide each one by 12 first to convert to feet.' },
+  { q: 'How many cubic feet are in a cubic yard?', a: 'One cubic yard equals exactly 27 cubic feet (3 ft × 3 ft × 3 ft = 27). To convert cubic feet to cubic yards, divide by 27. To convert cubic yards to cubic feet, multiply by 27.' },
+  { q: 'How many cubic feet are in a cubic meter?', a: 'One cubic meter equals approximately 35.315 cubic feet. To convert cubic meters to cubic feet, multiply by 35.315. To convert cubic feet to cubic meters, divide by 35.315.' },
+  { q: 'What is cubic feet used for in construction?', a: 'Cubic feet measures volume for: concrete pours, soil/gravel fill, shipping and storage space, HVAC airflow (CFM), refrigerator capacity, and tank volumes. It\'s one of the most commonly used measurements in residential construction.' },
+];
+
+const related = [
+  { title: 'Concrete Calculator', href: '/concrete-calculator/', icon: '🏗️', description: 'Concrete volume in cubic yards' },
+  { title: 'Gravel Calculator', href: '/gravel-calculator/', icon: '🪨', description: 'Gravel in cubic yards and tons' },
+  { title: 'Mulch Calculator', href: '/mulch-calculator/', icon: '🍂', description: 'Mulch volume and bag count' },
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Calculate 2D area first' },
+];
+---
+
+<CalculatorLayout
+  title="Cubic Feet Calculator — Convert Length × Width × Height to ft³"
+  description="Free cubic feet calculator. Enter length, width, and height in any unit to instantly get cubic feet, cubic yards, cubic meters, and cubic inches."
+  heading="Cubic Feet Calculator"
+  subheading="Convert length × width × height into cubic feet, cubic yards, cubic meters, and cubic inches. Works with feet, inches, yards, meters, or centimeters."
+  icon="📦"
+  category="Construction"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <CubicFeetCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Cubic Feet Formula</h2>
+    <div class="formula-box">
+      Cubic Feet = Length (ft) × Width (ft) × Height (ft)
+    </div>
+    <p>If your measurements are in other units, convert them to feet first:</p>
+    <ul>
+      <li>Inches → feet: divide by 12</li>
+      <li>Yards → feet: multiply by 3</li>
+      <li>Meters → feet: multiply by 3.28084</li>
+      <li>Centimeters → feet: multiply by 0.032808</li>
+    </ul>
+    <p>Our calculator handles these conversions automatically — just select your input unit from the dropdown.</p>
+
+    <h2>Volume Unit Conversion Table</h2>
+    <table>
+      <thead><tr><th>From</th><th>To Cubic Feet</th><th>To Cubic Yards</th><th>To Cubic Meters</th></tr></thead>
+      <tbody>
+        <tr><td>1 Cubic Foot</td><td>1.000</td><td>0.03704</td><td>0.02832</td></tr>
+        <tr><td>1 Cubic Yard</td><td>27.000</td><td>1.000</td><td>0.7646</td></tr>
+        <tr><td>1 Cubic Meter</td><td>35.315</td><td>1.3080</td><td>1.000</td></tr>
+        <tr><td>1 Cubic Inch</td><td>0.000579</td><td>0.0000214</td><td>0.0000164</td></tr>
+        <tr><td>1 Liter</td><td>0.03531</td><td>0.001308</td><td>0.001</td></tr>
+        <tr><td>1 US Gallon</td><td>0.1337</td><td>0.004951</td><td>0.003785</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Common Cubic Feet Applications in Construction</h2>
+    <table>
+      <thead><tr><th>Material</th><th>Typical Order Unit</th><th>Conversion</th></tr></thead>
+      <tbody>
+        <tr><td>Concrete</td><td>Cubic yards</td><td>ft³ ÷ 27 = yd³</td></tr>
+        <tr><td>Gravel / Sand</td><td>Cubic yards or tons</td><td>ft³ ÷ 27 = yd³</td></tr>
+        <tr><td>Topsoil</td><td>Cubic yards</td><td>ft³ ÷ 27 = yd³</td></tr>
+        <tr><td>Mulch</td><td>Cubic yards or 2 cu ft bags</td><td>ft³ ÷ 2 = bags</td></tr>
+        <tr><td>Lumber (boards)</td><td>Board feet</td><td>Different formula</td></tr>
+        <tr><td>Dumpster rental</td><td>Cubic yards</td><td>ft³ ÷ 27 = yd³</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ <strong>1 cubic yard = 27 cubic feet</strong></li>
+      <li>✅ Materials are ordered in cubic yards</li>
+      <li>✅ Bags are usually labeled in cubic feet</li>
+      <li>✅ Always add <strong>10% extra</strong> for any fill material</li>
+    </ul>
+  </div>
+</CalculatorLayout>

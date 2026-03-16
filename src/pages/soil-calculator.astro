@@ -1,0 +1,71 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import SoilCalc from '../components/calculators/SoilCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many cubic yards of topsoil do I need?", a: "Multiply your area (in square feet) by the depth (in feet), then divide by 27 to get cubic yards. For a 500 sq ft garden with 6\" of topsoil: 500 × 0.5 ÷ 27 = 9.26 cubic yards." },
+  { q: "How much does topsoil weigh?", a: "Topsoil weighs approximately 1.0–1.3 tons per cubic yard depending on moisture content and composition. Sandy soil is lighter (~1.2 tons/yd³) and clay soil is heavier (~1.5 tons/yd³)." },
+  { q: "How deep should I add topsoil for a new lawn?", a: "For a new lawn, add 4\"–6\" of quality topsoil. For garden beds, 8\"–12\" is ideal. For raised beds, fill with 12\"–18\" of a blended topsoil/compost mix." },
+  { q: "What is the difference between topsoil and fill dirt?", a: "Topsoil contains organic matter and nutrients needed for plant growth — it's the dark upper layer. Fill dirt is subsoil (lower layer) with little organic content, used for structural fill. Never use fill dirt for planting areas." },
+  { q: "How much soil do I need for a raised garden bed?", a: "A 4×8 ft raised bed that is 12\" tall needs: 4 × 8 × 1 ÷ 27 = 1.19 cubic yards of soil. For deeper beds (24\"), you'd need 2.37 cubic yards. Use our calculator for any size." },
+];
+const related = [
+  { href: '/mulch-calculator', label: 'Mulch Calculator', icon: '🌱' },
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+  { href: '/sand-calculator', label: 'Sand Calculator', icon: '🏖️' },
+  { href: '/cubic-yards-calculator', label: 'Cubic Yards Calculator', icon: '📐' },
+];
+---
+<CalculatorLayout
+  title="Soil Calculator – Cubic Yards, Tons & Cost"
+  description="Calculate how much topsoil, fill dirt, or potting soil you need. Get cubic yards, tons, and cost estimates for gardens, lawns, and landscaping projects."
+  heading="Soil Calculator"
+  subheading="Calculate topsoil, fill dirt, and potting mix for gardens, lawns, and landscaping"
+  icon="🌿"
+  breadcrumb="Soil Calculator"
+  schema={{
+    name: "Soil Calculator",
+    description: "Calculate soil volume and cost for landscaping and gardening projects",
+    url: "https://constructioncalc.com/soil-calculator"
+  }}
+>
+  <SoilCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Soil Volume</h2>
+    <p>Soil is ordered by the cubic yard for bulk delivery or in bags for smaller projects. One cubic yard covers 324 sq ft at 1 inch deep, or 162 sq ft at 2 inches deep.</p>
+
+    <div class="formula-box">
+      <strong>Soil Volume Formula</strong><br/>
+      Cubic Feet = Length (ft) × Width (ft) × Depth (ft)<br/>
+      Cubic Yards = Cubic Feet ÷ 27<br/>
+      Tons = Cubic Yards × Density (tons/yd³)
+    </div>
+
+    <h2>Soil Coverage at Common Depths</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Depth</th><th class="p-2 text-left border">Coverage per Cubic Yard</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">1 inch</td><td class="p-2 border">324 sq ft</td></tr>
+        <tr><td class="p-2 border">2 inches</td><td class="p-2 border">162 sq ft</td></tr>
+        <tr><td class="p-2 border">3 inches</td><td class="p-2 border">108 sq ft</td></tr>
+        <tr><td class="p-2 border">4 inches</td><td class="p-2 border">81 sq ft</td></tr>
+        <tr><td class="p-2 border">6 inches</td><td class="p-2 border">54 sq ft</td></tr>
+        <tr><td class="p-2 border">12 inches</td><td class="p-2 border">27 sq ft</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Soil Selection Guide</h2>
+    <ul>
+      <li><strong>Premium Topsoil</strong> — Best for lawns, gardens, and landscaping. Rich in organic matter.</li>
+      <li><strong>Garden Blend</strong> — Topsoil + compost mix. Ideal for vegetable gardens and flower beds.</li>
+      <li><strong>Fill Dirt</strong> — For structural fill, grading, and leveling. Not for planting.</li>
+      <li><strong>Sandy Loam</strong> — Well-draining, great for drought-tolerant plants and sandy soil gardens.</li>
+      <li><strong>Potting Mix</strong> — Lightweight, for raised beds and containers. Very expensive in bulk.</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

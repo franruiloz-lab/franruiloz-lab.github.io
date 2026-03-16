@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import SidingCalc from '../components/calculators/SidingCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much siding do I need for my house?", a: "Calculate total wall area: house perimeter × wall height, then subtract door and window openings. Add 10% for waste. Siding is sold by the square (100 sq ft) for professionals, or by the panel/square foot for retail." },
+  { q: "What is a square of siding?", a: "In the siding industry, one square equals 100 square feet of coverage. When contractors quote prices and quantities, they use squares as the unit of measure. It's the same convention as roofing." },
+  { q: "How much does vinyl siding cost?", a: "Vinyl siding material costs $3–$7 per sq ft. Installed (including labor), expect $6–$12 per sq ft. A 1,500 sq ft house with 1,200 sq ft of wall area would run $7,200–$14,400 installed. Fiber cement runs $12–$20/sq ft installed." },
+  { q: "What is the best siding for a house?", a: "Fiber cement (James Hardie) offers the best balance of durability (30–50 yr life), fire resistance, and aesthetics. Vinyl is the most affordable and low-maintenance. Wood offers the best natural look but requires the most maintenance." },
+  { q: "How long does it take to install siding?", a: "A professional crew can install 300–500 sq ft of vinyl siding per day. A 1,200 sq ft house takes 3–5 days for an experienced team. Fiber cement takes longer due to heavier panels and precise cutting requirements." },
+];
+const related = [
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/paint-calculator', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/roofing-calculator', label: 'Roofing Calculator', icon: '🏚️' },
+  { href: '/construction-calculator', label: 'Building Cost Calculator', icon: '🏗️' },
+];
+---
+<CalculatorLayout
+  title="Siding Calculator – Squares, Cost & Material Estimator"
+  description="Calculate siding squares and cost for any house size. Supports vinyl, fiber cement, wood lap, engineered wood, and stucco. Accounts for doors, windows, and waste."
+  heading="Siding Calculator"
+  subheading="Calculate siding squares, material cost, and lifespan for your exterior cladding project"
+  icon="🏠"
+  breadcrumb="Siding Calculator"
+  schema={{
+    name: "Siding Calculator",
+    description: "Calculate siding quantity and cost for residential and commercial buildings",
+    url: "https://constructioncalc.com/siding-calculator"
+  }}
+>
+  <SidingCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Measure for Siding</h2>
+    <p>Accurate siding estimates start with measuring every wall section. Include gable ends (triangles) by calculating the base × height ÷ 2. Most projects use 10% waste factor.</p>
+
+    <div class="formula-box">
+      <strong>Siding Area Formula</strong><br/>
+      Wall Area = Perimeter × Wall Height<br/>
+      Net Area = Wall Area − (Doors × 21) − (Windows × 15)<br/>
+      Squares = ⌈Net Area × 1.10 ÷ 100⌉
+    </div>
+
+    <h2>Siding Material Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Material</th><th class="p-2 text-left border">Cost/Sq Ft (installed)</th><th class="p-2 text-left border">Lifespan</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Vinyl</td><td class="p-2 border">$6–12</td><td class="p-2 border">20–40 yrs</td></tr>
+        <tr><td class="p-2 border">Fiber Cement</td><td class="p-2 border">$12–20</td><td class="p-2 border">30–50 yrs</td></tr>
+        <tr><td class="p-2 border">Engineered Wood</td><td class="p-2 border">$8–15</td><td class="p-2 border">25–35 yrs</td></tr>
+        <tr><td class="p-2 border">Wood Lap</td><td class="p-2 border">$10–18</td><td class="p-2 border">15–30 yrs</td></tr>
+        <tr><td class="p-2 border">Stucco</td><td class="p-2 border">$10–17</td><td class="p-2 border">50–80 yrs</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Siding Installation Tips</h2>
+    <ul>
+      <li>Always install over a weather-resistant barrier (house wrap or felt paper)</li>
+      <li>Fiber cement requires stainless steel or hot-dipped galvanized nails to prevent rust stains</li>
+      <li>Leave a 1/4\" to 3/8\" expansion gap at trim pieces for vinyl siding</li>
+      <li>Check manufacturer specs for nail placement — incorrect nailing voids warranties</li>
+      <li>Cut fiber cement with a polycrystalline diamond blade or score and snap to minimize dust</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

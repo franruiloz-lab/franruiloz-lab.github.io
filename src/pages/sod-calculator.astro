@@ -1,0 +1,71 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import SodCalc from '../components/calculators/SodCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many square feet does a pallet of sod cover?", a: "A standard pallet of sod covers approximately 450 square feet. Some suppliers use 500 sq ft pallets. Individual sod rolls typically cover 9 square feet (1.5 ft × 6 ft)." },
+  { q: "How much does sod cost?", a: "Sod costs $0.30–$0.80 per square foot for materials, or $150–$360 per pallet. Installed prices (including labor) range from $1.00–$2.00 per sq ft, or $450–$900 per pallet depending on your region." },
+  { q: "How long does it take to install sod?", a: "A experienced crew can lay 500–800 sq ft per hour. A DIYer with proper preparation can typically install 200–400 sq ft per hour. Prepare the soil first: till, grade, and apply starter fertilizer before laying sod." },
+  { q: "When is the best time to lay sod?", a: "Cool-season grasses (fescue, bluegrass) are best laid in early fall or spring. Warm-season grasses (bermuda, zoysia, St. Augustine) establish best in late spring through summer when soil temperatures are above 65°F." },
+  { q: "How long until I can walk on new sod?", a: "Avoid heavy foot traffic for 2–3 weeks after installation. The sod needs time to root into the soil. Light foot traffic is generally fine after 2 weeks. Mow for the first time when the grass reaches 3.5 inches tall." },
+];
+const related = [
+  { href: '/soil-calculator', label: 'Soil Calculator', icon: '🌿' },
+  { href: '/mulch-calculator', label: 'Mulch Calculator', icon: '🌱' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+];
+---
+<CalculatorLayout
+  title="Sod Calculator – Pallets and Rolls Needed"
+  description="Calculate how many pallets or rolls of sod you need for your lawn. Get instant estimates with 5% waste factor for any yard shape and size."
+  heading="Sod Calculator"
+  subheading="Calculate sod pallets, individual rolls, and cost for lawn installation projects"
+  icon="🌿"
+  breadcrumb="Sod Calculator"
+  schema={{
+    name: "Sod Calculator",
+    description: "Calculate sod quantity and cost for lawn installation",
+    url: "https://constructioncalc.com/sod-calculator"
+  }}
+>
+  <SodCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Sod Quantity</h2>
+    <p>Sod is sold by the piece, roll, or pallet. Most residential projects order by the pallet (450 sq ft). Always add at least 5% for cuts, curves, and waste.</p>
+
+    <div class="formula-box">
+      <strong>Sod Calculation Formula</strong><br/>
+      Area (sq ft) = Length × Width<br/>
+      Area with Waste = Area × 1.05<br/>
+      Pallets = ⌈Area with Waste ÷ 450⌉<br/>
+      Rolls = ⌈Area with Waste ÷ 9⌉
+    </div>
+
+    <h2>Sod Grass Type Guide</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Grass Type</th><th class="p-2 text-left border">Climate</th><th class="p-2 text-left border">Sun/Shade</th><th class="p-2 text-left border">Traffic</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Bermuda</td><td class="p-2 border">Warm</td><td class="p-2 border">Full sun</td><td class="p-2 border">High</td></tr>
+        <tr><td class="p-2 border">St. Augustine</td><td class="p-2 border">Warm/tropical</td><td class="p-2 border">Sun to partial shade</td><td class="p-2 border">Medium</td></tr>
+        <tr><td class="p-2 border">Zoysia</td><td class="p-2 border">Warm to transition</td><td class="p-2 border">Full sun</td><td class="p-2 border">Medium-High</td></tr>
+        <tr><td class="p-2 border">Kentucky Bluegrass</td><td class="p-2 border">Cool</td><td class="p-2 border">Full sun</td><td class="p-2 border">Medium</td></tr>
+        <tr><td class="p-2 border">Tall Fescue</td><td class="p-2 border">Cool/transition</td><td class="p-2 border">Sun to partial shade</td><td class="p-2 border">High</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Sod Installation Tips</h2>
+    <ul>
+      <li>Till and grade the soil 2\"–4\" deep before laying sod</li>
+      <li>Apply a starter fertilizer (high phosphorus) to encourage root development</li>
+      <li>Lay sod in a brick pattern (staggered rows), not in a grid pattern</li>
+      <li>Water immediately after installation and keep moist for 2–3 weeks</li>
+      <li>Avoid laying sod when temperatures are above 90°F or below 40°F</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

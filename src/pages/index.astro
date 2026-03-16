@@ -1,0 +1,227 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CalculatorCard from '../components/CalculatorCard.astro';
+
+const calcGroups = [
+  {
+    label: '🏗️ Concrete & Masonry',
+    items: [
+      { title: 'Concrete Calculator', description: 'Cubic yards, cubic feet, and bags for slabs, footings, and columns.', href: '/concrete-calculator/', icon: '🏗️', volume: '262K', badge: 'Most Popular' },
+      { title: 'Concrete Block Calculator', description: 'CMU blocks and mortar bags for any block wall.', href: '/concrete-block-calculator/', icon: '🧱' },
+      { title: 'Brick Calculator', description: 'Brick count and mortar for walls, chimneys, and patios.', href: '/brick-calculator/', icon: '🧱' },
+      { title: 'Rebar Calculator', description: 'Linear feet, 20-ft bars, and weight for concrete slab reinforcement.', href: '/rebar-calculator/', icon: '⚙️' },
+      { title: 'Retaining Wall Calculator', description: 'Materials and drainage for concrete, stone, or timber retaining walls.', href: '/retaining-wall-calculator/', icon: '🪨' },
+    ],
+  },
+  {
+    label: '📐 Volume & Area',
+    items: [
+      { title: 'Square Footage Calculator', description: 'Find the area of any room or surface in sq ft, meters, or yards.', href: '/square-footage-calculator/', icon: '📏', volume: '52K' },
+      { title: 'Cubic Feet Calculator', description: 'Convert L×W×H into cubic feet, yards, meters, or inches.', href: '/cubic-feet-calculator/', icon: '📦', volume: '27K' },
+      { title: 'Cubic Yards Calculator', description: 'Calculate cubic yards from any unit and convert to all volume units.', href: '/cubic-yards-calculator/', icon: '📐' },
+    ],
+  },
+  {
+    label: '⛏️ Landscape & Fill',
+    items: [
+      { title: 'Gravel Calculator', description: 'Cubic yards and tons of gravel, crushed stone, or base material.', href: '/gravel-calculator/', icon: '⛏️', volume: '30K' },
+      { title: 'Mulch Calculator', description: 'Cubic yards or bags of mulch for any landscape bed.', href: '/mulch-calculator/', icon: '🍂', volume: '23K' },
+      { title: 'Soil Calculator', description: 'Topsoil, fill dirt, and garden blend for lawns and gardens.', href: '/soil-calculator/', icon: '🌿' },
+      { title: 'Sand Calculator', description: 'Sand for paver bases, sandboxes, and construction.', href: '/sand-calculator/', icon: '🏖️' },
+      { title: 'Sod Calculator', description: 'Pallets and rolls of sod for lawn installation projects.', href: '/sod-calculator/', icon: '🌿' },
+    ],
+  },
+  {
+    label: '🏠 Exterior & Structure',
+    items: [
+      { title: 'Asphalt Calculator', description: 'Tons of asphalt for driveways, parking lots, and paving.', href: '/asphalt-calculator/', icon: '🛣️' },
+      { title: 'Fence Calculator', description: 'Posts, rails, and boards for wood, vinyl, and chain-link fencing.', href: '/fence-calculator/', icon: '🪧' },
+      { title: 'Roofing Calculator', description: 'Squares, shingle bundles, and cost for any roof pitch and material.', href: '/roofing-calculator/', icon: '🏚️' },
+      { title: 'Siding Calculator', description: 'Siding squares and cost for vinyl, fiber cement, and wood.', href: '/siding-calculator/', icon: '🏠' },
+      { title: 'Deck Calculator', description: 'Boards, linear footage, and cost for any decking material.', href: '/deck-calculator/', icon: '🏡' },
+      { title: 'Pool Calculator', description: 'Pool volume in gallons and liters, plus chemical estimates.', href: '/pool-calculator/', icon: '🏊' },
+    ],
+  },
+  {
+    label: '🔨 Framing & Lumber',
+    items: [
+      { title: 'Board Foot Calculator', description: 'Lumber volume in board feet with cost by species.', href: '/board-foot-calculator/', icon: '🪵', volume: '15K' },
+      { title: 'Framing Calculator', description: 'Studs, plates, and lumber cost for wall framing.', href: '/framing-calculator/', icon: '🔨' },
+      { title: 'Plywood Calculator', description: '4×8 sheets for subfloor, sheathing, and cabinetry.', href: '/plywood-calculator/', icon: '🪵' },
+      { title: 'Stair Calculator', description: 'Risers, runs, stringers, and IRC code compliance.', href: '/stair-calculator/', icon: '🪜', volume: '18K' },
+    ],
+  },
+  {
+    label: '🎨 Interior & Finishes',
+    items: [
+      { title: 'Paint Calculator', description: 'Gallons and cost for any room with any finish type.', href: '/paint-calculator/', icon: '🎨' },
+      { title: 'Drywall Calculator', description: 'Sheets, screws, and joint compound for walls and ceilings.', href: '/drywall-calculator/', icon: '🧱' },
+      { title: 'Flooring Calculator', description: 'Sq ft and cost for hardwood, LVP, laminate, carpet, and tile.', href: '/flooring-calculator/', icon: '🏠' },
+      { title: 'Tile Calculator', description: 'Tiles and boxes for floors, walls, and backsplashes.', href: '/tile-calculator/', icon: '🔲' },
+      { title: 'Wallpaper Calculator', description: 'Single and double rolls for any room with any roll size.', href: '/wallpaper-calculator/', icon: '🖼️' },
+      { title: 'Paver Calculator', description: 'Paver count and bedding sand for patios and driveways.', href: '/paver-calculator/', icon: '🔲' },
+    ],
+  },
+  {
+    label: '💰 Project Estimating',
+    items: [
+      { title: 'Construction Cost Calculator', description: 'Building cost per sq ft for homes, additions, and renovations.', href: '/construction-calculator/', icon: '💰', volume: '12K' },
+    ],
+  },
+];
+
+const stats = [
+  { value: '30+', label: 'Free Calculators' },
+  { value: '100%', label: 'Free Forever' },
+  { value: '0', label: 'Sign-ups Needed' },
+  { value: '±5%', label: 'Accuracy Target' },
+];
+---
+
+<BaseLayout
+  title="Free Construction Calculators for Pros & DIYers | ConstructionCalc"
+  description="Free, accurate construction calculators for concrete, gravel, square footage, stairs, board feet and more. Built for contractors and serious DIYers."
+>
+  <!-- Hero -->
+  <section class="bg-navy-900 hero-grid overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-6">
+          <span class="w-1.5 h-1.5 bg-brand-400 rounded-full animate-pulse"></span>
+          Free Professional Construction Tools
+        </div>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight">
+          Construction<br/>
+          <span class="text-brand-400">Calculators</span><br/>
+          That Work.
+        </h1>
+        <p class="text-slate-400 text-lg mt-5 max-w-xl leading-relaxed">
+          Accurate material estimates for concrete, gravel, roofing, stairs and more. No sign-up, no BS — just results.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-8">
+          <a href="#calculators" class="btn-primary text-base px-6 py-3">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/>
+              <line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
+            </svg>
+            Browse Calculators
+          </a>
+          <a href="/concrete-calculator/" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-semibold px-6 py-3 rounded-lg transition-colors text-base border border-white/10">
+            🏗️ Concrete Calculator
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="border-t border-navy-800 bg-navy-950/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          {stats.map(s => (
+            <div class="text-center">
+              <div class="text-2xl font-extrabold text-brand-400">{s.value}</div>
+              <div class="text-slate-500 text-xs mt-0.5">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculators grid -->
+  <section id="calculators" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-10">
+      <span class="section-tag">🔧 Tools</span>
+      <h2 class="text-3xl font-extrabold text-navy-900">30+ Construction Calculators</h2>
+      <p class="text-slate-500 mt-2 max-w-xl mx-auto">Pick a calculator and get your estimates in seconds. No account required.</p>
+    </div>
+    {calcGroups.map(group => (
+      <div class="mb-12">
+        <h3 class="text-lg font-bold text-navy-900 mb-4 pb-2 border-b border-slate-200">{group.label}</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {group.items.map(calc => (
+            <CalculatorCard {...calc} />
+          ))}
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <!-- How it works -->
+  <section class="bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-12">
+        <span class="section-tag">⚡ Simple</span>
+        <h2 class="text-3xl font-extrabold text-navy-900">How It Works</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { step: '01', title: 'Choose a calculator', desc: 'Pick from our collection of construction-specific calculators.', icon: '🔍' },
+          { step: '02', title: 'Enter your measurements', desc: 'Input length, width, depth or other required dimensions.', icon: '📏' },
+          { step: '03', title: 'Get instant results', desc: 'See material quantities, bag counts, and cost estimates immediately.', icon: '⚡' },
+        ].map(item => (
+          <div class="relative pl-16">
+            <div class="absolute left-0 top-0 w-12 h-12 bg-brand-50 border border-brand-100 rounded-xl flex items-center justify-center text-2xl">
+              {item.icon}
+            </div>
+            <div class="absolute left-3 top-12 text-xs font-black text-brand-200">{item.step}</div>
+            <h3 class="font-bold text-navy-900 text-lg">{item.title}</h3>
+            <p class="text-slate-500 mt-1 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ConstructionCalc -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="section-tag">✅ Why us</span>
+        <h2 class="text-3xl font-extrabold text-navy-900 mb-6">Built for the Job Site</h2>
+        <div class="space-y-4">
+          {[
+            { title: 'Accurate formulas', desc: 'Based on industry-standard engineering formulas used by professional contractors.' },
+            { title: 'Real cost estimates', desc: 'Material cost ranges based on current national average pricing from supplier data.' },
+            { title: 'Code-aware results', desc: 'Stair and structural calculators reference IRC building code requirements.' },
+            { title: 'Works on any device', desc: 'Fully responsive — use it on your phone at the lumber yard or on a desktop in the office.' },
+            { title: 'No account needed', desc: '100% free, no sign-up, no paywall. Just open it and calculate.' },
+          ].map(item => (
+            <div class="flex items-start gap-3">
+              <div class="w-5 h-5 bg-brand-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </div>
+              <div>
+                <span class="font-semibold text-navy-900">{item.title}</span>
+                <span class="text-slate-500 text-sm"> — {item.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="bg-navy-900 rounded-2xl p-8 hero-grid">
+        <div class="text-center">
+          <div class="text-6xl mb-4">🏗️</div>
+          <blockquote class="text-slate-300 text-lg font-medium leading-relaxed italic">
+            "I use the concrete calculator on every pour. Finally a tool that gives me both yards and bag counts in one place."
+          </blockquote>
+          <div class="mt-4 text-slate-400 text-sm">— Mike R., General Contractor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular calculators CTA -->
+  <section class="bg-brand-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+      <h2 class="text-3xl font-extrabold text-white mb-3">Ready to estimate your project?</h2>
+      <p class="text-brand-100 mb-6">Start with our most popular concrete calculator — free, instant, no sign-up.</p>
+      <a href="/concrete-calculator/"
+        class="inline-flex items-center gap-2 bg-white text-brand-600 font-bold px-8 py-4 rounded-xl hover:bg-brand-50 transition-colors text-lg">
+        🏗️ Open Concrete Calculator
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import BuildingCostCalc from '../components/calculators/BuildingCostCalc';
+
+const faqs = [
+  { q: 'How much does it cost to build a house per square foot?', a: 'In the US, building a new home typically costs $100–$500+ per square foot depending on quality level and location. A basic home averages $120–150/sq ft, mid-range $150–250/sq ft, and custom/premium homes $250–500+/sq ft. These figures are for construction only and exclude land, permits, and design fees.' },
+  { q: 'What is the most expensive part of building a house?', a: 'Framing typically costs the most at 15–25% of total build cost. The top cost categories are: framing (15–25%), foundation (10–15%), plumbing (10–15%), HVAC (10–15%), electrical (8–12%), roofing (5–10%), and windows/doors (5–8%).' },
+  { q: 'How do I get an accurate construction estimate?', a: 'For a reliable estimate, get at least 3 bids from licensed general contractors. Provide detailed plans and specifications. Include a 10–20% contingency budget for unexpected costs. Costs vary significantly by region, season, and current material prices.' },
+  { q: 'How much does an addition cost per square foot?', a: 'Home additions typically cost $80–$250 per square foot depending on type and finish level. A basic addition runs $80–140/sq ft, mid-range $140–220/sq ft, and premium $220–400+/sq ft. Additions that require new foundation, plumbing, or HVAC are on the higher end.' },
+  { q: 'What permits do I need for construction projects?', a: 'Most construction projects require building permits from your local municipality. Typically required for: new construction, additions over 200 sq ft, structural changes, electrical work, plumbing, HVAC installation. Decks over 30 inches off ground also typically need permits. Always check with your local building department.' },
+];
+
+const related = [
+  { title: 'Concrete Calculator', href: '/concrete-calculator/', icon: '🏗️', description: 'Concrete for foundation and slabs' },
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Calculate project area' },
+  { title: 'Board Foot Calculator', href: '/board-foot-calculator/', icon: '🪵', description: 'Lumber costs for framing' },
+  { title: 'Stair Calculator', href: '/stair-calculator/', icon: '🪜', description: 'Stair dimensions and compliance' },
+];
+---
+
+<CalculatorLayout
+  title="Construction Cost Calculator — Building Cost Estimator per Sq Ft"
+  description="Free construction cost calculator. Estimate building costs per square foot for new homes, additions, garages, decks, kitchens, and bathrooms. Adjusts for quality and region."
+  heading="Construction Cost Calculator"
+  subheading="Estimate building costs per square foot for any construction project. Adjust for build quality and regional labor costs to get a realistic budget range."
+  icon="💰"
+  category="Construction"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <BuildingCostCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Construction Cost Breakdown by Project Type</h2>
+    <table>
+      <thead><tr><th>Project</th><th>Basic</th><th>Mid-Range</th><th>Premium</th></tr></thead>
+      <tbody>
+        <tr><td>New Home (per sq ft)</td><td>$100–150</td><td>$150–250</td><td>$250–500+</td></tr>
+        <tr><td>Addition (per sq ft)</td><td>$80–140</td><td>$140–220</td><td>$220–400+</td></tr>
+        <tr><td>Garage (per sq ft)</td><td>$35–60</td><td>$60–100</td><td>$100–200</td></tr>
+        <tr><td>Deck (per sq ft)</td><td>$15–30</td><td>$30–50</td><td>$50–100+</td></tr>
+        <tr><td>Basement Finish (per sq ft)</td><td>$25–50</td><td>$50–90</td><td>$90–200</td></tr>
+        <tr><td>Kitchen Remodel (per sq ft)</td><td>$100–175</td><td>$175–300</td><td>$300–800+</td></tr>
+        <tr><td>Bathroom Remodel (per sq ft)</td><td>$70–120</td><td>$120–200</td><td>$200–500+</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Cost Breakdown of a New Home Build</h2>
+    <table>
+      <thead><tr><th>Category</th><th>% of Total Cost</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Site work / Foundation</td><td>10–15%</td><td>Excavation, footings, slab or basement</td></tr>
+        <tr><td>Framing</td><td>15–25%</td><td>Lumber, engineered wood, labor</td></tr>
+        <tr><td>Plumbing</td><td>10–15%</td><td>Rough-in and fixtures</td></tr>
+        <tr><td>HVAC</td><td>10–15%</td><td>Heating, cooling, ductwork</td></tr>
+        <tr><td>Electrical</td><td>8–12%</td><td>Panel, wiring, fixtures</td></tr>
+        <tr><td>Roofing</td><td>5–10%</td><td>Sheathing, shingles, flashing</td></tr>
+        <tr><td>Insulation</td><td>3–6%</td><td>Batt, spray foam, rigid</td></tr>
+        <tr><td>Windows & Doors</td><td>5–8%</td><td>Material and installation</td></tr>
+        <tr><td>Exterior Finishes</td><td>4–7%</td><td>Siding, trim, painting</td></tr>
+        <tr><td>Interior Finishes</td><td>15–25%</td><td>Drywall, flooring, cabinets, paint</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Regional Cost Multipliers</h2>
+    <p>Labor costs vary significantly by location. Here are typical multipliers relative to the national average:</p>
+    <table>
+      <thead><tr><th>Region</th><th>Multiplier</th><th>Example Cities</th></tr></thead>
+      <tbody>
+        <tr><td>Low cost</td><td>0.70–0.85</td><td>Rural Midwest, South, Appalachia</td></tr>
+        <tr><td>Below average</td><td>0.85–0.95</td><td>Small cities in TX, TN, FL interior</td></tr>
+        <tr><td>National average</td><td>1.00</td><td>Columbus OH, Kansas City, Nashville</td></tr>
+        <tr><td>Above average</td><td>1.10–1.25</td><td>Denver, Phoenix, Atlanta, Dallas</td></tr>
+        <tr><td>High cost</td><td>1.25–1.50</td><td>Boston, Miami, Chicago, Portland</td></tr>
+        <tr><td>Very high cost</td><td>1.50–2.00+</td><td>NYC, San Francisco, Seattle, Hawaii</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Always get <strong>3+ contractor bids</strong></li>
+      <li>✅ Budget <strong>10–20% contingency</strong></li>
+      <li>✅ Costs vary <strong>50–100%</strong> by region</li>
+      <li>✅ Material costs change — verify current pricing</li>
+      <li>✅ Permits add <strong>$500–5,000+</strong> to budget</li>
+    </ul>
+  </div>
+</CalculatorLayout>

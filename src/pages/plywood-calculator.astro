@@ -1,0 +1,68 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import PlywoodCalc from '../components/calculators/PlywoodCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many plywood sheets do I need?", a: "Divide the total area by 32 (one 4×8 sheet = 32 sq ft), then add 10% for cuts and waste. Our calculator does this automatically. For a 500 sq ft subfloor: 500 × 1.10 ÷ 32 = 18 sheets." },
+  { q: "What thickness plywood for a subfloor?", a: "3/4\" (23/32\") is the standard for subflooring over 16\" OC joists. Use 5/8\" over 12\" OC joists for lighter loads. 1-1/8\" tongue-and-groove plywood is used for 2-layer subfloor systems on 24\" OC framing." },
+  { q: "What is the difference between OSB and plywood?", a: "OSB (Oriented Strand Board) is cheaper and comparable in strength for sheathing and subfloors. Plywood handles moisture better, is stiffer, and is easier to fasten (screws hold better). For critical applications or wet areas, use plywood." },
+  { q: "How much does plywood cost?", a: "3/4\" plywood costs $55–$85 per sheet. 1/2\" costs $38–$60. Prices vary significantly with lumber markets. OSB is typically 20–30% cheaper than plywood for equivalent applications." },
+  { q: "How many sheets of 3/4 plywood are in a unit?", a: "A standard unit of 3/4\" plywood contains 48 sheets. For smaller projects, most suppliers sell individual sheets. Many big-box stores sell half sheets (4×4) or will cut full sheets for a small fee." },
+];
+const related = [
+  { href: '/framing-calculator', label: 'Framing Calculator', icon: '🔨' },
+  { href: '/board-foot-calculator', label: 'Board Foot Calculator', icon: '🪵' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/flooring-calculator', label: 'Flooring Calculator', icon: '🏠' },
+];
+---
+<CalculatorLayout
+  title="Plywood Calculator – Sheets Needed & Cost Estimator"
+  description="Calculate plywood sheets needed for subfloors, roof sheathing, walls, and cabinets. Supports 1/4-inch, 3/8-inch, 1/2-inch, and 3/4-inch plywood with automatic 10% waste factor."
+  heading="Plywood Calculator"
+  subheading="Calculate 4×8 plywood sheets needed for subfloor, sheathing, and cabinetry"
+  icon="🪵"
+  breadcrumb="Plywood Calculator"
+  schema={{
+    name: "Plywood Calculator",
+    description: "Calculate plywood sheet quantity and cost for construction projects",
+    url: "https://constructioncalc.com/plywood-calculator"
+  }}
+>
+  <PlywoodCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Plywood Sheets</h2>
+    <p>Standard plywood comes in 4×8 ft sheets (32 sq ft each). To find the number of sheets needed, divide your total area by 32 and add 10% for waste from cuts and offcuts.</p>
+
+    <div class="formula-box">
+      <strong>Plywood Sheet Formula</strong><br/>
+      Total Area = Length (ft) × Width (ft)<br/>
+      Sheets = ⌈Total Area × 1.10 ÷ 32⌉
+    </div>
+
+    <h2>Plywood Thickness Selection Guide</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Thickness</th><th class="p-2 text-left border">Application</th><th class="p-2 text-left border">Cost/Sheet</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">1/4" (6mm)</td><td class="p-2 border">Drawer bottoms, cabinet backs, curved forms</td><td class="p-2 border">$22–38</td></tr>
+        <tr><td class="p-2 border">3/8" (9mm)</td><td class="p-2 border">Lightweight sheathing, repairs</td><td class="p-2 border">$30–50</td></tr>
+        <tr><td class="p-2 border">1/2" (12mm)</td><td class="p-2 border">Wall sheathing, roof decking (light loads)</td><td class="p-2 border">$38–60</td></tr>
+        <tr><td class="p-2 border">3/4" (19mm)</td><td class="p-2 border">Subfloor, cabinets, structural applications</td><td class="p-2 border">$55–85</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Plywood Grades Explained</h2>
+    <ul>
+      <li><strong>A-A</strong> — Both faces smooth and paintable. Use for cabinets and furniture.</li>
+      <li><strong>A-C / A-D</strong> — One smooth face for interior finished surfaces</li>
+      <li><strong>CDX</strong> — Construction grade for sheathing and subfloor (exterior glue)</li>
+      <li><strong>Marine Grade</strong> — Highest quality, waterproof glue, no voids — for boats and wet areas</li>
+      <li><strong>T&G (Tongue and Groove)</strong> — Subfloor panels that interlock, reducing squeaking</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

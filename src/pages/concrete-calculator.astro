@@ -1,0 +1,122 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import ConcreteCalc from '../components/calculators/ConcreteCalc';
+
+const faqs = [
+  { q: 'How many bags of concrete do I need for a 10×10 slab at 4 inches thick?', a: 'A 10×10 slab at 4 inches thick requires approximately 1.23 cubic yards of concrete. That equals roughly 82 bags of 60 lb pre-mixed concrete, or about 61 bags of 80 lb bags. Always add 10% for waste, so plan for 90 bags (60 lb) or 67 bags (80 lb).' },
+  { q: 'What is the difference between cubic yards and cubic feet for concrete?', a: 'One cubic yard equals 27 cubic feet. Ready-mix concrete is ordered in cubic yards, while smaller projects and pre-mixed bags are calculated in cubic feet. Our calculator shows both automatically so you can order either way.' },
+  { q: 'How thick should a concrete slab be?', a: 'For residential driveways: 4 inches minimum. Garage floors: 4–6 inches. Sidewalks and patios: 3–4 inches. Footings below frost line: typically 8–12 inches wide and 8 inches deep, depending on local code. Always consult your local building code.' },
+  { q: 'What does a yard of concrete cost?', a: 'Ready-mix concrete typically costs $110–$165 per cubic yard delivered. Prices vary by location, mix design, and current material costs. Pre-mixed bags (60 lb) cost about $5–7 each at big-box stores. For large pours, ready-mix is almost always more cost-effective.' },
+  { q: 'Should I add extra concrete to my order?', a: 'Yes — always add 10% to your calculated volume to account for uneven subgrades, spillage, and slight variations in forms. For complex pours with lots of edges or corners, consider 15%. Running short mid-pour is a costly problem.' },
+];
+
+const related = [
+  { title: 'Gravel Calculator', href: '/gravel-calculator/', icon: '🪨', description: 'Estimate gravel for your base layer' },
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Calculate area before calculating volume' },
+  { title: 'Cubic Feet Calculator', href: '/cubic-feet-calculator/', icon: '📦', description: 'General volume calculator' },
+  { title: 'Stair Calculator', href: '/stair-calculator/', icon: '🪜', description: 'Calculate concrete stair dimensions' },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Concrete Calculator",
+  "url": "https://constructioncalc.com/concrete-calculator/",
+  "description": "Free online concrete calculator to find cubic yards, cubic feet, and bags needed for slabs, footings, and columns.",
+  "applicationCategory": "UtilityApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "operatingSystem": "Web Browser",
+};
+---
+
+<CalculatorLayout
+  title="Concrete Calculator — Find Cubic Yards & Bags Needed"
+  description="Free concrete calculator for slabs, footings, and columns. Instantly find cubic yards, cubic feet, and number of pre-mixed bags needed. Includes cost estimate."
+  heading="Concrete Calculator"
+  subheading="Calculate how much concrete you need for any slab, footing, or column. Get cubic yards, cubic feet, bag counts, and cost estimates instantly."
+  icon="🏗️"
+  category="Construction"
+  faqs={faqs}
+  related={related}
+  schema={schema}
+>
+  <div slot="calculator">
+    <ConcreteCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>How to Use the Concrete Calculator</h2>
+    <ol>
+      <li><strong>Select the shape</strong> — Choose Slab (most common), Footing, or Column.</li>
+      <li><strong>Enter dimensions</strong> — Input length, width, and thickness/depth. Switch between imperial and metric as needed.</li>
+      <li><strong>Click Calculate</strong> — Get cubic yards, cubic feet, bag counts for 40/60/80 lb bags, and a cost estimate.</li>
+      <li><strong>Add 10% for waste</strong> — The calculator reminds you, but always order slightly more than calculated.</li>
+    </ol>
+
+    <h2>Concrete Calculator Formula</h2>
+    <p>The basic formula for a concrete slab is:</p>
+    <div class="formula-box">
+      Volume (ft³) = Length (ft) × Width (ft) × Depth (ft)<br/>
+      Volume (yd³) = Volume (ft³) ÷ 27
+    </div>
+    <p>For a column or cylinder:</p>
+    <div class="formula-box">
+      Volume (ft³) = π × Radius² × Height
+    </div>
+
+    <h2>Concrete Coverage Reference Table</h2>
+    <table>
+      <thead>
+        <tr><th>Thickness</th><th>1 Cubic Yard Covers</th><th>60 lb Bags per Yard</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>3 inches</td><td>108 sq ft</td><td>60 bags</td></tr>
+        <tr><td>4 inches</td><td>81 sq ft</td><td>45 bags</td></tr>
+        <tr><td>6 inches</td><td>54 sq ft</td><td>60 bags</td></tr>
+        <tr><td>8 inches</td><td>40.5 sq ft</td><td>80 bags</td></tr>
+        <tr><td>12 inches</td><td>27 sq ft</td><td>90 bags</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Ready-Mix vs. Pre-Mixed Bags</h2>
+    <p>The choice between ready-mix concrete and pre-mixed bags depends primarily on project size:</p>
+    <ul>
+      <li><strong>Pre-mixed bags</strong> — Best for projects under 1 cubic yard. No minimum order, flexible schedule, easy for DIY. Each 60 lb bag yields approximately 0.45 cubic feet.</li>
+      <li><strong>Ready-mix (truck delivery)</strong> — Best for projects over 1 yard. More cost-effective per yard, better consistency. Minimum orders typically 1–2 yards. Requires you to be ready to pour immediately on delivery.</li>
+    </ul>
+
+    <h2>Standard Concrete Slab Thickness Guidelines</h2>
+    <table>
+      <thead>
+        <tr><th>Application</th><th>Recommended Thickness</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sidewalk / Walkway</td><td>3–4 inches</td><td>Foot traffic only</td></tr>
+        <tr><td>Patio</td><td>4 inches</td><td>Furniture + foot traffic</td></tr>
+        <tr><td>Driveway (passenger cars)</td><td>4 inches</td><td>Minimum per code</td></tr>
+        <tr><td>Driveway (trucks/RVs)</td><td>5–6 inches</td><td>Add rebar or wire mesh</td></tr>
+        <tr><td>Garage floor</td><td>4–6 inches</td><td>With rebar recommended</td></tr>
+        <tr><td>Footing / Foundation</td><td>8–12 inches</td><td>Per local building code</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tips for a Successful Concrete Pour</h2>
+    <ul>
+      <li>Always pour over a compacted gravel base (4–6 inches) to prevent settling and cracking.</li>
+      <li>Use rebar or wire mesh reinforcement for slabs over 50 sq ft or any driveway.</li>
+      <li>Cure concrete slowly — keep it moist for at least 7 days for maximum strength.</li>
+      <li>Don't pour when temperature is below 40°F or above 90°F without special precautions.</li>
+      <li>Control joints should be cut every 8–12 feet to manage cracking.</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Always add <strong>10%</strong> to your calculated volume for waste</li>
+      <li>✅ Pour over a compacted <strong>gravel base</strong></li>
+      <li>✅ Use <strong>rebar</strong> for slabs over 50 sq ft</li>
+      <li>✅ Cure for <strong>7+ days</strong> before heavy use</li>
+      <li>✅ Don't pour below <strong>40°F</strong></li>
+    </ul>
+  </div>
+</CalculatorLayout>

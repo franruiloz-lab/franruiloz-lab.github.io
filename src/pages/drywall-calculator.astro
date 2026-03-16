@@ -1,0 +1,68 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import DrywallCalc from '../components/calculators/DrywallCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many drywall sheets do I need for a room?", a: "Measure your total wall area (perimeter × ceiling height), subtract door and window openings, then divide by the sheet size. A 4×8 sheet covers 32 sq ft. Always add 10–15% for waste and cuts. Our calculator handles all of this automatically." },
+  { q: "What thickness drywall should I use?", a: "Standard walls and ceilings use 1/2\" drywall. Ceilings often use 5/8\" for sag resistance. Bathrooms should use moisture-resistant drywall (greenboard or cement board). Garages attached to the house require 5/8\" Type X fire-rated drywall." },
+  { q: "How many screws per sheet of drywall?", a: "On walls, place screws every 16\" in the field and every 8\" on edges. This works out to roughly 30–35 screws per 4×8 sheet on walls, or about 60–70 screws per sheet on ceilings." },
+  { q: "How much joint compound do I need?", a: "A typical drywall job requires about 0.053 gallons of joint compound per sq ft of drywall. For a 1,000 sq ft area, you'd need roughly 53 gallons (or about four 5-gallon buckets) for all three coats combined." },
+  { q: "What is the difference between 4×8, 4×9, and 4×12 sheets?", a: "4×8 sheets are the most common and easiest to handle for one person. 4×9 sheets are ideal for 9-ft ceilings as they reduce horizontal seams. 4×12 sheets minimize seams on tall walls and ceilings but require two people to handle." },
+];
+const related = [
+  { href: '/paint-calculator', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/framing-calculator', label: 'Framing Calculator', icon: '🔨' },
+  { href: '/construction-calculator', label: 'Building Cost Calculator', icon: '🏗️' },
+];
+---
+<CalculatorLayout
+  title="Drywall Calculator – Sheets, Screws & Joint Compound"
+  description="Calculate drywall sheets, screws, and joint compound for any room. Supports 4×8, 4×9, and 4×12 sheet sizes with automatic waste factor."
+  heading="Drywall Calculator"
+  subheading="Calculate drywall sheets, screws, joint compound, and material cost for any room"
+  icon="🧱"
+  breadcrumb="Drywall Calculator"
+  schema={{
+    name: "Drywall Calculator",
+    description: "Calculate drywall sheets and materials needed for walls and ceilings",
+    url: "https://constructioncalc.com/drywall-calculator"
+  }}
+>
+  <DrywallCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Drywall</h2>
+    <p>Drywall is measured by the sheet. The most common size is 4×8 ft (32 sq ft per sheet), but larger sizes minimize seams and finishing work on taller walls and ceilings.</p>
+
+    <div class="formula-box">
+      <strong>Drywall Sheet Formula</strong><br/>
+      Wall Area = Perimeter × Height − (Doors × 21) − (Windows × 15)<br/>
+      Sheets = ⌈Wall Area × 1.10 ÷ Sheet Size⌉
+    </div>
+
+    <h2>Drywall Thickness Reference</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Thickness</th><th class="p-2 text-left border">Weight/Sheet</th><th class="p-2 text-left border">Application</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">1/4"</td><td class="p-2 border">~12 lbs</td><td class="p-2 border">Curved surfaces, repairs over existing drywall</td></tr>
+        <tr><td class="p-2 border">3/8"</td><td class="p-2 border">~18 lbs</td><td class="p-2 border">Repairs, lightweight applications</td></tr>
+        <tr><td class="p-2 border">1/2"</td><td class="p-2 border">~54 lbs</td><td class="p-2 border">Standard walls and most ceilings</td></tr>
+        <tr><td class="p-2 border">5/8"</td><td class="p-2 border">~70 lbs</td><td class="p-2 border">Ceilings, fire-rated walls, garages</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Installation Tips</h2>
+    <ul>
+      <li>Hang ceiling drywall before walls — it supports the wall boards at the top</li>
+      <li>Stagger vertical seams between rows so no seams line up from floor to ceiling</li>
+      <li>Use a drywall lift for ceiling installation — it's worth the rental cost</li>
+      <li>Score and snap cuts are faster than saw cuts for straight lines</li>
+      <li>Apply three coats of joint compound (taping, topping, finish) with sanding between coats</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

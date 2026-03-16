@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import SandCalc from '../components/calculators/SandCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much does a cubic yard of sand weigh?", a: "Sand weighs approximately 1.3–1.5 tons (2,600–3,000 lbs) per cubic yard depending on type and moisture content. Dry sand weighs about 1.3 tons/yd³ while wet, packed sand can reach 1.6 tons/yd³." },
+  { q: "How deep should sand be under pavers?", a: "Use 1\" of bedding sand under pavers. This is the standard depth for paver installations — both thinner and thicker layers can cause problems. Below the sand, you need 4\"–6\" of compacted gravel base." },
+  { q: "How many bags of sand do I need for a sandbox?", a: "A typical 8×8 ft sandbox with 6\" of sand needs 32 cubic feet or 1.19 cubic yards of sand, which is about 63 bags of 50 lb play sand. Use our calculator with your exact dimensions for precision." },
+  { q: "What is the difference between play sand and masonry sand?", a: "Play sand is finely washed and screened for safety around children — no sharp edges or debris. Masonry sand is coarser and used for concrete, mortar, and stucco. Never use masonry or construction sand in a sandbox." },
+  { q: "How much sand do I need for a pool base?", a: "Above-ground pool installations typically require 2\"–3\" of sand under the liner. For a 24 ft round pool, you'd need about 3–4 tons of sand. Our calculator can estimate this — enter the pool dimensions and 2\"–3\" depth." },
+];
+const related = [
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+  { href: '/soil-calculator', label: 'Soil Calculator', icon: '🌿' },
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/paver-calculator', label: 'Paver Calculator', icon: '🔲' },
+];
+---
+<CalculatorLayout
+  title="Sand Calculator – Cubic Yards, Tons & Cost"
+  description="Calculate sand for paver bases, sandboxes, pools, and construction. Get cubic yards, tons, 50 lb bags, and cost estimates for play sand, masonry sand, and fill sand."
+  heading="Sand Calculator"
+  subheading="Calculate sand volume and cost for paver bases, sandboxes, and construction projects"
+  icon="🏖️"
+  breadcrumb="Sand Calculator"
+  schema={{
+    name: "Sand Calculator",
+    description: "Calculate sand quantity and cost for construction and landscaping",
+    url: "https://constructioncalc.com/sand-calculator"
+  }}
+>
+  <SandCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Sand Volume</h2>
+    <p>Sand is sold by the cubic yard for bulk delivery, or in 50 lb bags for small projects. Knowing the weight is important for delivery planning — most trucks carry 10–15 tons.</p>
+
+    <div class="formula-box">
+      <strong>Sand Volume Formula</strong><br/>
+      Cubic Feet = Length (ft) × Width (ft) × Depth (ft)<br/>
+      Cubic Yards = Cubic Feet ÷ 27<br/>
+      Tons = Cubic Yards × 1.35 (approx. for most sand types)
+    </div>
+
+    <h2>Sand Type Applications</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Sand Type</th><th class="p-2 text-left border">Best Uses</th><th class="p-2 text-left border">Cost/Ton</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Play Sand</td><td class="p-2 border">Sandboxes, children's areas</td><td class="p-2 border">$30–60</td></tr>
+        <tr><td class="p-2 border">Masonry Sand</td><td class="p-2 border">Concrete, mortar, stucco</td><td class="p-2 border">$25–50</td></tr>
+        <tr><td class="p-2 border">Fill Sand</td><td class="p-2 border">Backfill, grading</td><td class="p-2 border">$15–30</td></tr>
+        <tr><td class="p-2 border">Paver Base Sand</td><td class="p-2 border">Patio/walkway bedding layer</td><td class="p-2 border">$25–45</td></tr>
+        <tr><td class="p-2 border">River Sand</td><td class="p-2 border">Drainage, above-ground pools</td><td class="p-2 border">$30–55</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Sand Ordering Tips</h2>
+    <ul>
+      <li>Order 10% extra to account for settling and waste</li>
+      <li>One cubic yard of sand covers 108 sq ft at 3\" depth or 324 sq ft at 1\" depth</li>
+      <li>Verify load limits for your access road before ordering bulk delivery</li>
+      <li>Store sand on a tarp and cover between uses to prevent contamination</li>
+      <li>For paver joints, use polymeric sand — it hardens when wet and resists weeds</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

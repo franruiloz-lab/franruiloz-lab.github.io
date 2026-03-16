@@ -1,0 +1,69 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import FenceCalc from '../components/calculators/FenceCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many fence posts do I need?", a: "Posts are typically spaced 8 feet apart. Divide your total linear footage by 8 and add 1 for the end post. Corner and gate posts require additional posts. Our calculator handles all of this automatically." },
+  { q: "How much does a fence cost per linear foot?", a: "Wood privacy fence runs $15–$30/linear ft installed. Chain-link is $10–$20/ft. Vinyl fence costs $20–$40/ft. Aluminum fence runs $25–$40/ft. These are installed prices including materials and labor." },
+  { q: "How deep should fence posts be set?", a: "Posts should be set 1/3 to 1/2 of their total length underground. For a 6-ft fence, use 9-ft posts set 3 ft deep. In areas with frost, posts must go below the frost line (typically 36\"–48\" deep)." },
+  { q: "What is the standard fence panel width?", a: "Standard fence panels are 8 feet wide. Posts are typically spaced at 8-foot intervals to accommodate standard panels. Some styles use 6-foot spacing for added strength." },
+  { q: "How long does a wood fence last?", a: "Pressure-treated pine lasts 15–20 years. Cedar and redwood last 15–30 years with proper maintenance. Annual staining or sealing significantly extends the life of wood fences." },
+];
+const related = [
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/deck-calculator', label: 'Deck Calculator', icon: '🏡' },
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+];
+---
+<CalculatorLayout
+  title="Fence Calculator – Posts, Panels & Material Cost"
+  description="Calculate fence posts, rails, boards, and material cost for any fence style. Instant estimates for wood, vinyl, chain-link, and aluminum fencing projects."
+  heading="Fence Calculator"
+  subheading="Estimate posts, rails, pickets, and total material cost for your fence project"
+  icon="🪧"
+  breadcrumb="Fence Calculator"
+  schema={{
+    name: "Fence Calculator",
+    description: "Calculate fence materials and cost estimates for residential and commercial fencing",
+    url: "https://constructioncalc.com/fence-calculator"
+  }}
+>
+  <FenceCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Fence Materials</h2>
+    <p>Calculating fence materials requires knowing your total linear footage, the fence style, and standard component dimensions. Our calculator uses industry-standard post spacing and material counts for accurate estimates.</p>
+
+    <div class="formula-box">
+      <strong>Fence Post Formula</strong><br/>
+      Posts = (Total Linear Feet ÷ Post Spacing) + 1<br/>
+      + Corner Posts + Gate Posts
+    </div>
+
+    <h2>Fence Material Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Material</th><th class="p-2 text-left border">Cost/Linear Ft</th><th class="p-2 text-left border">Lifespan</th><th class="p-2 text-left border">Maintenance</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Wood Privacy</td><td class="p-2 border">$15–30</td><td class="p-2 border">15–20 yrs</td><td class="p-2 border">High</td></tr>
+        <tr><td class="p-2 border">Chain Link</td><td class="p-2 border">$10–20</td><td class="p-2 border">20–30 yrs</td><td class="p-2 border">Low</td></tr>
+        <tr><td class="p-2 border">Vinyl</td><td class="p-2 border">$20–40</td><td class="p-2 border">25–30 yrs</td><td class="p-2 border">Very Low</td></tr>
+        <tr><td class="p-2 border">Aluminum</td><td class="p-2 border">$25–40</td><td class="p-2 border">30+ yrs</td><td class="p-2 border">Very Low</td></tr>
+        <tr><td class="p-2 border">Split Rail</td><td class="p-2 border">$10–18</td><td class="p-2 border">15–25 yrs</td><td class="p-2 border">Low</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Installation Tips</h2>
+    <ul>
+      <li>Call 811 (USA) before digging to locate underground utilities</li>
+      <li>Check local ordinances — many areas limit fence height to 4 ft in front yards, 6 ft in back</li>
+      <li>Set posts in concrete for maximum stability, especially in sandy soils</li>
+      <li>Allow concrete to cure 24–48 hours before attaching rails and panels</li>
+      <li>Slope boards at the bottom if the ground is uneven rather than cutting posts</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

@@ -1,0 +1,68 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import BrickCalc from '../components/calculators/BrickCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many bricks do I need per square foot?", a: "Standard modular bricks (3⅝\"×2¼\"×7⅝\") require approximately 6.75 bricks per square foot of wall face with standard 3/8\" mortar joints. Queen-size bricks use about 4.5 per sq ft. Our calculator automatically applies the correct count per brick size." },
+  { q: "How much mortar do I need for bricklaying?", a: "You need approximately 7 bags of Type S or N mortar per 100 bricks. A 1,000-brick project requires about 70 bags of mortar (60 lb bags). Pre-mixed mortar is more expensive but convenient for small projects." },
+  { q: "How much does brick cost?", a: "Standard red bricks cost $0.50–$1.50 each. Specialty or antique bricks can run $2–$5+ each. Installed brickwork costs $10–$20 per sq ft for standard brick veneer siding, or $20–$35+ for full structural masonry." },
+  { q: "What is the standard brick size?", a: "Standard US brick: 3⅝\" wide × 2¼\" tall × 7⅝\" long (actual size). With 3/8\" mortar joints, the nominal size is 4\"×2⅝\"×8\". This is the most common brick used in residential construction across the United States." },
+  { q: "How long does brick last?", a: "Properly installed brick veneer lasts 100+ years. The brick itself can last centuries — many colonial-era brick buildings are still standing. Mortar joints typically need repointing (tuckpointing) every 25–30 years as the mortar deteriorates faster than the brick." },
+];
+const related = [
+  { href: '/concrete-block-calculator', label: 'Concrete Block Calculator', icon: '🧱' },
+  { href: '/retaining-wall-calculator', label: 'Retaining Wall Calculator', icon: '🪨' },
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/sand-calculator', label: 'Sand Calculator', icon: '🏖️' },
+];
+---
+<CalculatorLayout
+  title="Brick Calculator – Bricks Needed & Mortar Estimate"
+  description="Calculate bricks and mortar bags for walls, chimneys, patios, and pathways. Supports standard, modular, queen, king, and jumbo brick sizes with 5% waste factor."
+  heading="Brick Calculator"
+  subheading="Calculate brick count, mortar bags, and material cost for any brick project"
+  icon="🧱"
+  breadcrumb="Brick Calculator"
+  schema={{
+    name: "Brick Calculator",
+    description: "Calculate brick quantity and mortar for masonry construction",
+    url: "https://constructioncalc.com/brick-calculator"
+  }}
+>
+  <BrickCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Bricks</h2>
+    <p>Brick count depends on brick size, mortar joint thickness, and wall configuration. With standard 3/8\" mortar joints, a standard brick covers approximately 0.148 sq ft, meaning you need 6.75 bricks per sq ft of wall.</p>
+
+    <div class="formula-box">
+      <strong>Brick Count Formula</strong><br/>
+      Bricks per Sq Ft = 1 ÷ (Brick Area with Mortar)<br/>
+      Total Bricks = Wall Area × Bricks per Sq Ft × 1.05 (waste)
+    </div>
+
+    <h2>Common Brick Sizes</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Name</th><th class="p-2 text-left border">Actual Size</th><th class="p-2 text-left border">Per Sq Ft</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Standard / Modular</td><td class="p-2 border">3⅝"×2¼"×7⅝"</td><td class="p-2 border">6.75</td></tr>
+        <tr><td class="p-2 border">Queen</td><td class="p-2 border">3"×2¾"×9⅝"</td><td class="p-2 border">4.5</td></tr>
+        <tr><td class="p-2 border">King</td><td class="p-2 border">3"×2¾"×9⅝"</td><td class="p-2 border">4.5</td></tr>
+        <tr><td class="p-2 border">Jumbo</td><td class="p-2 border">3⅝"×2¾"×7⅝"</td><td class="p-2 border">5.76</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Brick Laying Tips</h2>
+    <ul>
+      <li>Soak bricks in water before laying to improve mortar adhesion and prevent dehydration</li>
+      <li>Use a story pole (gauge rod) to maintain consistent course heights</li>
+      <li>Butter the face shells AND cross webs for full mortar coverage on load-bearing walls</li>
+      <li>Tool joints when mortar is thumbprint-hard (not too wet, not too dry) for a watertight seal</li>
+      <li>Never lay bricks when temperatures are below 40°F without protecting the work</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

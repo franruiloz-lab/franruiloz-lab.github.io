@@ -1,0 +1,96 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import BoardFootCalc from '../components/calculators/BoardFootCalc';
+
+const faqs = [
+  { q: 'What is a board foot?', a: 'A board foot is a unit of lumber volume equal to 1 inch thick × 12 inches wide × 12 inches long (144 cubic inches, or 1/12 of a cubic foot). It\'s the standard unit for pricing hardwood lumber in the United States.' },
+  { q: 'How do I calculate board feet?', a: 'Use this formula: Board Feet = (Thickness in inches × Width in inches × Length in feet) ÷ 12. For example, a board that is 1 inch thick × 6 inches wide × 8 feet long = (1 × 6 × 8) ÷ 12 = 4 board feet.' },
+  { q: 'Is board feet used for softwood lumber (dimensional lumber)?', a: 'Softwood dimensional lumber (2×4, 2×6, etc.) is typically sold by the linear foot at hardware stores. Board feet are mainly used for hardwoods (oak, walnut, maple) at lumber yards. However, you can still calculate the board footage of dimensional lumber using the same formula.' },
+  { q: 'What is the difference between nominal and actual lumber size?', a: 'Nominal size is the name (e.g., "2×4"), while actual size is the real dimension after drying and planing. A nominal 2×4 actually measures 1.5" × 3.5". When calculating board feet for hardwoods, use the actual thickness. For rough lumber, the nominal thickness is often closer to actual.' },
+];
+
+const related = [
+  { title: 'Stair Calculator', href: '/stair-calculator/', icon: '🪜', description: 'Lumber for stair stringers' },
+  { title: 'Construction Calculator', href: '/construction-calculator/', icon: '💰', description: 'Total project cost estimate' },
+  { title: 'Concrete Calculator', href: '/concrete-calculator/', icon: '🏗️', description: 'Concrete for foundations' },
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Area for lumber projects' },
+];
+---
+
+<CalculatorLayout
+  title="Board Foot Calculator — Lumber Volume & Cost by Wood Species"
+  description="Free board foot calculator for lumber projects. Calculate total board feet for multiple boards and get cost estimates by wood species (oak, walnut, maple, pine, and more)."
+  heading="Board Foot Calculator"
+  subheading="Calculate lumber volume in board feet for any number of boards. Includes wood species pricing for cost estimates. Perfect for woodworking and framing projects."
+  icon="🪵"
+  category="Construction"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <BoardFootCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Board Foot Formula</h2>
+    <div class="formula-box">
+      Board Feet = (Thickness (in) × Width (in) × Length (ft)) ÷ 12<br/><br/>
+      Or: BF = (Thickness (in) × Width (in) × Length (in)) ÷ 144
+    </div>
+    <p>For multiple boards of the same size, multiply the result by the quantity.</p>
+
+    <h2>Board Foot Quick Reference</h2>
+    <table>
+      <thead><tr><th>Board Size (T × W)</th><th>BF per Linear Foot</th><th>BF per 8 ft board</th></tr></thead>
+      <tbody>
+        <tr><td>1" × 4"</td><td>0.33 BF/ft</td><td>2.67 BF</td></tr>
+        <tr><td>1" × 6"</td><td>0.50 BF/ft</td><td>4.00 BF</td></tr>
+        <tr><td>1" × 8"</td><td>0.67 BF/ft</td><td>5.33 BF</td></tr>
+        <tr><td>1" × 12"</td><td>1.00 BF/ft</td><td>8.00 BF</td></tr>
+        <tr><td>2" × 4"</td><td>0.67 BF/ft</td><td>5.33 BF</td></tr>
+        <tr><td>2" × 6"</td><td>1.00 BF/ft</td><td>8.00 BF</td></tr>
+        <tr><td>2" × 8"</td><td>1.33 BF/ft</td><td>10.67 BF</td></tr>
+        <tr><td>4" × 4"</td><td>1.33 BF/ft</td><td>10.67 BF</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Hardwood Lumber Pricing Guide</h2>
+    <table>
+      <thead><tr><th>Species</th><th>Price Range per BF</th><th>Characteristics</th></tr></thead>
+      <tbody>
+        <tr><td>Pine (common)</td><td>$3–5</td><td>Easy to work, good for beginners</td></tr>
+        <tr><td>Douglas Fir</td><td>$4–6</td><td>Strong, structural and finish work</td></tr>
+        <tr><td>Cedar</td><td>$5–8</td><td>Rot-resistant, outdoor use</td></tr>
+        <tr><td>Red Oak</td><td>$7–12</td><td>Most popular American hardwood</td></tr>
+        <tr><td>Hard Maple</td><td>$8–13</td><td>Dense, great for cabinets and floors</td></tr>
+        <tr><td>White Oak</td><td>$9–14</td><td>Rot-resistant, wine barrels, flooring</td></tr>
+        <tr><td>Black Cherry</td><td>$10–16</td><td>Beautiful grain, furniture staple</td></tr>
+        <tr><td>Black Walnut</td><td>$15–25</td><td>Premium, stunning dark grain</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Nominal vs. Actual Lumber Sizes</h2>
+    <table>
+      <thead><tr><th>Nominal Size</th><th>Actual Size</th></tr></thead>
+      <tbody>
+        <tr><td>1×2</td><td>¾" × 1½"</td></tr>
+        <tr><td>1×4</td><td>¾" × 3½"</td></tr>
+        <tr><td>1×6</td><td>¾" × 5½"</td></tr>
+        <tr><td>2×4</td><td>1½" × 3½"</td></tr>
+        <tr><td>2×6</td><td>1½" × 5½"</td></tr>
+        <tr><td>2×8</td><td>1½" × 7¼"</td></tr>
+        <tr><td>4×4</td><td>3½" × 3½"</td></tr>
+        <tr><td>6×6</td><td>5½" × 5½"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Use <strong>actual dimensions</strong> for hardwood BF</li>
+      <li>✅ Add <strong>15–20%</strong> for cuts and defects</li>
+      <li>✅ Hardwood is sold in <strong>random widths and lengths</strong></li>
+      <li>✅ Rough lumber is cheaper than surfaced</li>
+    </ul>
+  </div>
+</CalculatorLayout>

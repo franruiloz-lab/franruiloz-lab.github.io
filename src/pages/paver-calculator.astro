@@ -1,0 +1,68 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import PaverCalc from '../components/calculators/PaverCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many pavers do I need per square foot?", a: "It depends on paver size. 4\"×8\" pavers: 4.5 per sq ft. 6\"×6\" pavers: 4 per sq ft. 12\"×12\" pavers: 1 per sq ft. Always add 10% for cuts, waste, and breakage. Our calculator handles any paver size." },
+  { q: "How deep should a paver base be?", a: "Residential patios and walkways need 4\" of compacted gravel base. Driveways need 6\"–8\" of compacted gravel. Top this with 1\" of bedding sand. Total excavation depth is typically 6\" for patios and 9\"–11\" for driveways." },
+  { q: "How much does paver installation cost?", a: "Concrete paver installation costs $10–$25 per sq ft installed. Natural stone runs $25–$50/sq ft. The material makes up about 40–50% of the total cost, with base preparation and labor comprising the rest." },
+  { q: "Do pavers need to be sealed?", a: "Sealing is not required but is highly recommended. Sealant protects against staining, enhances color, and stabilizes polymeric sand joints. Apply sealer 6–12 months after installation, once the pavers have fully cured and settled." },
+  { q: "What is polymeric sand?", a: "Polymeric sand is a special jointing sand mixed with polymers that harden when activated with water. It fills paver joints, prevents weed growth, resists erosion, and inhibits ant colonies. Always use polymeric sand instead of regular mason sand for joints." },
+];
+const related = [
+  { href: '/sand-calculator', label: 'Sand Calculator', icon: '🏖️' },
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+];
+---
+<CalculatorLayout
+  title="Paver Calculator – Pavers Needed, Sand & Cost"
+  description="Calculate pavers needed for patios, driveways, and walkways. Get paver count, bedding sand, and material cost for concrete, brick, natural stone, and permeable pavers."
+  heading="Paver Calculator"
+  subheading="Calculate paver quantity, bedding sand, and cost for patios, driveways, and walkways"
+  icon="🔲"
+  breadcrumb="Paver Calculator"
+  schema={{
+    name: "Paver Calculator",
+    description: "Calculate paver quantity and cost for hardscape projects",
+    url: "https://constructioncalc.com/paver-calculator"
+  }}
+>
+  <PaverCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Pavers</h2>
+    <p>Paver calculation involves dividing the total area by the individual paver area, then adding waste for cuts along borders and around obstacles. Joint spacing also slightly affects the count.</p>
+
+    <div class="formula-box">
+      <strong>Paver Count Formula</strong><br/>
+      Paver Area = (Width × Height) ÷ 144 (sq ft)<br/>
+      Pavers = ⌈(Total Area × 1.10) ÷ Paver Area⌉
+    </div>
+
+    <h2>Paver Installation Layers</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Layer</th><th class="p-2 text-left border">Depth (Patio)</th><th class="p-2 text-left border">Depth (Driveway)</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Compacted Gravel Base</td><td class="p-2 border">4"</td><td class="p-2 border">6"–8"</td></tr>
+        <tr><td class="p-2 border">Bedding Sand</td><td class="p-2 border">1"</td><td class="p-2 border">1"</td></tr>
+        <tr><td class="p-2 border">Paver Thickness</td><td class="p-2 border">2"–3"</td><td class="p-2 border">3"</td></tr>
+        <tr><td class="p-2 border">Total Excavation</td><td class="p-2 border">~7"</td><td class="p-2 border">~10"–12"</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Paver Pattern Ideas</h2>
+    <ul>
+      <li><strong>Running bond</strong> — Classic, easiest to lay, like brick wall pattern</li>
+      <li><strong>Herringbone (45°)</strong> — Very strong under vehicle loads, needs 15%+ waste factor</li>
+      <li><strong>Basketweave</strong> — Decorative, good for patios and pool decks</li>
+      <li><strong>Pinwheel</strong> — Mix of large and small pavers for visual interest</li>
+      <li><strong>Fan / cobblestone</strong> — Radiating arc pattern, great for driveways</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

@@ -1,0 +1,97 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import SquareFootageCalc from '../components/calculators/SquareFootageCalc';
+
+const faqs = [
+  { q: 'How do I calculate square footage of a room?', a: 'Multiply the length by the width of the room in feet. For example, a 12 ft × 15 ft room is 180 square feet. For L-shaped rooms, break them into rectangles, calculate each section, and add them together.' },
+  { q: 'How many square feet are in an acre?', a: 'One acre equals exactly 43,560 square feet. If you need to convert acres to square feet, multiply the number of acres by 43,560.' },
+  { q: 'How do I calculate square footage for flooring?', a: 'Measure the length and width of each room in feet, multiply to get square feet, add all rooms together, then add 10% for waste from cuts. Buy this total amount of flooring.' },
+  { q: 'What is the difference between square feet and linear feet?', a: 'Square feet measure area (length × width), while linear feet measure just one dimension — length. You use linear feet for trim, baseboards, or fencing. You use square feet for flooring, paint, or land area.' },
+];
+
+const related = [
+  { title: 'Concrete Calculator', href: '/concrete-calculator/', icon: '🏗️', description: 'Convert area to cubic yards' },
+  { title: 'Mulch Calculator', href: '/mulch-calculator/', icon: '🍂', description: 'Use area to estimate mulch' },
+  { title: 'Cubic Feet Calculator', href: '/cubic-feet-calculator/', icon: '📦', description: 'Add height to get volume' },
+  { title: 'Gravel Calculator', href: '/gravel-calculator/', icon: '🪨', description: 'Estimate gravel by area' },
+];
+---
+
+<CalculatorLayout
+  title="Square Footage Calculator — Calculate Area in Sq Ft, Sq M & More"
+  description="Free square footage calculator for rectangles, circles, triangles, and trapezoids. Instantly convert area to sq ft, sq m, sq yards, and sq inches."
+  heading="Square Footage Calculator"
+  subheading="Calculate the area of any space in square feet, square meters, square yards, or square inches. Supports rectangles, circles, triangles, and trapezoids."
+  icon="📐"
+  category="Construction"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <SquareFootageCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>How to Calculate Square Footage</h2>
+    <p>Square footage is simply the area of a two-dimensional space. Here are the formulas for the most common shapes:</p>
+
+    <h3>Rectangle or Square</h3>
+    <div class="formula-box">Area = Length × Width</div>
+
+    <h3>Circle</h3>
+    <div class="formula-box">Area = π × Radius²  (where π ≈ 3.14159)</div>
+
+    <h3>Triangle</h3>
+    <div class="formula-box">Area = 0.5 × Base × Height</div>
+
+    <h3>Trapezoid</h3>
+    <div class="formula-box">Area = 0.5 × (Base1 + Base2) × Height</div>
+
+    <h2>Square Footage Conversion Table</h2>
+    <table>
+      <thead><tr><th>Unit</th><th>Equals (sq ft)</th><th>Conversion Factor</th></tr></thead>
+      <tbody>
+        <tr><td>1 Square Foot</td><td>1.000 ft²</td><td>—</td></tr>
+        <tr><td>1 Square Yard</td><td>9.000 ft²</td><td>× 9</td></tr>
+        <tr><td>1 Square Meter</td><td>10.764 ft²</td><td>× 10.764</td></tr>
+        <tr><td>1 Square Inch</td><td>0.00694 ft²</td><td>÷ 144</td></tr>
+        <tr><td>1 Acre</td><td>43,560 ft²</td><td>× 43,560</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Common Square Footage Examples</h2>
+    <table>
+      <thead><tr><th>Space</th><th>Typical Sq Footage</th></tr></thead>
+      <tbody>
+        <tr><td>Parking space</td><td>162 ft² (9 × 18)</td></tr>
+        <tr><td>Single-car garage</td><td>200–250 ft²</td></tr>
+        <tr><td>Master bedroom</td><td>200–300 ft²</td></tr>
+        <tr><td>Studio apartment</td><td>400–600 ft²</td></tr>
+        <tr><td>Average US home (2023)</td><td>2,299 ft²</td></tr>
+        <tr><td>Tennis court</td><td>2,808 ft²</td></tr>
+        <tr><td>Basketball court (NBA)</td><td>4,700 ft²</td></tr>
+        <tr><td>Football field</td><td>48,000 ft²</td></tr>
+      </tbody>
+    </table>
+
+    <h2>How to Measure Irregular Rooms</h2>
+    <p>For L-shaped, T-shaped, or other irregular rooms:</p>
+    <ol>
+      <li>Divide the room into two or more rectangles.</li>
+      <li>Measure the length and width of each rectangle.</li>
+      <li>Calculate the area of each rectangle separately.</li>
+      <li>Add all areas together for the total square footage.</li>
+    </ol>
+    <p>For very irregular spaces, you can also measure the total bounding rectangle and subtract any areas that are not part of the space.</p>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ For flooring, add <strong>10% waste</strong></li>
+      <li>✅ Break L-shaped rooms into <strong>rectangles</strong></li>
+      <li>✅ Measure twice, buy once</li>
+      <li>✅ 1 sq ft = 144 sq inches</li>
+      <li>✅ 1 acre = 43,560 sq ft</li>
+    </ul>
+  </div>
+</CalculatorLayout>

@@ -1,0 +1,71 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import AsphaltCalc from '../components/calculators/AsphaltCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much does asphalt weigh per cubic yard?", a: "Compacted asphalt weighs approximately 145 lbs per cubic foot, which equals about 3,915 lbs (nearly 2 tons) per cubic yard. Hot mix asphalt density can range from 140–150 lbs/ft³ depending on the mix design." },
+  { q: "How many tons of asphalt do I need for a driveway?", a: "A standard two-car driveway (20×40 ft) with 3\" depth requires about 9–10 tons of asphalt. Use our calculator above for precise tonnage based on your exact dimensions and desired depth." },
+  { q: "How thick should a residential asphalt driveway be?", a: "Residential driveways typically use 2\"–3\" of compacted asphalt over a 4\"–6\" compacted gravel base. Commercial driveways or areas with heavy vehicle traffic should use 3\"–4\" of asphalt." },
+  { q: "What is the cost of asphalt per ton?", a: "Asphalt typically costs $80–$130 per ton for materials. Installed prices (including labor) range from $150–$300 per ton depending on your region, project size, and site conditions." },
+  { q: "How do I calculate asphalt tonnage?", a: "Multiply Length (ft) × Width (ft) × Depth (ft) × 145 lbs/ft³, then divide by 2,000 to get tons. Our calculator does this automatically and adds a standard waste factor." },
+];
+const related = [
+  { href: '/gravel-calculator', label: 'Gravel Calculator', icon: '⛏️' },
+  { href: '/concrete-calculator', label: 'Concrete Calculator', icon: '🏗️' },
+  { href: '/cubic-yards-calculator', label: 'Cubic Yards Calculator', icon: '📐' },
+  { href: '/square-footage-calculator', label: 'Square Footage Calculator', icon: '📏' },
+];
+---
+<CalculatorLayout
+  title="Asphalt Calculator – Tons & Cost Estimator"
+  description="Calculate asphalt tonnage for driveways, parking lots, and roads. Get instant tons, cubic yards, and material cost estimates for any asphalt paving project."
+  heading="Asphalt Calculator"
+  subheading="Calculate asphalt tonnage and cost for driveways, parking lots, and paving projects"
+  icon="🛣️"
+  breadcrumb="Asphalt Calculator"
+  schema={{
+    name: "Asphalt Calculator",
+    description: "Calculate asphalt tonnage and cost estimates for paving projects",
+    url: "https://constructioncalc.com/asphalt-calculator"
+  }}
+>
+  <AsphaltCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Asphalt Tonnage</h2>
+    <p>Asphalt is sold and priced by the ton, but measured by volume. To convert, use the density of compacted hot mix asphalt: <strong>145 lbs per cubic foot</strong>.</p>
+
+    <div class="formula-box">
+      <strong>Asphalt Tonnage Formula</strong><br/>
+      Cubic Feet = Length (ft) × Width (ft) × Depth (ft)<br/>
+      Tons = Cubic Feet × 145 ÷ 2,000
+    </div>
+
+    <h2>Standard Asphalt Depths by Application</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Application</th><th class="p-2 text-left border">Asphalt Depth</th><th class="p-2 text-left border">Base Depth</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Residential Driveway</td><td class="p-2 border">2"–3"</td><td class="p-2 border">4"–6" gravel</td></tr>
+        <tr><td class="p-2 border">Commercial Parking</td><td class="p-2 border">3"–4"</td><td class="p-2 border">6"–8" gravel</td></tr>
+        <tr><td class="p-2 border">Heavy Traffic Road</td><td class="p-2 border">4"–6"</td><td class="p-2 border">8"–12" gravel</td></tr>
+        <tr><td class="p-2 border">Walking Path</td><td class="p-2 border">1.5"–2"</td><td class="p-2 border">3"–4" gravel</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Asphalt vs. Concrete: Which Should You Choose?</h2>
+    <p>Asphalt is generally <strong>30–40% cheaper</strong> to install than concrete and takes 24–48 hours to cure vs. 7 days for concrete. It's easier to repair and handles freeze-thaw cycles better. Concrete lasts longer (30–50 years vs. 20–30 for asphalt) and requires less maintenance.</p>
+
+    <h2>Pro Tips for Asphalt Projects</h2>
+    <ul>
+      <li>Always compact the subbase before paving — poor base is the #1 cause of early failure</li>
+      <li>Install asphalt when air temperature is above 50°F (ideally 60°F+) for proper compaction</li>
+      <li>Seal coat 6–12 months after installation, then every 2–5 years</li>
+      <li>Add 10–15% to your tonnage estimate to account for waste and compaction variance</li>
+      <li>Get at least 3 quotes — asphalt pricing varies significantly by region and contractor</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>
