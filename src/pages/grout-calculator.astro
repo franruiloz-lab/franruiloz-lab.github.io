@@ -1,0 +1,68 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import GroutCalc from '../components/calculators/GroutCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How much grout do I need per square foot?", a: "Grout needed depends on tile size, joint width, and tile thickness. For 12\"×12\" tiles with 1/8\" joints, expect roughly 0.5–0.8 lbs per sq ft. Smaller tiles with wider joints need significantly more grout. Our calculator gives you an exact number." },
+  { q: "What is the difference between sanded and unsanded grout?", a: "Sanded grout contains fine sand particles, making it stronger and better for joints 1/8\" or wider. Unsanded grout is smooth and used for joints smaller than 1/8\", or on delicate surfaces like polished marble where sand would scratch the tile." },
+  { q: "How long does grout take to dry?", a: "Grout becomes hard enough to clean haze in 2–3 hours. Full cure takes 24–72 hours before light foot traffic, and 7–10 days for full strength. Avoid getting it wet for at least 24 hours after application." },
+  { q: "How do I estimate grout for a backsplash?", a: "Measure the backsplash area in square feet, then use the calculator with your tile size and joint width. Backsplash tile is often small (2\"×2\" subway tiles), which requires much more grout than large floor tiles. Add 10% waste." },
+  { q: "How many bags of grout do I need?", a: "Divide your total grout weight (lbs) by the bag size. For a 100 sq ft floor with 12\"×12\" tiles at 1/8\" joints, you need roughly 50–60 lbs — that's 2 bags of 25 lbs or 6 bags of 10 lbs. Our calculator gives you the exact count." },
+];
+const related = [
+  { href: '/tile-calculator/', label: 'Tile Calculator', icon: '🔲' },
+  { href: '/sand-calculator/', label: 'Sand Calculator', icon: '🏖️' },
+  { href: '/square-footage-calculator/', label: 'Square Footage Calculator', icon: '📏' },
+  { href: '/flooring-calculator/', label: 'Flooring Calculator', icon: '🏠' },
+];
+---
+<CalculatorLayout
+  title="Grout Calculator – Lbs and Bags Needed for Any Tile Job"
+  description="Calculate how much grout you need for any tiled area. Enter tile size, joint width, and tile thickness to get exact pounds of sanded or unsanded grout and bag count."
+  heading="Grout Calculator"
+  subheading="Calculate sanded and unsanded grout quantity and bags needed for floors, walls, and backsplashes"
+  icon="🔲"
+  breadcrumb="Grout Calculator"
+  schema={{
+    name: "Grout Calculator",
+    description: "Calculate grout quantity for tile installation projects",
+    url: "https://constructioncalculate.com/grout-calculator"
+  }}
+>
+  <GroutCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Grout Quantity</h2>
+    <p>Grout fills the joints between tiles. The amount you need depends on four variables: the area to be tiled, the tile size, the joint width, and the tile thickness. Small tiles with wide joints require dramatically more grout than large tiles with narrow joints.</p>
+
+    <div class="formula-box">
+      <strong>Grout Volume Formula</strong><br/>
+      Factor = (Joint Width ÷ (Tile Length + Joint Width)) + (Joint Width ÷ (Tile Width + Joint Width))<br/>
+      Grout Volume (ft³) = Area × Factor × (Tile Depth ÷ 12)<br/>
+      Grout Weight = Volume × Coverage Factor × 1.10 (waste)
+    </div>
+
+    <h2>Sanded vs Unsanded Grout</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Type</th><th class="p-2 text-left border">Joint Width</th><th class="p-2 text-left border">Best For</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Unsanded</td><td class="p-2 border">&lt; 1/8"</td><td class="p-2 border">Polished marble, glass tile, narrow joints</td></tr>
+        <tr><td class="p-2 border">Sanded</td><td class="p-2 border">1/8" – 1/2"</td><td class="p-2 border">Floor tile, ceramic, porcelain, most tile types</td></tr>
+        <tr><td class="p-2 border">Epoxy grout</td><td class="p-2 border">1/16" – 1/2"</td><td class="p-2 border">Wet areas, commercial kitchens, stain resistance</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Grout Application Tips</h2>
+    <ul>
+      <li>Mix grout to a peanut butter consistency — never too wet or too dry</li>
+      <li>Apply with a rubber float at a 45° angle, pressing firmly into joints</li>
+      <li>Clean excess with a damp sponge in circular motions after 20–30 minutes</li>
+      <li>Seal grout lines 72 hours after installation to prevent staining</li>
+      <li>Buy all bags from the same lot number to ensure consistent color</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

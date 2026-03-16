@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lastUpdated = 'March 16, 2025';
+---
+<BaseLayout
+  title="Disclaimer | ConstructionCalc"
+  description="Disclaimer for ConstructionCalc.com — important information about the accuracy and intended use of our construction calculators."
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-navy-900 mb-2">Disclaimer</h1>
+    <p class="text-slate-500 text-sm mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="prose prose-slate max-w-none space-y-6 text-slate-700 leading-relaxed">
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">1. For estimation purposes only</h2>
+        <p>All calculators on ConstructionCalc (<strong>constructioncalculate.com</strong>) are provided for general estimation and planning purposes only. The results generated are approximations based on standard industry formulas and typical material specifications.</p>
+        <p class="mt-2">Results should <strong>not</strong> be used as a substitute for:</p>
+        <ul class="list-disc pl-6 space-y-1 mt-2">
+          <li>Professional engineering calculations or structural analysis</li>
+          <li>Formal quantity take-offs prepared by a licensed contractor or estimator</li>
+          <li>Building permits, construction drawings, or official project documents</li>
+          <li>Advice from a licensed architect, structural engineer, or building professional</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">2. Accuracy of results</h2>
+        <p>While we strive to keep our formulas accurate and up to date, material specifications, regional standards, and building codes vary significantly by location and project type. Actual material quantities may differ from estimates due to:</p>
+        <ul class="list-disc pl-6 space-y-1 mt-2">
+          <li>Variations in material dimensions or density</li>
+          <li>Site conditions, waste, and installation methods</li>
+          <li>Local building codes and regulations</li>
+          <li>User input errors</li>
+        </ul>
+        <p class="mt-2">Always verify quantities with your supplier and contractor before ordering materials.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">3. Cost estimates</h2>
+        <p>Any cost estimates provided are based on average market prices and are intended as rough guides only. Prices vary significantly by region, supplier, material grade, and market conditions. ConstructionCalc is not responsible for any financial decisions made based on cost estimates shown on this site.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">4. No professional relationship</h2>
+        <p>Use of ConstructionCalc does not create any professional, contractual, or advisory relationship between the user and Francisco Ruiz Lozano or ConstructionCalc. We are not licensed contractors, engineers, or architects.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">5. Limitation of liability</h2>
+        <p>To the fullest extent permitted by applicable law, ConstructionCalc and its operator shall not be liable for any direct, indirect, incidental, or consequential damages arising from the use of, or reliance on, any calculation or information provided on this website.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">6. External links</h2>
+        <p>This site may contain links to third-party websites for reference purposes. We are not responsible for the content, accuracy, or privacy practices of any external sites.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">7. Contact</h2>
+        <p>If you have questions about this Disclaimer, contact us at: <a href="mailto:franruizlozano31@gmail.com" class="text-brand-600 hover:underline">franruizlozano31@gmail.com</a></p>
+      </section>
+
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-slate-200">
+      <a href={`${base}/`} class="text-brand-600 hover:underline text-sm">← Back to Home</a>
+    </div>
+  </div>
+</BaseLayout>
