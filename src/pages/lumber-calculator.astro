@@ -1,0 +1,71 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import LumberCalc from '../components/calculators/LumberCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "What is a board foot of lumber?", a: "A board foot (BF) is a unit of lumber volume equal to 1 inch thick × 12 inches wide × 12 inches long (144 cubic inches). It is calculated as: (Thickness\" × Width\" × Length ft) ÷ 12. A 2×4 that is 8 feet long contains 5.33 board feet." },
+  { q: "What is the difference between nominal and actual lumber dimensions?", a: "Nominal dimensions are the traditional names (2×4, 2×6, etc.). Actual dimensions are smaller because the lumber is dried and surfaced (planed) after cutting. A nominal 2×4 measures 1.5\" × 3.5\" actual. A 2×6 is 1.5\" × 5.5\" actual. Board foot calculations use the nominal (larger) dimensions." },
+  { q: "What is the best lumber for framing?", a: "SPF (Spruce-Pine-Fir) and Douglas Fir are the standard choices for interior framing — strong, light, and widely available. Southern Yellow Pine (SYP) is denser and stronger, preferred in the Southeast. For outdoor use, pressure-treated lumber (PT) is required. Cedar and Redwood are premium choices for exposed outdoor applications." },
+  { q: "How much does lumber cost per board foot?", a: "Prices vary by region, species, and market conditions. SPF typically runs $0.40–0.70/BF at current retail. Southern Yellow Pine is $0.45–0.70/BF. Cedar runs $2–3/BF. Redwood is $3.50–5/BF. Pressure-treated lumber is $0.55–0.90/BF depending on retention level." },
+  { q: "How do I calculate the weight of lumber?", a: "Lumber weight depends on species and moisture content. Green (wet) lumber weighs significantly more than kiln-dried. Approximate dry weights: SPF/Douglas Fir 2.5 lbs/BF, Southern Yellow Pine 2.7 lbs/BF, Cedar 1.8 lbs/BF, Redwood 1.9 lbs/BF. A unit of 1,000 BF of dry SPF weighs about 2,500 lbs." },
+];
+const related = [
+  { href: '/board-foot-calculator/', label: 'Board Foot Calculator', icon: '📏' },
+  { href: '/framing-calculator/', label: 'Framing Calculator', icon: '🏗️' },
+  { href: '/plywood-calculator/', label: 'Plywood Calculator', icon: '🪵' },
+  { href: '/deck-calculator/', label: 'Deck Calculator', icon: '🏡' },
+];
+---
+<CalculatorLayout
+  title="Lumber Calculator – Board Feet, Linear Feet & Cost by Species"
+  description="Calculate board feet, total linear footage, weight, and lumber cost by species. Works for any nominal dimension from 2×2 to 12×12 with SPF, Cedar, Redwood, and more."
+  heading="Lumber Calculator"
+  subheading="Calculate board feet, linear footage, weight, and cost for any lumber dimension and species"
+  icon="🪵"
+  breadcrumb="Lumber Calculator"
+  schema={{
+    name: "Lumber Calculator",
+    description: "Calculate board feet, weight, and cost for dimensional lumber by species and size",
+    url: "https://constructioncalculate.com/lumber-calculator"
+  }}
+>
+  <LumberCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Board Feet of Lumber</h2>
+    <p>Board feet is the standard unit for measuring lumber volume in the United States. It is calculated using nominal dimensions — the traditional names like 2×4 or 2×6 — not the actual surfaced dimensions. To find board feet, multiply thickness in inches by width in inches by length in feet, then divide by 12.</p>
+
+    <div class="formula-box">
+      <strong>Board Foot Formula</strong><br/>
+      BF per Piece = (Thickness" × Width" × Length ft) ÷ 12<br/>
+      Total BF = BF per Piece × Number of Pieces<br/>
+      Total Linear Ft = Length per Piece × Number of Pieces<br/>
+      Cost = Total BF × Price per BF
+    </div>
+
+    <h2>Lumber Species Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Species</th><th class="p-2 text-left border">Cost/BF</th><th class="p-2 text-left border">Weight/BF</th><th class="p-2 text-left border">Best Use</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">SPF / Douglas Fir</td><td class="p-2 border">~$0.50</td><td class="p-2 border">~2.5 lbs</td><td class="p-2 border">Interior framing, general construction</td></tr>
+        <tr><td class="p-2 border">Southern Yellow Pine</td><td class="p-2 border">~$0.55</td><td class="p-2 border">~2.7 lbs</td><td class="p-2 border">Floors, heavy-load framing</td></tr>
+        <tr><td class="p-2 border">Cedar</td><td class="p-2 border">~$2.50</td><td class="p-2 border">~1.8 lbs</td><td class="p-2 border">Outdoor siding, fencing, closets</td></tr>
+        <tr><td class="p-2 border">Redwood</td><td class="p-2 border">~$4.00</td><td class="p-2 border">~1.9 lbs</td><td class="p-2 border">Decks, outdoor structures</td></tr>
+        <tr><td class="p-2 border">Pressure Treated</td><td class="p-2 border">~$0.70</td><td class="p-2 border">~3.0 lbs</td><td class="p-2 border">Ground contact, decks, sill plates</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Lumber Buying Tips</h2>
+    <ul>
+      <li>Always add 10–15% to your board foot calculation to account for defects, cuts, and waste</li>
+      <li>Inspect each board for crowns, cups, twists, and large knots before purchasing</li>
+      <li>Stack lumber flat on a level surface and sticker (separate) boards with spacers for good airflow if storing on site</li>
+      <li>For ground contact or within 6 inches of soil, use pressure-treated lumber rated UC4A or higher</li>
+      <li>Kiln-dried (KD) lumber is more dimensionally stable and lighter to handle than green lumber</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

@@ -1,0 +1,71 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import GutterCalc from '../components/calculators/GutterCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How many linear feet of gutter do I need?", a: "Measure the total perimeter of your roofline where gutters will be installed — typically the eave edges. For most homes this equals the house perimeter, though some homes only gutter two or three sides. Add 10% for waste and overlaps at seams." },
+  { q: "How many downspouts do I need?", a: "Install one downspout for every 20–30 linear feet of gutter. For a 100 ft run, that's 3–5 downspouts. Wider gutters (6\") can handle longer runs. Always place a downspout at every corner if possible to prevent overflow during heavy rain." },
+  { q: "What is the difference between K-Style and half-round gutters?", a: "K-Style gutters have a flat back and decorative front profile that resembles crown molding. They hold more water and are easier to attach to fascia boards. Half-round gutters are semicircular, traditional in appearance, and common on older or historic homes. K-Style is the standard on modern construction." },
+  { q: "Which gutter material lasts the longest?", a: "Copper gutters last 50+ years but cost $15–25/ft. Aluminum is the most popular choice — lightweight, rust-free, and lasts 20+ years at $3–8/ft. Steel is strong but can rust in humid climates. Vinyl is cheapest but brittle in cold climates and lasts 10–20 years." },
+  { q: "How much does gutter installation cost?", a: "Materials alone range from $1–25/ft depending on material. Add 40–60% for labor on a typical single-story installation. A 200 ft aluminum gutter project typically costs $600–$2,000 installed. Multi-story homes cost significantly more due to ladder and safety equipment requirements." },
+];
+const related = [
+  { href: '/roofing-calculator/', label: 'Roofing Calculator', icon: '🏚️' },
+  { href: '/siding-calculator/', label: 'Siding Calculator', icon: '🏠' },
+  { href: '/paint-calculator/', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/fence-calculator/', label: 'Fence Calculator', icon: '🪧' },
+];
+---
+<CalculatorLayout
+  title="Gutter Calculator – Linear Feet, Downspouts & Cost Estimate"
+  description="Calculate linear feet of gutter, downspouts, elbows, hangers, and installed cost by material. Instant estimates for aluminum, vinyl, steel, and copper gutters."
+  heading="Gutter Calculator"
+  subheading="Estimate gutter linear footage, components, and installed cost for any home"
+  icon="🏠"
+  breadcrumb="Gutter Calculator"
+  schema={{
+    name: "Gutter Calculator",
+    description: "Calculate gutter materials and installation cost estimates for residential homes",
+    url: "https://constructioncalculate.com/gutter-calculator"
+  }}
+>
+  <GutterCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Gutter Materials</h2>
+    <p>Calculating gutter materials starts with measuring the total linear footage of your roofline eaves. From there, the number of downspouts, elbows, hangers, and end caps can all be derived using standard industry ratios. The calculator above handles all of this automatically for any combination of gutter style, material, and home height.</p>
+
+    <div class="formula-box">
+      <strong>Gutter Component Formulas</strong><br/>
+      Linear Feet = House Perimeter (guttered sides)<br/>
+      Downspouts = Linear Feet ÷ 25<br/>
+      Elbows = (Downspouts × 2) + Corners<br/>
+      Hangers = Linear Feet ÷ 3<br/>
+      End Caps = Corners × 2
+    </div>
+
+    <h2>Gutter Material Cost Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Material</th><th class="p-2 text-left border">Cost/Linear Ft</th><th class="p-2 text-left border">Lifespan</th><th class="p-2 text-left border">Maintenance</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Aluminum</td><td class="p-2 border">$3–8</td><td class="p-2 border">20–30 yrs</td><td class="p-2 border">Low</td></tr>
+        <tr><td class="p-2 border">Vinyl</td><td class="p-2 border">$1–3</td><td class="p-2 border">10–20 yrs</td><td class="p-2 border">Very Low</td></tr>
+        <tr><td class="p-2 border">Galvanized Steel</td><td class="p-2 border">$4–9</td><td class="p-2 border">20–25 yrs</td><td class="p-2 border">Medium</td></tr>
+        <tr><td class="p-2 border">Copper</td><td class="p-2 border">$15–25</td><td class="p-2 border">50+ yrs</td><td class="p-2 border">Very Low</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Gutter Installation Tips</h2>
+    <ul>
+      <li>Slope gutters 1/4 inch for every 10 feet of run toward the downspout to prevent standing water</li>
+      <li>Install hangers every 3 feet — every 2 feet in snow-load areas</li>
+      <li>Use seamless gutters where possible; seams are the most common source of leaks</li>
+      <li>Keep the top of the gutter below the roofline by 1–2 inches to catch runoff without debris backup</li>
+      <li>In areas with heavy leaf fall, budget for gutter guards ($1–10/ft) to reduce cleaning frequency</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const calcs = [
+  { href: '/paint-calculator/',       icon: '🎨', title: 'Paint Calculator',       description: 'Gallons and cost for any room size, finish type, and number of coats.' },
+  { href: '/drywall-calculator/',     icon: '🧱', title: 'Drywall Calculator',     description: 'Sheets, screws, and joint compound for walls and ceilings.' },
+  { href: '/flooring-calculator/',    icon: '🏠', title: 'Flooring Calculator',    description: 'Sq ft and cost for hardwood, LVP, laminate, tile, and carpet.' },
+  { href: '/tile-calculator/',        icon: '🔲', title: 'Tile Calculator',        description: 'Tiles and boxes for floor, wall, and backsplash installations.' },
+  { href: '/grout-calculator/',       icon: '🔲', title: 'Grout Calculator',       description: 'Pounds of grout for any tile size and joint width combination.' },
+  { href: '/wallpaper-calculator/',   icon: '🖼️', title: 'Wallpaper Calculator',   description: 'Rolls of wallpaper needed for any room with door and window deductions.' },
+  { href: '/carpet-calculator/',      icon: '🏠', title: 'Carpet Calculator',      description: 'Square yards and installed cost for carpet and pad.' },
+  { href: '/insulation-calculator/',  icon: '🏠', title: 'Insulation Calculator',  description: 'Batts, blown-in bags, or spray foam by R-value and climate zone.' },
+  { href: '/baseboard-calculator/',   icon: '🏠', title: 'Baseboard Calculator',   description: 'Linear feet of baseboard, door casing, and window trim.' },
+];
+---
+<BaseLayout
+  title="Interior Finish Calculators | ConstructionCalc"
+  description="Calculate paint, drywall, flooring, tile, grout, carpet, insulation, and trim for any interior project."
+>
+  <main class="min-h-screen bg-slate-50">
+    <!-- Hero -->
+    <section class="bg-navy-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <nav class="text-sm text-slate-400 mb-4">
+          <a href={`${base}/`} class="hover:text-white transition-colors">Home</a>
+          <span class="mx-2">›</span>
+          <span class="text-white">Interior & Finishes</span>
+        </nav>
+        <h1 class="text-3xl sm:text-4xl font-black mb-3">Interior & Finish Calculators</h1>
+        <p class="text-slate-300 text-lg max-w-2xl">Interior finishes define how a space looks, feels, and performs. From the first coat of drywall compound to the final trim installation, accurate material estimates help you budget confidently and avoid mid-project supply runs.</p>
+      </div>
+    </section>
+
+    <!-- Calculator Grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {calcs.map(c => (
+          <a href={`${base}${c.href}`} class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-md transition-all group">
+            <div class="flex items-start gap-3">
+              <span class="text-3xl">{c.icon}</span>
+              <div>
+                <h2 class="font-bold text-navy-900 group-hover:text-brand-600 transition-colors">{c.title}</h2>
+                <p class="text-slate-500 text-sm mt-1">{c.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- SEO content -->
+      <div class="mt-12 prose max-w-none">
+        <h2 class="text-2xl font-bold text-navy-900 mb-4">About Interior Finish Calculators</h2>
+        <p class="text-slate-600 mb-4">Interior finishes typically account for 30–40% of a new home's total construction cost and an even higher percentage of a remodel budget. Paint, flooring, tile, and drywall are the highest-volume finish materials — each with their own coverage rates, waste factors, and pricing structures. Accurate estimates prevent the common problem of ordering too little and dealing with dye-lot mismatches on a return trip to the store.</p>
+        <p class="text-slate-600 mb-4">Flooring calculations must account for the room's layout relative to the plank or tile orientation, since diagonal layouts add 15–20% waste versus straight-lay patterns. Tile grout coverage depends heavily on joint width — narrow 1/16-inch joints require far less grout than wide 3/8-inch joints for the same square footage. Our calculators account for these variables so your estimate reflects real-world conditions.</p>
+        <p class="text-slate-600">Paint coverage varies by surface texture and porosity. A smooth, primed surface achieves 400 sq ft per gallon; rough masonry or heavily textured drywall can drop to 200–250 sq ft per gallon. Always apply a primer coat on new drywall or drastic color changes — it pays back in fewer finish coats and better color accuracy.</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

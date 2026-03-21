@@ -5,27 +5,35 @@ import CalculatorCard from '../components/CalculatorCard.astro';
 const calcGroups = [
   {
     label: '🏗️ Concrete & Masonry',
+    hub: '/concrete-masonry/',
     items: [
       { title: 'Concrete Calculator', description: 'Cubic yards, cubic feet, and bags for slabs, footings, and columns.', href: '/concrete-calculator/', icon: '🏗️', volume: '262K', badge: 'Most Popular' },
       { title: 'Concrete Block Calculator', description: 'CMU blocks and mortar bags for any block wall.', href: '/concrete-block-calculator/', icon: '🧱' },
       { title: 'Brick Calculator', description: 'Brick count and mortar for walls, chimneys, and patios.', href: '/brick-calculator/', icon: '🧱' },
       { title: 'Rebar Calculator', description: 'Linear feet, 20-ft bars, and weight for concrete slab reinforcement.', href: '/rebar-calculator/', icon: '⚙️' },
+      { title: 'Mortar Calculator', description: 'Mortar bags for brick and block masonry walls.', href: '/mortar-calculator/', icon: '🧱' },
+      { title: 'Concrete Footing Calculator', description: 'Bags or ready-mix for round and square footings.', href: '/concrete-footing-calculator/', icon: '🏗️' },
       { title: 'Retaining Wall Calculator', description: 'Materials and drainage for concrete, stone, or timber retaining walls.', href: '/retaining-wall-calculator/', icon: '🪨' },
     ],
   },
   {
     label: '📐 Volume & Area',
+    hub: '/project-estimating/',
     items: [
       { title: 'Square Footage Calculator', description: 'Find the area of any room or surface in sq ft, meters, or yards.', href: '/square-footage-calculator/', icon: '📏', volume: '52K' },
       { title: 'Cubic Feet Calculator', description: 'Convert L×W×H into cubic feet, yards, meters, or inches.', href: '/cubic-feet-calculator/', icon: '📦', volume: '27K' },
       { title: 'Cubic Yards Calculator', description: 'Calculate cubic yards from any unit and convert to all volume units.', href: '/cubic-yards-calculator/', icon: '📐' },
+      { title: 'Circle Calculator', description: 'Area, circumference, radius, and diameter from any input.', href: '/circle-calculator/', icon: '⭕' },
+      { title: 'Triangle Calculator', description: 'Area and perimeter using base-height, three sides, or SAS.', href: '/triangle-calculator/', icon: '📐' },
     ],
   },
   {
-    label: '⛏️ Landscape & Fill',
+    label: '⛏️ Landscape & Earthwork',
+    hub: '/landscape-earthwork/',
     items: [
       { title: 'Gravel Calculator', description: 'Cubic yards and tons of gravel, crushed stone, or base material.', href: '/gravel-calculator/', icon: '⛏️', volume: '30K' },
       { title: 'Mulch Calculator', description: 'Cubic yards or bags of mulch for any landscape bed.', href: '/mulch-calculator/', icon: '🍂', volume: '23K' },
+      { title: 'Topsoil Calculator', description: 'Cubic yards and bags of topsoil for lawns and garden beds.', href: '/topsoil-calculator/', icon: '🌱' },
       { title: 'Soil Calculator', description: 'Topsoil, fill dirt, and garden blend for lawns and gardens.', href: '/soil-calculator/', icon: '🌿' },
       { title: 'Sand Calculator', description: 'Sand for paver bases, sandboxes, and construction.', href: '/sand-calculator/', icon: '🏖️' },
       { title: 'Sod Calculator', description: 'Pallets and rolls of sod for lawn installation projects.', href: '/sod-calculator/', icon: '🌿' },
@@ -33,46 +41,58 @@ const calcGroups = [
   },
   {
     label: '🏠 Exterior & Structure',
+    hub: '/exterior-structure/',
     items: [
-      { title: 'Asphalt Calculator', description: 'Tons of asphalt for driveways, parking lots, and paving.', href: '/asphalt-calculator/', icon: '🛣️' },
-      { title: 'Fence Calculator', description: 'Posts, rails, and boards for wood, vinyl, and chain-link fencing.', href: '/fence-calculator/', icon: '🪧' },
       { title: 'Roofing Calculator', description: 'Squares, shingle bundles, and cost for any roof pitch and material.', href: '/roofing-calculator/', icon: '🏚️' },
       { title: 'Siding Calculator', description: 'Siding squares and cost for vinyl, fiber cement, and wood.', href: '/siding-calculator/', icon: '🏠' },
+      { title: 'Fence Calculator', description: 'Posts, rails, and boards for wood, vinyl, and chain-link fencing.', href: '/fence-calculator/', icon: '🪧' },
       { title: 'Deck Calculator', description: 'Boards, linear footage, and cost for any decking material.', href: '/deck-calculator/', icon: '🏡' },
+      { title: 'Gutter Calculator', description: 'Linear feet, downspouts, and hangers for any gutter system.', href: '/gutter-calculator/', icon: '🏠' },
+      { title: 'Asphalt Calculator', description: 'Tons of asphalt for driveways, parking lots, and paving.', href: '/asphalt-calculator/', icon: '🛣️' },
       { title: 'Pool Calculator', description: 'Pool volume in gallons and liters, plus chemical estimates.', href: '/pool-calculator/', icon: '🏊' },
     ],
   },
   {
     label: '🔨 Framing & Lumber',
+    hub: '/framing-lumber/',
     items: [
       { title: 'Board Foot Calculator', description: 'Lumber volume in board feet with cost by species.', href: '/board-foot-calculator/', icon: '🪵', volume: '15K' },
+      { title: 'Lumber Calculator', description: 'Board feet and cost for any dimension lumber and species.', href: '/lumber-calculator/', icon: '🪵' },
       { title: 'Framing Calculator', description: 'Studs, plates, and lumber cost for wall framing.', href: '/framing-calculator/', icon: '🔨' },
+      { title: 'Rafter Calculator', description: 'Rafter length, count, and ridge board for any roof pitch.', href: '/rafter-calculator/', icon: '🏚️' },
+      { title: 'Floor Joist Calculator', description: 'Joist count, spacing, and board feet for floors and decks.', href: '/joist-calculator/', icon: '🔨' },
       { title: 'Plywood Calculator', description: '4×8 sheets for subfloor, sheathing, and cabinetry.', href: '/plywood-calculator/', icon: '🪵' },
       { title: 'Stair Calculator', description: 'Risers, runs, stringers, and IRC code compliance.', href: '/stair-calculator/', icon: '🪜', volume: '18K' },
     ],
   },
   {
     label: '🎨 Interior & Finishes',
+    hub: '/interior-finishes/',
     items: [
       { title: 'Paint Calculator', description: 'Gallons and cost for any room with any finish type.', href: '/paint-calculator/', icon: '🎨' },
       { title: 'Drywall Calculator', description: 'Sheets, screws, and joint compound for walls and ceilings.', href: '/drywall-calculator/', icon: '🧱' },
-      { title: 'Flooring Calculator', description: 'Sq ft and cost for hardwood, LVP, laminate, carpet, and tile.', href: '/flooring-calculator/', icon: '🏠' },
+      { title: 'Insulation Calculator', description: 'Batts or blown-in insulation by R-value, area, and climate zone.', href: '/insulation-calculator/', icon: '🏠' },
+      { title: 'Flooring Calculator', description: 'Sq ft and cost for hardwood, LVP, laminate, and tile.', href: '/flooring-calculator/', icon: '🏠' },
+      { title: 'Carpet Calculator', description: 'Square yards, rolls, and cost for carpet installation.', href: '/carpet-calculator/', icon: '🏠' },
       { title: 'Tile Calculator', description: 'Tiles and boxes for floors, walls, and backsplashes.', href: '/tile-calculator/', icon: '🔲' },
       { title: 'Grout Calculator', description: 'Pounds of sanded or unsanded grout for any tile size and joint.', href: '/grout-calculator/', icon: '🔲' },
       { title: 'Wallpaper Calculator', description: 'Single and double rolls for any room with any roll size.', href: '/wallpaper-calculator/', icon: '🖼️' },
+      { title: 'Baseboard Calculator', description: 'Linear feet of baseboard and door or window trim.', href: '/baseboard-calculator/', icon: '🏠' },
       { title: 'Paver Calculator', description: 'Paver count and bedding sand for patios and driveways.', href: '/paver-calculator/', icon: '🔲' },
     ],
   },
   {
     label: '💰 Project Estimating',
+    hub: '/project-estimating/',
     items: [
       { title: 'Construction Cost Calculator', description: 'Building cost per sq ft for homes, additions, and renovations.', href: '/construction-calculator/', icon: '💰', volume: '12K' },
+      { title: 'Labor Cost Calculator', description: 'Labor estimates by trade, region, and skill level.', href: '/labor-cost-calculator/', icon: '💰' },
     ],
   },
 ];
 
 const stats = [
-  { value: '30+', label: 'Free Calculators' },
+  { value: '44+', label: 'Free Calculators' },
   { value: '100%', label: 'Free Forever' },
   { value: '0', label: 'Sign-ups Needed' },
   { value: '±5%', label: 'Accuracy Target' },
@@ -134,12 +154,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section id="calculators" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="text-center mb-10">
       <span class="section-tag">🔧 Tools</span>
-      <h2 class="text-3xl font-extrabold text-navy-900">30+ Construction Calculators</h2>
+      <h2 class="text-3xl font-extrabold text-navy-900">44+ Construction Calculators</h2>
       <p class="text-slate-500 mt-2 max-w-xl mx-auto">Pick a calculator and get your estimates in seconds. No account required.</p>
     </div>
     {calcGroups.map(group => (
       <div class="mb-12">
-        <h3 class="text-lg font-bold text-navy-900 mb-4 pb-2 border-b border-slate-200">{group.label}</h3>
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+          <h3 class="text-lg font-bold text-navy-900">{group.label}</h3>
+          {group.hub && <a href={`${base}${group.hub}`} class="text-sm text-brand-600 hover:text-brand-700 font-medium transition-colors">View all →</a>}
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {group.items.map(calc => (
             <CalculatorCard {...calc} />

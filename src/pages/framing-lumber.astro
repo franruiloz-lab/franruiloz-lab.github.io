@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const calcs = [
+  { href: '/board-foot-calculator/', icon: '🪵', title: 'Board Foot Calculator',    description: 'Lumber volume in board feet with cost estimates by species.' },
+  { href: '/lumber-calculator/',     icon: '🪵', title: 'Lumber Calculator',        description: 'Board feet and total cost for any dimension lumber order.' },
+  { href: '/framing-calculator/',    icon: '🔨', title: 'Framing Calculator',       description: 'Studs, plates, headers, and cost for wall framing.' },
+  { href: '/plywood-calculator/',    icon: '🪵', title: 'Plywood Calculator',       description: '4×8 sheets for subfloor, wall sheathing, and roof decking.' },
+  { href: '/stair-calculator/',      icon: '🪜', title: 'Stair Calculator',         description: 'Risers, treads, and stringer length for any stair rise and run.' },
+  { href: '/rafter-calculator/',     icon: '🏚️', title: 'Rafter Calculator',        description: 'Rafter length, count, and ridge board for any roof pitch.' },
+  { href: '/joist-calculator/',      icon: '🔨', title: 'Floor Joist Calculator',   description: 'Joist count, spacing, and board feet for floors and decks.' },
+];
+---
+<BaseLayout
+  title="Framing & Lumber Calculators | ConstructionCalc"
+  description="Free lumber and framing calculators. Calculate board feet, studs, rafters, joists, and stair stringers for any construction project."
+>
+  <main class="min-h-screen bg-slate-50">
+    <!-- Hero -->
+    <section class="bg-navy-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <nav class="text-sm text-slate-400 mb-4">
+          <a href={`${base}/`} class="hover:text-white transition-colors">Home</a>
+          <span class="mx-2">›</span>
+          <span class="text-white">Framing & Lumber</span>
+        </nav>
+        <h1 class="text-3xl sm:text-4xl font-black mb-3">Framing & Lumber Calculators</h1>
+        <p class="text-slate-300 text-lg max-w-2xl">Lumber is the most common structural material in residential construction. From wall framing and floor systems to roof rafters and stair stringers, these calculators help you estimate quantities, board feet, and material costs accurately.</p>
+      </div>
+    </section>
+
+    <!-- Calculator Grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {calcs.map(c => (
+          <a href={`${base}${c.href}`} class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-md transition-all group">
+            <div class="flex items-start gap-3">
+              <span class="text-3xl">{c.icon}</span>
+              <div>
+                <h2 class="font-bold text-navy-900 group-hover:text-brand-600 transition-colors">{c.title}</h2>
+                <p class="text-slate-500 text-sm mt-1">{c.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- SEO content -->
+      <div class="mt-12 prose max-w-none">
+        <h2 class="text-2xl font-bold text-navy-900 mb-4">About Framing & Lumber Calculators</h2>
+        <p class="text-slate-600 mb-4">Wood framing is used in over 90% of new residential construction in North America. Standard platform framing uses dimensional lumber — 2×4 and 2×6 studs at 16 or 24 inches on center, doubled top plates, single bottom plates, and engineered headers over openings. Accurate framing takeoffs prevent wasted trips to the lumber yard and keep projects on schedule.</p>
+        <p class="text-slate-600 mb-4">Board feet is the standard unit for measuring lumber volume. One board foot equals 1 inch thick × 12 inches wide × 12 inches long (144 cubic inches). Hardwood is typically sold by the board foot; dimensional softwood (2×4s, 2×6s, etc.) is usually sold by the linear foot or piece at a given length. Our calculators handle both measurement systems.</p>
+        <p class="text-slate-600">Lumber prices fluctuate significantly with commodity markets — budget for 10–15% more than your calculated quantity to account for defects, miscuts, and species-specific waste. Engineered lumber products (LVL beams, I-joists, engineered rim boards) are more dimensionally stable than sawn lumber and are increasingly used for long-span floor and roof systems where deflection control is critical.</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import JoistCalc from '../components/calculators/JoistCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How do I calculate how many floor joists I need?", a: "Divide the room dimension perpendicular to the joist span by the spacing (in feet), then add 1 for the end joist. For a 16 ft room at 16\" OC: (16 ÷ 1.33) + 1 = 13 joists. Our calculator handles this automatically and selects the shorter dimension as the span direction." },
+  { q: "What size floor joists do I need?", a: "Joist size depends on span, spacing, and load. As a rule of thumb: 2×6 works up to 9 ft span at 16\" OC, 2×8 up to 12 ft, 2×10 up to 15 ft, and 2×12 up to 18 ft. Always verify with span tables from the AWC or your local building code for actual load conditions." },
+  { q: "What is blocking in floor framing?", a: "Blocking (also called bridging) is short pieces of lumber installed perpendicular between joists to prevent rotation, distribute loads, and add lateral stiffness. IRC code requires blocking at 8-ft intervals for spans over 8 feet. Blocking also serves as fireblocking in platform construction." },
+  { q: "How far apart should floor joists be?", a: "Standard floor joist spacing is 16\" on center for residential construction. 12\" OC is used under tile or stone floors, heavy loads, or long spans. 24\" OC is common for engineered lumber (LVL, I-joists) and reduces cost. Most subfloor panels are engineered for 16\" or 24\" OC." },
+  { q: "What is the difference between floor joists and ceiling joists?", a: "Floor joists carry live loads (people, furniture) and dead loads (subfloor, flooring). Ceiling joists primarily resist the outward thrust of rafters and carry only the ceiling weight. Ceiling joists are typically smaller — 2×6 or 2×8 — since they carry lighter loads than floor joists." },
+];
+const related = [
+  { href: '/framing-calculator/', label: 'Framing Calculator', icon: '🏗️' },
+  { href: '/plywood-calculator/', label: 'Plywood Calculator', icon: '🪵' },
+  { href: '/deck-calculator/', label: 'Deck Calculator', icon: '🏡' },
+  { href: '/board-foot-calculator/', label: 'Board Foot Calculator', icon: '📏' },
+];
+---
+<CalculatorLayout
+  title="Floor Joist Calculator – Count, Board Feet & Lumber Cost"
+  description="Calculate the number of floor joists, total linear feet, board feet, blocking pieces, and lumber cost for any room size and joist spacing."
+  heading="Floor Joist Calculator"
+  subheading="Estimate joist count, board feet, blocking, and lumber cost for floors, ceilings, and decks"
+  icon="🔨"
+  breadcrumb="Joist Calculator"
+  schema={{
+    name: "Floor Joist Calculator",
+    description: "Calculate floor joist count, board feet, and lumber cost for residential construction",
+    url: "https://constructioncalculate.com/joist-calculator"
+  }}
+>
+  <JoistCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Floor Joists</h2>
+    <p>Floor joist calculations require knowing the room dimensions, joist spacing, and lumber size. Joists run parallel across the shorter dimension of the room (the span). The number of joists is determined by dividing the perpendicular dimension by the spacing and adding 1 for the rim joist. Blocking is installed at 8-foot intervals along the span.</p>
+
+    <div class="formula-box">
+      <strong>Floor Joist Formulas</strong><br/>
+      Joist Count = ⌈Perpendicular Dimension ÷ Spacing (ft)⌉ + 1<br/>
+      Total Linear Feet = Joist Count × Span<br/>
+      Board Feet = (Width" × Height" ÷ 12) × Total Linear Feet<br/>
+      Blocking Rows = ⌊Span ÷ 8⌋ — Blocking Pieces = Rows × (Joists − 1)
+    </div>
+
+    <h2>Joist Span Table (16" OC, 40 PSF Live Load)</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Joist Size</th><th class="p-2 text-left border">Max Span (SPF)</th><th class="p-2 text-left border">Max Span (SYP)</th><th class="p-2 text-left border">Common Use</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">2×6</td><td class="p-2 border">9 ft 6 in</td><td class="p-2 border">10 ft 6 in</td><td class="p-2 border">Short spans, upper floors</td></tr>
+        <tr><td class="p-2 border">2×8</td><td class="p-2 border">12 ft 7 in</td><td class="p-2 border">13 ft 9 in</td><td class="p-2 border">Standard first floor</td></tr>
+        <tr><td class="p-2 border">2×10</td><td class="p-2 border">15 ft 5 in</td><td class="p-2 border">17 ft 1 in</td><td class="p-2 border">Larger rooms, open plans</td></tr>
+        <tr><td class="p-2 border">2×12</td><td class="p-2 border">18 ft 0 in</td><td class="p-2 border">19 ft 7 in</td><td class="p-2 border">Wide spans, basement</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Floor Framing Tips</h2>
+    <ul>
+      <li>Crown all joists the same direction (crown up) so the floor doesn't develop humps over time</li>
+      <li>Double up joists under parallel walls, bathtubs, and heavy point loads like posts</li>
+      <li>Use joist hangers at beam connections for full code-compliant load transfer</li>
+      <li>Install blocking at 8 ft OC and at mid-span for spans over 12 ft to control vibration</li>
+      <li>Add 10% to your lumber order for rim joists, headers, and waste from cuts</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

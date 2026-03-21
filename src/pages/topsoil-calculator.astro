@@ -1,0 +1,126 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import TopsoilCalc from '../components/calculators/TopsoilCalc';
+
+const faqs = [
+  {
+    q: 'How much topsoil do I need for a lawn?',
+    a: 'For topdressing an existing lawn, apply 1–2 inches of topsoil. For establishing a new lawn from seed, use 4 inches of topsoil. As an example, a 1,000 sq ft lawn at 4 inches depth requires 1,000 × (4/12) = 333 cubic feet = 12.3 cubic yards. Our calculator handles any size — just enter your area and depth.',
+  },
+  {
+    q: 'How many cubic yards are in a ton of topsoil?',
+    a: 'Topsoil typically weighs about 1,000–1,100 lbs per cubic yard (roughly 0.5 tons). So 1 ton of topsoil equals approximately 1.8–2.0 cubic yards. However, topsoil is almost always sold by the cubic yard rather than by weight, so our calculator works in cubic yards and cubic feet which directly match supplier quantities.',
+  },
+  {
+    q: 'How much does a yard of topsoil cover?',
+    a: 'One cubic yard of topsoil covers: 162 sq ft at 2 inches deep, 108 sq ft at 3 inches deep, 81 sq ft at 4 inches deep, or 54 sq ft at 6 inches deep. A standard 10-yard truck delivery covers about 810 sq ft at 4 inches deep — roughly a 27×30 foot area.',
+  },
+  {
+    q: 'Should I buy bagged or bulk topsoil?',
+    a: 'Bulk topsoil (delivered by truck) is far cheaper per cubic yard — typically $35–$50/yard versus $80–100+/yard for bagged equivalent. Bagged topsoil makes sense for small projects under 1 cubic yard or when you have no access for a delivery truck. For anything over 2–3 cubic yards, bulk delivery is almost always more economical.',
+  },
+  {
+    q: 'What depth of topsoil do I need for different applications?',
+    a: 'Lawn topdressing: 1–2 inches. Overseeding an existing lawn: 2 inches. New lawn from seed: 4–6 inches. Raised garden bed: 6–12 inches. Filling low spots: 2–4 inches. New construction grade fill: 6 inches minimum. Roots need at least 6 inches of good topsoil for healthy turf; vegetable gardens benefit from 12+ inches.',
+  },
+];
+
+const related = [
+  { title: 'Soil Calculator',   href: '/soil-calculator/',   icon: '🌍', description: 'General soil volume estimator' },
+  { title: 'Mulch Calculator',  href: '/mulch-calculator/',  icon: '🍂', description: 'Mulch for garden beds' },
+  { title: 'Gravel Calculator', href: '/gravel-calculator/', icon: '🪨', description: 'Gravel for paths and drainage' },
+  { title: 'Sod Calculator',    href: '/sod-calculator/',    icon: '🌿', description: 'Sod for new lawn installation' },
+];
+---
+
+<CalculatorLayout
+  title="Topsoil Calculator – Cubic Yards, Bags & Cost Estimator"
+  description="Calculate how much topsoil you need in cubic yards or 40lb bags for lawns, garden beds, and grading. Includes bulk and bagged cost estimates."
+  heading="Topsoil Calculator"
+  subheading="Calculate cubic yards, cubic feet, and 40lb bags of topsoil for lawn establishment, garden beds, topdressing, and fill and grade work."
+  icon="🌱"
+  category="Landscaping"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <TopsoilCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>How to Calculate Topsoil</h2>
+    <p>
+      Topsoil volume is calculated by multiplying the area by the desired depth, then converting
+      to cubic yards (the standard unit used by suppliers). A 40lb bag contains approximately
+      0.75 cubic feet of topsoil.
+    </p>
+
+    <div class="formula-box">
+      <strong>Topsoil Formulas</strong><br/>
+      Cubic Feet = Area (sq ft) × Depth (inches) ÷ 12<br/>
+      Cubic Yards = Cubic Feet ÷ 27<br/>
+      40lb Bags = Cubic Feet ÷ 0.75<br/>
+      Truck Loads = Cubic Yards ÷ 10 (standard 10-yard load)
+    </div>
+
+    <h2>Coverage by Depth — Cubic Yards</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Depth</th>
+          <th class="p-2 text-left border border-slate-200">1 Cu Yd Covers</th>
+          <th class="p-2 text-left border border-slate-200">500 sq ft needs</th>
+          <th class="p-2 text-left border border-slate-200">1,000 sq ft needs</th>
+          <th class="p-2 text-left border border-slate-200">2,000 sq ft needs</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">1 inch</td><td class="p-2 border border-slate-200">324 sq ft</td><td class="p-2 border border-slate-200">1.5 yd³</td><td class="p-2 border border-slate-200">3.1 yd³</td><td class="p-2 border border-slate-200">6.2 yd³</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">2 inches</td><td class="p-2 border border-slate-200">162 sq ft</td><td class="p-2 border border-slate-200">3.1 yd³</td><td class="p-2 border border-slate-200">6.2 yd³</td><td class="p-2 border border-slate-200">12.3 yd³</td></tr>
+        <tr><td class="p-2 border border-slate-200">3 inches</td><td class="p-2 border border-slate-200">108 sq ft</td><td class="p-2 border border-slate-200">4.6 yd³</td><td class="p-2 border border-slate-200">9.3 yd³</td><td class="p-2 border border-slate-200">18.5 yd³</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">4 inches</td><td class="p-2 border border-slate-200">81 sq ft</td><td class="p-2 border border-slate-200">6.2 yd³</td><td class="p-2 border border-slate-200">12.3 yd³</td><td class="p-2 border border-slate-200">24.7 yd³</td></tr>
+        <tr><td class="p-2 border border-slate-200">6 inches</td><td class="p-2 border border-slate-200">54 sq ft</td><td class="p-2 border border-slate-200">9.3 yd³</td><td class="p-2 border border-slate-200">18.5 yd³</td><td class="p-2 border border-slate-200">37.0 yd³</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">12 inches</td><td class="p-2 border border-slate-200">27 sq ft</td><td class="p-2 border border-slate-200">18.5 yd³</td><td class="p-2 border border-slate-200">37.0 yd³</td><td class="p-2 border border-slate-200">74.1 yd³</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Recommended Topsoil Depth by Application</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Application</th>
+          <th class="p-2 text-left border border-slate-200">Recommended Depth</th>
+          <th class="p-2 text-left border border-slate-200">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">Lawn topdressing</td><td class="p-2 border border-slate-200">1–2 inches</td><td class="p-2 border border-slate-200">Leveling and enriching existing turf</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Overseeding preparation</td><td class="p-2 border border-slate-200">2 inches</td><td class="p-2 border border-slate-200">Work into existing turf lightly</td></tr>
+        <tr><td class="p-2 border border-slate-200">New lawn from seed</td><td class="p-2 border border-slate-200">4–6 inches</td><td class="p-2 border border-slate-200">Minimum 4" for healthy root development</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">New lawn from sod</td><td class="p-2 border border-slate-200">4 inches</td><td class="p-2 border border-slate-200">Sod adds ~1" of its own soil</td></tr>
+        <tr><td class="p-2 border border-slate-200">Annual flower bed</td><td class="p-2 border border-slate-200">6–8 inches</td><td class="p-2 border border-slate-200">Mix with compost for best results</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Vegetable garden</td><td class="p-2 border border-slate-200">12–18 inches</td><td class="p-2 border border-slate-200">Deep roots need deep good soil</td></tr>
+        <tr><td class="p-2 border border-slate-200">Fill and grade</td><td class="p-2 border border-slate-200">6 inches min</td><td class="p-2 border border-slate-200">Subgrade fill can be lower quality</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tips for Topsoil Projects</h2>
+    <ul>
+      <li>Order 10–15% extra to account for settling — topsoil compresses over time, especially after watering.</li>
+      <li>For new lawn areas, till the existing soil 4–6 inches before adding topsoil to prevent a hard layer interface.</li>
+      <li>Mix topsoil with 25–30% compost for garden beds to improve drainage and nutrient content.</li>
+      <li>Bulk delivery requires truck access — a standard 10-yard dump truck needs an 8–10 foot clear path and a flat area to dump.</li>
+      <li>Test your existing soil pH before adding topsoil — acidic or alkaline subsoil can affect new topsoil performance.</li>
+      <li>When grading near a foundation, always slope topsoil away from the structure at a minimum 5% grade (6 inches per 10 feet).</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Order <strong>10–15% extra</strong> for settling after watering</li>
+      <li>✅ Till existing ground <strong>4–6 inches</strong> before adding topsoil</li>
+      <li>✅ Mix with <strong>25–30% compost</strong> for garden beds</li>
+      <li>✅ Slope topsoil <strong>away from foundations</strong> at 5% grade</li>
+    </ul>
+  </div>
+</CalculatorLayout>

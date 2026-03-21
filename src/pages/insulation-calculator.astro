@@ -1,0 +1,99 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import InsulationCalc from '../components/calculators/InsulationCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  { q: "What R-value do I need for my attic?", a: "R-value requirements depend on your climate zone. Zone 1–2 (warm climates like Florida) requires R-30. Zone 3–4 (mixed climates like Virginia) needs R-38. Zone 5–6 (cold climates like Illinois) requires R-49. Zone 7–8 (very cold like Minnesota) requires R-60. Our calculator checks whether your selected insulation meets these code minimums automatically." },
+  { q: "How many bags of blown insulation do I need per 1,000 sq ft?", a: "For blown fiberglass at R-38, you'll need approximately 21 bags per 1,000 sq ft. Always check the coverage chart on the bag for your specific brand, as actual coverage varies. Add 10% to your estimate for waste and settling over time." },
+  { q: "What is the difference between open-cell and closed-cell spray foam?", a: "Open-cell spray foam expands more and is softer, achieving about R-3.7 per inch, and is typically used for interior walls and soundproofing. Closed-cell spray foam is denser and achieves R-6.5 per inch — nearly double — making it ideal for rooflines, exterior walls, and anywhere moisture resistance is critical. Closed-cell also adds structural rigidity to walls." },
+  { q: "Can I install insulation over existing insulation?", a: "Yes, in most cases you can add new insulation on top of existing insulation in an attic. The combined R-values add together. Do not cover existing insulation with faced batts — use unfaced batts or blown-in insulation instead. Check that existing insulation is dry and free of mold before adding more." },
+  { q: "How many rolls of R-30 fiberglass batts do I need for 1,200 sq ft?", a: "R-30 fiberglass batts typically cover about 24 sq ft per roll. For 1,200 sq ft, you'd need 1,200 ÷ 24 = 50 rolls, plus 10% waste = 55 rolls. Our calculator handles this arithmetic and flags whether R-30 is sufficient for your climate zone." },
+];
+
+const related = [
+  { href: '/drywall-calculator/', label: 'Drywall Calculator', icon: '🧱' },
+  { href: '/framing-calculator/', label: 'Framing Calculator', icon: '🔨' },
+  { href: '/paint-calculator/', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/square-footage-calculator/', label: 'Square Footage Calculator', icon: '📏' },
+];
+---
+<CalculatorLayout
+  title="Insulation Calculator – R-Value, Rolls, Bags & Cost"
+  description="Calculate insulation rolls, bags, or board-feet by R-value and climate zone. Checks code minimums for attic, wall, crawl space, and basement insulation."
+  heading="Insulation Calculator"
+  subheading="Calculate rolls, bags, or spray foam coverage by R-value and climate zone — with code compliance check"
+  icon="🏠"
+  breadcrumb="Insulation Calculator"
+  schema={{
+    name: "Insulation Calculator",
+    description: "Calculate insulation materials by R-value, application, and climate zone",
+    url: "https://constructioncalculate.com/insulation-calculator"
+  }}
+>
+  <InsulationCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Insulation</h2>
+    <p>Insulation is measured by R-value — its resistance to heat flow. The higher the R-value, the better the thermal performance. The amount of insulation you need depends on your climate zone, the application (attic, wall, crawl space), and the type of insulation you choose.</p>
+
+    <div class="formula-box">
+      <strong>Batts & Rolls Formula</strong><br/>
+      Rolls Needed = ⌈(Area ÷ Coverage per Roll) × 1.10⌉<br/><br/>
+      <strong>Blown Insulation Formula</strong><br/>
+      Bags Needed = ⌈(Area ÷ 1,000) × 21 bags × 1.10⌉<br/><br/>
+      <strong>Spray Foam Formula</strong><br/>
+      Inches Required = ⌈Target R-Value ÷ R-Value per Inch⌉<br/>
+      Board-Feet = Area × Inches Required
+    </div>
+
+    <h2>DOE Recommended R-Values by Climate Zone</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border">Climate Zone</th>
+          <th class="p-2 text-left border">Attic Floor</th>
+          <th class="p-2 text-left border">Wall Cavity</th>
+          <th class="p-2 text-left border">Crawl Space / Basement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border">Zone 1–2 (FL, HI, TX Gulf)</td><td class="p-2 border">R-30</td><td class="p-2 border">R-13</td><td class="p-2 border">R-13</td></tr>
+        <tr><td class="p-2 border">Zone 3–4 (VA, TN, NM, OR)</td><td class="p-2 border">R-38</td><td class="p-2 border">R-13 to R-15</td><td class="p-2 border">R-19 to R-25</td></tr>
+        <tr><td class="p-2 border">Zone 5–6 (IL, CO, PA, WA)</td><td class="p-2 border">R-49</td><td class="p-2 border">R-15 to R-21</td><td class="p-2 border">R-25</td></tr>
+        <tr><td class="p-2 border">Zone 7–8 (MN, MT, AK)</td><td class="p-2 border">R-60</td><td class="p-2 border">R-21</td><td class="p-2 border">R-25</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Insulation Type Comparison</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border">Type</th>
+          <th class="p-2 text-left border">R-Value per Inch</th>
+          <th class="p-2 text-left border">Best For</th>
+          <th class="p-2 text-left border">Material Cost (sq ft)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border">Fiberglass Batts</td><td class="p-2 border">R-2.9 to R-3.8</td><td class="p-2 border">Walls, attic floors, floors over crawl spaces</td><td class="p-2 border">$0.30–$0.65</td></tr>
+        <tr><td class="p-2 border">Blown Fiberglass</td><td class="p-2 border">R-2.2 to R-2.9</td><td class="p-2 border">Attics, existing wall cavities</td><td class="p-2 border">$0.50–$1.00</td></tr>
+        <tr><td class="p-2 border">Spray Foam Open-Cell</td><td class="p-2 border">R-3.5 to R-3.9</td><td class="p-2 border">Interior walls, rim joists, soundproofing</td><td class="p-2 border">$0.44–$0.65/in</td></tr>
+        <tr><td class="p-2 border">Spray Foam Closed-Cell</td><td class="p-2 border">R-6.0 to R-6.9</td><td class="p-2 border">Rooflines, exterior walls, crawl spaces</td><td class="p-2 border">$1.00–$2.00/in</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Installation Tips</h2>
+    <ul>
+      <li>Seal all air gaps with caulk or spray foam before installing batt insulation — air infiltration reduces effective R-value significantly</li>
+      <li>Wear proper PPE (gloves, goggles, respirator) when handling fiberglass batts or blown insulation</li>
+      <li>In attics, maintain a 1-inch gap above soffit vents to preserve airflow and prevent moisture buildup</li>
+      <li>Faced batts (with kraft paper or foil) should have the facing toward the warm-in-winter side of the assembly</li>
+      <li>Spray foam requires temperature conditions above 40°F for proper adhesion and cure — do not apply in freezing conditions</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

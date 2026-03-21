@@ -1,0 +1,98 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import BaseboardCalc from '../components/calculators/BaseboardCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  { q: "How do I calculate linear feet of baseboard for a room?", a: "Measure the perimeter of the room (add up all wall lengths) and subtract 3 feet for each doorway. Add 10% for waste, corners, and splices. For example, a 14×12 ft room has a 52 ft perimeter. With two doors, subtract 6 ft = 46 ft net, plus 10% waste = about 51 linear feet of baseboard." },
+  { q: "How much baseboard do I need per door opening?", a: "Each door opening typically reduces baseboard by about 3 feet — the width of a standard interior door. The baseboard runs up to each side of the casing rather than across the opening. You'll add this back as door casing if you're installing trim around the door frame." },
+  { q: "How do I calculate door casing material?", a: "Each door requires casing on both sides: two legs of approximately 7 feet each, plus a top horizontal piece of about 3 feet, totaling roughly 17 linear feet per door opening. Our calculator adds this automatically when you select the baseboard + door casing option." },
+  { q: "What is the standard baseboard height?", a: "Standard colonial baseboard runs 3 to 4 inches tall. Craftsman and builder-grade profiles are typically 3.5 inches. Taller 5- to 7-inch baseboards are used in formal rooms and homes with tall ceilings. Taller profiles do not change the linear footage calculation — only the material cost per linear foot changes." },
+  { q: "Should I use MDF or wood baseboard?", a: "MDF (medium-density fiberboard) baseboard costs $1–$4 per linear foot, paints smoothly, and won't expand or contract with humidity — making it ideal for most interior applications. Solid wood and finger-jointed pine run $2–$6 per linear foot and are preferred in high-humidity areas or where staining is desired. MDF does not hold up well to moisture and should not be used in bathrooms or laundry rooms." },
+];
+
+const related = [
+  { href: '/paint-calculator/', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/drywall-calculator/', label: 'Drywall Calculator', icon: '🧱' },
+  { href: '/flooring-calculator/', label: 'Flooring Calculator', icon: '🏠' },
+  { href: '/square-footage-calculator/', label: 'Square Footage Calculator', icon: '📏' },
+];
+---
+<CalculatorLayout
+  title="Baseboard & Trim Calculator – Linear Feet, Boards & Cost"
+  description="Calculate linear feet of baseboard, door casing, and window casing. Get board count by length and cost estimates for MDF, wood, and installed trim."
+  heading="Baseboard & Trim Calculator"
+  subheading="Calculate linear feet of baseboard and casing, number of boards, and material or installed cost"
+  icon="🏠"
+  breadcrumb="Baseboard Calculator"
+  schema={{
+    name: "Baseboard Calculator",
+    description: "Calculate baseboard linear feet, boards needed, and trim costs for any room",
+    url: "https://constructioncalculate.com/baseboard-calculator"
+  }}
+>
+  <BaseboardCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Baseboard</h2>
+    <p>Baseboard is sold by the linear foot and installed in standard board lengths of 8, 12, or 16 feet. To estimate how much you need, measure the perimeter of the room, subtract for door openings, and add waste for inside corners, splices, and cuts.</p>
+
+    <div class="formula-box">
+      <strong>Baseboard Formula</strong><br/>
+      Net Linear Feet = Perimeter − (Doors × 3 ft)<br/>
+      With Waste = Net LF × 1.10<br/>
+      Boards Needed = ⌈Total LF ÷ Board Length⌉<br/><br/>
+      <strong>Door Casing (per door)</strong><br/>
+      ≈ 2 legs × 7 ft + 1 top × 3 ft = ~17 linear feet<br/><br/>
+      <strong>Window Casing (per window)</strong><br/>
+      ≈ 2 sides × 4 ft + 1 top × 2 ft = ~10 linear feet
+    </div>
+
+    <h2>Baseboard Cost Reference</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border">Material</th>
+          <th class="p-2 text-left border">Material Cost (per LF)</th>
+          <th class="p-2 text-left border">Installed Cost (per LF)</th>
+          <th class="p-2 text-left border">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border">MDF Baseboard</td><td class="p-2 border">$1–$4</td><td class="p-2 border">$3–$7</td><td class="p-2 border">Smooth paint finish, moisture-sensitive</td></tr>
+        <tr><td class="p-2 border">Finger-Jointed Pine</td><td class="p-2 border">$1.50–$4</td><td class="p-2 border">$3–$8</td><td class="p-2 border">Paint-grade, light and easy to work</td></tr>
+        <tr><td class="p-2 border">Solid Pine / Poplar</td><td class="p-2 border">$2–$5</td><td class="p-2 border">$4–$8</td><td class="p-2 border">Paintable or stainable</td></tr>
+        <tr><td class="p-2 border">Hardwood (Oak, Maple)</td><td class="p-2 border">$3–$8</td><td class="p-2 border">$5–$12</td><td class="p-2 border">Stain-grade, durable</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Standard Board Lengths</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border">Length</th>
+          <th class="p-2 text-left border">Best Use</th>
+          <th class="p-2 text-left border">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border">8 ft</td><td class="p-2 border">Small rooms, closets</td><td class="p-2 border">Easy to handle solo; more seams</td></tr>
+        <tr><td class="p-2 border">12 ft</td><td class="p-2 border">Most rooms (most common)</td><td class="p-2 border">Fewer seams, efficient for average walls</td></tr>
+        <tr><td class="p-2 border">16 ft</td><td class="p-2 border">Large rooms, open plan</td><td class="p-2 border">Fewest seams; harder to transport</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Installation Tips</h2>
+    <ul>
+      <li>Cut inside corners with coped joints rather than miters for a tighter fit as walls move seasonally</li>
+      <li>Nail into studs or bottom plate every 16 inches with 2-inch finish nails; use construction adhesive on problem walls</li>
+      <li>Leave a 1/16-inch gap at hardwood flooring to allow for seasonal expansion</li>
+      <li>Caulk the top edge and any gaps at inside corners before painting for a clean, professional finish</li>
+      <li>Order 10–15% extra on complex rooms with many corners, alcoves, or built-ins</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

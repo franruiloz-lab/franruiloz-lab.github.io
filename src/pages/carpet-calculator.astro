@@ -1,0 +1,70 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import CarpetCalc from '../components/calculators/CarpetCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How do I calculate how much carpet I need?", a: "Measure your room length and width in feet and multiply them to get square footage. For L-shaped rooms, split into two rectangles and add the areas. Add 10% for waste from seams and pattern matching. Divide by 9 to convert to square yards, which is the traditional unit carpet is sold in." },
+  { q: "Why do I need to add waste for carpet?", a: "Carpet comes in 12-foot wide rolls. Rooms wider than 12 feet require seams, and the pieces must be cut to align patterns. Doorways and closets also create off-cuts. A 10% waste factor is the industry standard for rectangular rooms; add 15% for L-shaped or irregular rooms." },
+  { q: "Do I need carpet padding?", a: "Yes — carpet padding (also called underlayment) is highly recommended. It extends carpet life by 50% by absorbing foot-traffic compression, provides insulation, reduces sound transmission between floors, and makes the carpet feel softer. Standard padding is 7/16\" thick at 6–8 lb density." },
+  { q: "What is the difference between Plush and Berber carpet?", a: "Plush carpet has cut, upright fibers that create a smooth, velvety surface. It shows footprints and vacuum marks. Berber carpet has looped fibers and a flecked, textured appearance. Berber is more durable, hides dirt better, and is popular in high-traffic areas. Frieze (twist) carpet has tightly twisted fibers and is very durable." },
+  { q: "How much does carpet installation cost?", a: "Material costs range from $1–8/sq ft depending on style and quality. Carpet padding adds $0.50–1.50/sq ft. Professional installation adds $1–3/sq ft for labor. Moving furniture and removing old carpet may add $0.50–1/sq ft. A typical 200 sq ft bedroom runs $500–$1,500 fully installed." },
+];
+const related = [
+  { href: '/flooring-calculator/', label: 'Flooring Calculator', icon: '🏠' },
+  { href: '/tile-calculator/', label: 'Tile Calculator', icon: '⬜' },
+  { href: '/paint-calculator/', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/square-footage-calculator/', label: 'Square Footage Calculator', icon: '📏' },
+];
+---
+<CalculatorLayout
+  title="Carpet Calculator – Square Feet, Square Yards & Cost"
+  description="Calculate carpet square footage, square yards, waste, and total cost including padding. Works for rectangular and L-shaped rooms with all major carpet styles."
+  heading="Carpet Calculator"
+  subheading="Estimate carpet square footage, square yards, and total material cost including padding"
+  icon="🏠"
+  breadcrumb="Carpet Calculator"
+  schema={{
+    name: "Carpet Calculator",
+    description: "Calculate carpet area in square feet and square yards with waste factor and cost estimates",
+    url: "https://constructioncalculate.com/carpet-calculator"
+  }}
+>
+  <CarpetCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Carpet for a Room</h2>
+    <p>Carpet is measured and sold in square yards, although most homeowners think in square feet. Measure your room dimensions carefully, add a 10% waste factor for seams and cuts, and convert to square yards by dividing by 9. For L-shaped rooms, break the space into two rectangles and sum the areas before adding waste.</p>
+
+    <div class="formula-box">
+      <strong>Carpet Area Formulas</strong><br/>
+      Area (sq ft) = Length × Width<br/>
+      Area with Waste = Area × 1.10 (10% waste)<br/>
+      Square Yards = Area with Waste ÷ 9<br/>
+      Total Cost = (Carpet $/sq ft + Padding $/sq ft) × Area with Waste
+    </div>
+
+    <h2>Carpet Style Cost & Durability Guide</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Style</th><th class="p-2 text-left border">Cost/Sq Ft</th><th class="p-2 text-left border">Durability</th><th class="p-2 text-left border">Best For</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">Plush</td><td class="p-2 border">$3–6</td><td class="p-2 border">Medium</td><td class="p-2 border">Bedrooms, low traffic</td></tr>
+        <tr><td class="p-2 border">Berber</td><td class="p-2 border">$2–5</td><td class="p-2 border">High</td><td class="p-2 border">Living rooms, stairs</td></tr>
+        <tr><td class="p-2 border">Frieze / Twist</td><td class="p-2 border">$4–8</td><td class="p-2 border">Very High</td><td class="p-2 border">High-traffic areas</td></tr>
+        <tr><td class="p-2 border">Commercial</td><td class="p-2 border">$1–3</td><td class="p-2 border">Very High</td><td class="p-2 border">Offices, basements</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Carpet Buying Tips</h2>
+    <ul>
+      <li>Always buy from the same dye lot — color can vary slightly between lots</li>
+      <li>Request carpet samples and view them in your room lighting before ordering</li>
+      <li>For stairs, add 1 sq ft per step (measure tread + riser + 2" tuck) for a standard 36"-wide staircase</li>
+      <li>Seams should be placed away from doorways and high-traffic pathways where they're more visible</li>
+      <li>Nylon is the most durable fiber; polyester offers the best value; wool is premium and natural</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

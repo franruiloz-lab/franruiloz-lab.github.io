@@ -1,0 +1,119 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import ConcreteFootingCalc from '../components/calculators/ConcreteFootingCalc';
+
+const faqs = [
+  {
+    q: 'How deep should concrete footings be?',
+    a: 'Footings must extend below the frost line — the depth at which the ground freezes in your region. In northern states this can be 48 inches or more; in southern states as little as 12 inches. Contact your local building department for the frost depth requirement in your area. Footings for decks attached to a house typically require 36–48 inches in most of the continental US.',
+  },
+  {
+    q: 'How wide should concrete footings be?',
+    a: 'Footing width should be at least twice the width of the post or wall it supports. For a 4×4 post, use a minimum 10–12 inch diameter tube. For a 6×6 post, use 12–16 inches. Load-bearing requirements and soil type also affect footing size — heavy loads or soft soils require larger footings.',
+  },
+  {
+    q: 'How many 80lb bags of concrete does one footing need?',
+    a: 'It depends on the size. A 12-inch diameter × 36-inch deep round footing requires about 1.96 cubic feet, which needs approximately 4 bags of 80lb concrete (each yields 0.60 cu ft). A 10-inch diameter × 48-inch deep footing needs about 1.8 cubic feet, or 3 bags of 80lb concrete.',
+  },
+  {
+    q: 'Should I use tube forms or dig square footings?',
+    a: 'Tube forms (Sonotubes) are ideal for post footings — they are fast, clean, and produce consistent round columns. Square hand-dug holes work for shallow footings on non-critical structures. For frost-depth footings supporting a deck or structure, always use tube forms to ensure consistent diameter and vertical alignment.',
+  },
+  {
+    q: 'Can I mix my own concrete for footings or should I order ready-mix?',
+    a: 'For fewer than 10 footings or small projects, bagged concrete (60lb or 80lb) is practical and economical. For large jobs with 20+ footings, or where footings exceed 12 inches in diameter, ordering ready-mix by the yard is faster and usually cheaper per cubic foot. The calculator provides both options.',
+  },
+];
+
+const related = [
+  { title: 'Concrete Calculator',       href: '/concrete-calculator/',       icon: '🏗️', description: 'Slabs, walls, and columns' },
+  { title: 'Rebar Calculator',          href: '/rebar-calculator/',          icon: '🔩', description: 'Reinforcement for footings' },
+  { title: 'Concrete Block Calculator', href: '/concrete-block-calculator/', icon: '🧱', description: 'CMU block walls on footings' },
+  { title: 'Sand Calculator',           href: '/sand-calculator/',           icon: '🏖️', description: 'Aggregate and base material' },
+];
+---
+
+<CalculatorLayout
+  title="Concrete Footing Calculator – Bags & Cubic Yards for Post Footings"
+  description="Calculate how much concrete you need for round or square footings. Get bags (60lb or 80lb) or ready-mix yards with cost estimates."
+  heading="Concrete Footing Calculator"
+  subheading="Calculate concrete volume for round or square post footings. Choose bags or ready-mix and get accurate material counts with cost estimates."
+  icon="🏗️"
+  category="Concrete"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <ConcreteFootingCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Concrete Footing Volume Formulas</h2>
+    <p>
+      Footing volume depends on shape. Round tube footings are the most common for residential
+      deck and fence post applications. Square footings are common for hand-dug shallow piers.
+    </p>
+
+    <div class="formula-box">
+      <strong>Round Footing:</strong> Volume (ft³) = π × (Diameter ÷ 2 ÷ 12)² × (Depth ÷ 12)<br/>
+      <strong>Square Footing:</strong> Volume (ft³) = (Width ÷ 12)² × (Depth ÷ 12)<br/>
+      <strong>Total Volume (yd³):</strong> Total ft³ ÷ 27<br/>
+      <strong>60lb bags:</strong> Total ft³ ÷ 0.45 &nbsp;|&nbsp; <strong>80lb bags:</strong> Total ft³ ÷ 0.60
+    </div>
+
+    <h2>Footing Size Guide by Post Size</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Post Size</th>
+          <th class="p-2 text-left border border-slate-200">Min Footing Diameter</th>
+          <th class="p-2 text-left border border-slate-200">Typical Depth</th>
+          <th class="p-2 text-left border border-slate-200">80lb Bags per Footing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">4×4 post</td><td class="p-2 border border-slate-200">10–12 inches</td><td class="p-2 border border-slate-200">36–42 inches</td><td class="p-2 border border-slate-200">3–4 bags</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">6×6 post</td><td class="p-2 border border-slate-200">12–16 inches</td><td class="p-2 border border-slate-200">42–48 inches</td><td class="p-2 border border-slate-200">5–8 bags</td></tr>
+        <tr><td class="p-2 border border-slate-200">Fence post</td><td class="p-2 border border-slate-200">8–10 inches</td><td class="p-2 border border-slate-200">24–36 inches</td><td class="p-2 border border-slate-200">1–2 bags</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Mailbox post</td><td class="p-2 border border-slate-200">8 inches</td><td class="p-2 border border-slate-200">18–24 inches</td><td class="p-2 border border-slate-200">0.5–1 bag</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Frost Line Depths by Region (USA)</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Region</th>
+          <th class="p-2 text-left border border-slate-200">Typical Frost Depth</th>
+          <th class="p-2 text-left border border-slate-200">Example States</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">Southern US</td><td class="p-2 border border-slate-200">0–6 inches</td><td class="p-2 border border-slate-200">FL, TX, LA, GA</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Mid-Atlantic</td><td class="p-2 border border-slate-200">12–24 inches</td><td class="p-2 border border-slate-200">VA, MD, NC, TN</td></tr>
+        <tr><td class="p-2 border border-slate-200">Midwest</td><td class="p-2 border border-slate-200">36–48 inches</td><td class="p-2 border border-slate-200">OH, IN, IL, MO</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Northern US</td><td class="p-2 border border-slate-200">42–60 inches</td><td class="p-2 border border-slate-200">MN, WI, MI, NY</td></tr>
+        <tr><td class="p-2 border border-slate-200">Mountain West</td><td class="p-2 border border-slate-200">24–48 inches</td><td class="p-2 border border-slate-200">CO, UT, MT, ID</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tips for Pouring Concrete Footings</h2>
+    <ul>
+      <li>Always check your local building code for frost depth — footings above frost line will heave and crack.</li>
+      <li>Use tube forms (Sonotubes) for clean, consistent cylindrical footings — they peel off after curing.</li>
+      <li>Add a few inches of gravel at the bottom of each hole for drainage before pouring.</li>
+      <li>For structural deck posts, embed a post base bracket into the wet concrete rather than burying the wood post.</li>
+      <li>When mixing bags, use the full water ratio specified on the bag — too much water weakens concrete significantly.</li>
+      <li>Allow concrete to cure at least 24–48 hours before loading the footing with any weight.</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Always dig <strong>below frost line</strong> to prevent heaving</li>
+      <li>✅ Add <strong>3–4" of gravel</strong> at hole bottom for drainage</li>
+      <li>✅ Use <strong>tube forms</strong> for consistent round footings</li>
+      <li>✅ Order <strong>10% extra</strong> bags for spillage and overfill</li>
+    </ul>
+  </div>
+</CalculatorLayout>

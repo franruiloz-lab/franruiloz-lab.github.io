@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const calcs = [
+  { href: '/construction-calculator/', icon: '💰', title: 'Construction Cost Calculator', description: 'Building cost per sq ft for new homes, additions, and renovations.' },
+  { href: '/labor-cost-calculator/',   icon: '💰', title: 'Labor Cost Calculator',        description: 'Labor estimates by trade, region, skill level, and project size.' },
+  { href: '/square-footage-calculator/', icon: '📏', title: 'Square Footage Calculator', description: 'Room and surface area in sq ft for any shape or floor plan.' },
+  { href: '/cubic-feet-calculator/',   icon: '📦', title: 'Cubic Feet Calculator',       description: 'Volume in cubic feet, yards, and meters for any dimensions.' },
+  { href: '/cubic-yards-calculator/',  icon: '📐', title: 'Cubic Yards Calculator',      description: 'Cubic yards from any unit for bulk material ordering.' },
+];
+---
+<BaseLayout
+  title="Construction Project Estimating Calculators | ConstructionCalc"
+  description="Estimate construction costs, labor, and materials for any project with free online calculators."
+>
+  <main class="min-h-screen bg-slate-50">
+    <!-- Hero -->
+    <section class="bg-navy-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <nav class="text-sm text-slate-400 mb-4">
+          <a href={`${base}/`} class="hover:text-white transition-colors">Home</a>
+          <span class="mx-2">›</span>
+          <span class="text-white">Project Estimating</span>
+        </nav>
+        <h1 class="text-3xl sm:text-4xl font-black mb-3">Construction Project Estimating Calculators</h1>
+        <p class="text-slate-300 text-lg max-w-2xl">Solid cost estimates are the foundation of every successful construction project. Use these calculators to establish a realistic budget for labor, materials, and total project cost before breaking ground.</p>
+      </div>
+    </section>
+
+    <!-- Calculator Grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {calcs.map(c => (
+          <a href={`${base}${c.href}`} class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-md transition-all group">
+            <div class="flex items-start gap-3">
+              <span class="text-3xl">{c.icon}</span>
+              <div>
+                <h2 class="font-bold text-navy-900 group-hover:text-brand-600 transition-colors">{c.title}</h2>
+                <p class="text-slate-500 text-sm mt-1">{c.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- SEO content -->
+      <div class="mt-12 prose max-w-none">
+        <h2 class="text-2xl font-bold text-navy-900 mb-4">About Construction Project Estimating</h2>
+        <p class="text-slate-600 mb-4">Construction cost estimating is the process of forecasting the total expenditure required to complete a building project. A complete estimate covers three categories: direct materials (lumber, concrete, roofing, etc.), direct labor (framing crew, electrician, plumber, etc.), and indirect costs (permits, inspections, equipment rental, site preparation, and contractor overhead and profit).</p>
+        <p class="text-slate-600 mb-4">New residential construction typically costs $100–$400 per square foot depending on region, finish level, and current market conditions. Remodeling projects are often more expensive per square foot than new construction because of the work involved in removing and integrating with existing systems. Major city and coastal markets command 40–80% premiums over rural and Midwest baselines.</p>
+        <p class="text-slate-600">Volume calculations — cubic yards for concrete and bulk materials, cubic feet for container loads and storage — are foundational to any material takeoff. Converting accurately between square footage, linear footage, and volumetric measures prevents the most common estimating mistakes: ordering in the wrong unit or failing to account for depth. Our unit conversion calculators make this step straightforward and error-free.</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

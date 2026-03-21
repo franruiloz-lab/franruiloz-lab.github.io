@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const calcs = [
+  { href: '/gravel-calculator/',   icon: '⛏️', title: 'Gravel Calculator',    description: 'Cubic yards and tons of gravel, crushed stone, and pea gravel.' },
+  { href: '/mulch-calculator/',    icon: '🍂', title: 'Mulch Calculator',     description: 'Cubic yards or bags of mulch for landscape beds and paths.' },
+  { href: '/soil-calculator/',     icon: '🌿', title: 'Soil Calculator',      description: 'Topsoil and fill dirt volume for lawns, gardens, and grading.' },
+  { href: '/topsoil-calculator/',  icon: '🌱', title: 'Topsoil Calculator',   description: 'Topsoil depth and quantity for lawn establishment and garden projects.' },
+  { href: '/sod-calculator/',      icon: '🌿', title: 'Sod Calculator',       description: 'Pallets and rolls of sod for full lawn installation.' },
+  { href: '/sand-calculator/',     icon: '🏖️', title: 'Sand Calculator',     description: 'Sand for paver bases, mortar, and fill applications.' },
+  { href: '/paver-calculator/',    icon: '🔲', title: 'Paver Calculator',     description: 'Paver count, bedding sand, and base gravel for patios and walkways.' },
+  { href: '/asphalt-calculator/',  icon: '🛣️', title: 'Asphalt Calculator',  description: 'Tons of asphalt for driveways, parking lots, and paving projects.' },
+];
+---
+<BaseLayout
+  title="Landscape & Earthwork Calculators | ConstructionCalc"
+  description="Calculate gravel, mulch, soil, topsoil, sod, and fill material for landscaping and earthwork projects."
+>
+  <main class="min-h-screen bg-slate-50">
+    <!-- Hero -->
+    <section class="bg-navy-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <nav class="text-sm text-slate-400 mb-4">
+          <a href={`${base}/`} class="hover:text-white transition-colors">Home</a>
+          <span class="mx-2">›</span>
+          <span class="text-white">Landscape & Earthwork</span>
+        </nav>
+        <h1 class="text-3xl sm:text-4xl font-black mb-3">Landscape & Earthwork Calculators</h1>
+        <p class="text-slate-300 text-lg max-w-2xl">Accurate material estimates are critical for landscaping and earthwork — bulk materials like gravel, mulch, and topsoil are sold by the cubic yard or ton, and over-ordering is expensive to haul away. Calculate exactly what you need.</p>
+      </div>
+    </section>
+
+    <!-- Calculator Grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {calcs.map(c => (
+          <a href={`${base}${c.href}`} class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-md transition-all group">
+            <div class="flex items-start gap-3">
+              <span class="text-3xl">{c.icon}</span>
+              <div>
+                <h2 class="font-bold text-navy-900 group-hover:text-brand-600 transition-colors">{c.title}</h2>
+                <p class="text-slate-500 text-sm mt-1">{c.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- SEO content -->
+      <div class="mt-12 prose max-w-none">
+        <h2 class="text-2xl font-bold text-navy-900 mb-4">About Landscape & Earthwork Calculators</h2>
+        <p class="text-slate-600 mb-4">Landscaping and earthwork projects involve large volumes of bulk material that must be planned carefully. Gravel, mulch, topsoil, and fill dirt are all measured in cubic yards — one cubic yard fills a space 3 feet wide, 3 feet long, and 3 feet deep. Bulk suppliers typically sell these materials loose by the yard or in bags at a significant per-unit premium.</p>
+        <p class="text-slate-600 mb-4">Paver and hardscape projects require a layered base system: typically 4–6 inches of compacted gravel base, 1 inch of bedding sand, and then the pavers themselves. Getting the base right is more important than the surface — a poorly compacted base leads to settling, cracking, and weed intrusion. These calculators help you estimate each layer independently.</p>
+        <p class="text-slate-600">Mulch depth significantly affects performance. A 2-inch layer provides basic weed suppression; 3 inches is the recommended depth for most applications; 4 inches is used in areas with aggressive weeds. Fresh mulch decomposes and settles over time, so replenishing annually with 1 inch of new material maintains the desired depth without excessive buildup that can harm plant crowns.</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

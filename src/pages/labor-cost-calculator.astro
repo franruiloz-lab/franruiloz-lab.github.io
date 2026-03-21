@@ -1,0 +1,102 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import LaborCostCalc from '../components/calculators/LaborCostCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+
+const faqs = [
+  { q: "How much does construction labor cost per square foot?", a: "Labor costs vary widely by trade. General framing runs $1–$2/sq ft, drywall $1–$2/sq ft, and painting $0.50–$1.50/sq ft. Skilled trades like tile work cost $4–$8/sq ft and plumbing or electrical rough-in runs $2–$5/sq ft. These are national averages — regional labor markets can shift costs by 20–50%." },
+  { q: "How does location affect construction labor costs?", a: "Labor rates in major cities like New York, San Francisco, and Seattle can be 40–60% higher than suburban or rural baselines. Urban markets typically add 25% and rural areas reduce costs by about 20%. Union labor rates, prevailing wage laws on public projects, and local contractor density all influence what you'll pay." },
+  { q: "What is the difference between journeyman and master-level labor?", a: "A journeyman has completed an apprenticeship and works competently under general supervision. A master or licensed contractor holds the highest certification in their trade — required to pull permits for electrical, plumbing, and HVAC work. Master-level labor typically costs 30–40% more than journeyman rates, but licensed work is required by code for most mechanical systems." },
+  { q: "Should I include materials in my labor cost estimate?", a: "Labor cost estimates cover the crew's time only — materials are separate. Our calculator provides a rough total project estimate by applying a materials multiplier, but for accurate budgeting you should get itemized material quotes from suppliers. Material costs vary significantly based on product selection and current market prices." },
+  { q: "How many labor hours does a construction project typically take?", a: "Hours depend heavily on the trade and scope. A rough guideline: framing runs about 0.04 hours per sq ft, tile work about 0.12 hours per sq ft, and concrete pouring about 0.05 hours per sq ft. Skilled trades with licensed requirements (electrical, plumbing) often include significant non-installation time for planning, inspection prep, and code compliance." },
+];
+
+const related = [
+  { href: '/construction-calculator/', label: 'Building Cost Calculator', icon: '💰' },
+  { href: '/paint-calculator/', label: 'Paint Calculator', icon: '🎨' },
+  { href: '/roofing-calculator/', label: 'Roofing Calculator', icon: '🏚️' },
+  { href: '/flooring-calculator/', label: 'Flooring Calculator', icon: '🏠' },
+];
+---
+<CalculatorLayout
+  title="Labor Cost Calculator – Construction Labor Estimates by Trade"
+  description="Estimate construction labor costs by trade, project area, region, and skill level. Covers framing, roofing, drywall, tile, electrical, plumbing, and more."
+  heading="Labor Cost Calculator"
+  subheading="Estimate labor costs for any construction trade — adjusted for region, skill level, and project size"
+  icon="💰"
+  breadcrumb="Labor Cost Calculator"
+  schema={{
+    name: "Labor Cost Calculator",
+    description: "Estimate construction labor costs by trade, region, and skill level",
+    url: "https://constructioncalculate.com/labor-cost-calculator"
+  }}
+>
+  <LaborCostCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Estimate Construction Labor Costs</h2>
+    <p>Construction labor costs are typically expressed as a rate per square foot, per linear foot, or per unit of work. The total labor cost is that base rate multiplied by the project quantity, then adjusted for your regional labor market and the skill level required. Licensed trades command premium rates and are required by code for electrical, plumbing, and gas work.</p>
+
+    <div class="formula-box">
+      <strong>Labor Cost Formula</strong><br/>
+      Base Cost = Quantity × Base Rate ($/sq ft)<br/>
+      Regional Adjustment: Rural ×0.80 | Suburban ×1.00 | Urban ×1.25 | Major City ×1.50<br/>
+      Skill Adjustment: General Labor ×0.80 | Journeyman ×1.00 | Master/Licensed ×1.35<br/>
+      Labor Cost = Base Cost × Region Modifier × Skill Modifier
+    </div>
+
+    <h2>Labor Rate Reference by Trade</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border">Trade</th>
+          <th class="p-2 text-left border">Base Rate ($/sq ft)</th>
+          <th class="p-2 text-left border">Est. Hours/sq ft</th>
+          <th class="p-2 text-left border">License Required?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border">Concrete Pouring</td><td class="p-2 border">$1.50–$3.00</td><td class="p-2 border">0.05</td><td class="p-2 border">No (permit may be)</td></tr>
+        <tr><td class="p-2 border">Framing</td><td class="p-2 border">$1.00–$2.00</td><td class="p-2 border">0.04</td><td class="p-2 border">No</td></tr>
+        <tr><td class="p-2 border">Roofing</td><td class="p-2 border">$1.50–$3.00</td><td class="p-2 border">0.05</td><td class="p-2 border">No (contractor license)</td></tr>
+        <tr><td class="p-2 border">Drywall</td><td class="p-2 border">$1.00–$2.00</td><td class="p-2 border">0.035</td><td class="p-2 border">No</td></tr>
+        <tr><td class="p-2 border">Flooring</td><td class="p-2 border">$2.00–$5.00</td><td class="p-2 border">0.06</td><td class="p-2 border">No</td></tr>
+        <tr><td class="p-2 border">Painting</td><td class="p-2 border">$0.50–$1.50</td><td class="p-2 border">0.02</td><td class="p-2 border">No</td></tr>
+        <tr><td class="p-2 border">Tile Work</td><td class="p-2 border">$4.00–$8.00</td><td class="p-2 border">0.12</td><td class="p-2 border">No</td></tr>
+        <tr><td class="p-2 border">Electrical Rough-In</td><td class="p-2 border">$2.00–$4.00</td><td class="p-2 border">0.07</td><td class="p-2 border">Yes (licensed electrician)</td></tr>
+        <tr><td class="p-2 border">Plumbing Rough-In</td><td class="p-2 border">$2.00–$5.00</td><td class="p-2 border">0.08</td><td class="p-2 border">Yes (licensed plumber)</td></tr>
+        <tr><td class="p-2 border">Landscaping</td><td class="p-2 border">$0.50–$2.00</td><td class="p-2 border">0.03</td><td class="p-2 border">No</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Regional Labor Market Factors</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border">Region</th>
+          <th class="p-2 text-left border">Modifier</th>
+          <th class="p-2 text-left border">Example Markets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border">Rural</td><td class="p-2 border">−20%</td><td class="p-2 border">Small towns, agricultural areas, remote locations</td></tr>
+        <tr><td class="p-2 border">Suburban (baseline)</td><td class="p-2 border">±0%</td><td class="p-2 border">Metro suburbs, mid-size cities</td></tr>
+        <tr><td class="p-2 border">Urban</td><td class="p-2 border">+25%</td><td class="p-2 border">Chicago, Houston, Phoenix, Denver</td></tr>
+        <tr><td class="p-2 border">Major City</td><td class="p-2 border">+50%</td><td class="p-2 border">New York, San Francisco, Seattle, Boston</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tips for Accurate Labor Estimates</h2>
+    <ul>
+      <li>Always get at least three bids from licensed contractors before committing to a project</li>
+      <li>Verify that contractors carry current liability insurance and workers' compensation coverage</li>
+      <li>Factor in mobilization costs — many contractors charge a minimum visit fee for small jobs</li>
+      <li>Ask whether the bid is fixed-price or time-and-materials; T&M carries more budget risk if the scope changes</li>
+      <li>Permit fees, inspections, and engineering reports are separate from labor and can add 1–5% to project cost</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const calcs = [
+  { href: '/roofing-calculator/',         icon: '🏚️', title: 'Roofing Calculator',          description: 'Shingle squares and bundles for any roof pitch and material type.' },
+  { href: '/siding-calculator/',          icon: '🏠', title: 'Siding Calculator',           description: 'Siding squares for vinyl, fiber cement, and wood lap siding.' },
+  { href: '/fence-calculator/',           icon: '🪧', title: 'Fence Calculator',            description: 'Posts, rails, and boards for wood, vinyl, and chain-link fencing.' },
+  { href: '/deck-calculator/',            icon: '🏡', title: 'Deck Calculator',             description: 'Decking boards and installed cost for any material and joist spacing.' },
+  { href: '/pool-calculator/',            icon: '🏊', title: 'Pool Calculator',             description: 'Pool volume in gallons for rectangular, oval, and irregular pools.' },
+  { href: '/gutter-calculator/',          icon: '🏠', title: 'Gutter Calculator',           description: 'Linear feet, downspouts, and hangers for gutter installation.' },
+  { href: '/asphalt-calculator/',         icon: '🛣️', title: 'Asphalt Calculator',          description: 'Tons of asphalt for driveways, parking lots, and paving projects.' },
+  { href: '/retaining-wall-calculator/', icon: '🪨', title: 'Retaining Wall Calculator',   description: 'Block count and materials for concrete, stone, and timber walls.' },
+];
+---
+<BaseLayout
+  title="Exterior & Structure Calculators | ConstructionCalc"
+  description="Free exterior construction calculators for roofing, siding, fencing, decking, gutters, pools, and more."
+>
+  <main class="min-h-screen bg-slate-50">
+    <!-- Hero -->
+    <section class="bg-navy-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <nav class="text-sm text-slate-400 mb-4">
+          <a href={`${base}/`} class="hover:text-white transition-colors">Home</a>
+          <span class="mx-2">›</span>
+          <span class="text-white">Exterior & Structure</span>
+        </nav>
+        <h1 class="text-3xl sm:text-4xl font-black mb-3">Exterior & Structure Calculators</h1>
+        <p class="text-slate-300 text-lg max-w-2xl">Exterior work protects your investment and defines your home's curb appeal. Whether you're replacing a roof, building a deck, or installing new siding, get precise material estimates before you start.</p>
+      </div>
+    </section>
+
+    <!-- Calculator Grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {calcs.map(c => (
+          <a href={`${base}${c.href}`} class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-md transition-all group">
+            <div class="flex items-start gap-3">
+              <span class="text-3xl">{c.icon}</span>
+              <div>
+                <h2 class="font-bold text-navy-900 group-hover:text-brand-600 transition-colors">{c.title}</h2>
+                <p class="text-slate-500 text-sm mt-1">{c.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- SEO content -->
+      <div class="mt-12 prose max-w-none">
+        <h2 class="text-2xl font-bold text-navy-900 mb-4">About Exterior & Structure Calculators</h2>
+        <p class="text-slate-600 mb-4">Exterior construction projects are among the most impactful investments a homeowner can make — a new roof, siding replacement, or deck addition significantly improves both protection and resale value. These projects also involve complex material estimates that depend on geometry: roof area scales with pitch factor, siding coverage accounts for exposure and overlap, and deck boards require waste allowances for end cuts and spacing.</p>
+        <p class="text-slate-600 mb-4">Roofing is measured in "squares" — one square equals 100 sq ft of roof surface. Shingles are packaged in bundles, with three bundles making up one square for standard architectural shingles. The actual roof area is always larger than the house footprint because of the pitch, ranging from a 2% increase on a near-flat 2/12 pitch to a 41% increase on a steep 12/12 pitch.</p>
+        <p class="text-slate-600">Deck construction requires careful attention to joist span tables, beam sizing, and post footing requirements — all governed by the IRC building code. Pressure-treated lumber is required for all ground-contact and below-grade applications. Composite decking is priced per linear foot and typically requires hidden fasteners that add to material cost but create a cleaner finished surface.</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

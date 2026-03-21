@@ -1,0 +1,122 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import MortarCalc from '../components/calculators/MortarCalc';
+
+const faqs = [
+  {
+    q: 'How many bags of mortar do I need per 100 square feet of brick wall?',
+    a: 'For standard brick with 3/8" joints, plan on approximately 3 bags of 80lb mortar per 100 square feet of wall, including a 10% waste factor. Thicker joints or larger blocks require more. CMU block walls use significantly more mortar per square foot due to larger block dimensions.',
+  },
+  {
+    q: 'What is the difference between mortar and grout?',
+    a: 'Mortar is the bonding compound between masonry units (bricks or blocks) — it contains cement, sand, and water. Grout is used to fill gaps in tile work or the cells of concrete block. They have different consistencies and formulations. Our calculator covers mortar for structural masonry work.',
+  },
+  {
+    q: 'How thick should mortar joints be?',
+    a: 'The standard mortar joint thickness for brick is 3/8 inch (about 10mm). For CMU (concrete masonry units) the same 3/8" joint is standard. Thin brick veneer typically uses a 3/8" adhesive mortar bed. Never exceed 1/2" joints in structural walls — oversized joints reduce compressive strength.',
+  },
+  {
+    q: 'What type of mortar should I use?',
+    a: 'Type S mortar (1 part Portland cement, 0.5 part lime, 4.5 parts sand) is the most common for below-grade and exterior applications. Type N (1:1:6) works for above-grade exterior walls exposed to normal weather. Type M is used for heavily loaded or below-grade foundations. Pre-mixed bags are labeled by type.',
+  },
+  {
+    q: 'How long does mortar stay workable after mixing?',
+    a: 'Standard mortar has a working time (pot life) of about 2–2.5 hours at 70°F. In hot weather (above 90°F) this drops to as little as 1 hour. Never retemper mortar after its initial set. Mix only what you can use in about 1.5 hours to avoid wasted material.',
+  },
+];
+
+const related = [
+  { title: 'Concrete Block Calculator', href: '/concrete-block-calculator/', icon: '🧱', description: 'Count CMU blocks for your wall' },
+  { title: 'Brick Calculator',          href: '/brick-calculator/',          icon: '🏠', description: 'Estimate bricks needed' },
+  { title: 'Sand Calculator',           href: '/sand-calculator/',           icon: '🏖️', description: 'Calculate sand for mortar mix' },
+  { title: 'Rebar Calculator',          href: '/rebar-calculator/',          icon: '🔩', description: 'Rebar for reinforced masonry' },
+];
+---
+
+<CalculatorLayout
+  title="Mortar Calculator – Bags of Mortar for Brick & Block Walls"
+  description="Calculate how many bags of mortar you need for brick, modular, CMU block, or thin brick walls. Includes 10% waste and cost estimates."
+  heading="Mortar Calculator"
+  subheading="Estimate mortar bags and cubic feet for brick, CMU block, and thin brick walls. Automatically accounts for joint volume and 10% waste."
+  icon="🧱"
+  category="Masonry"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <MortarCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>How to Calculate Mortar for a Brick Wall</h2>
+    <p>
+      Mortar volume depends on the size of your masonry units and the thickness of the joints. The
+      industry standard joint thickness is 3/8 inch. To calculate total mortar needed you sum the
+      volume of all horizontal (bed) joints and vertical (head) joints across the entire wall area,
+      then add a waste factor.
+    </p>
+
+    <div class="formula-box">
+      <strong>Mortar Formulas</strong><br/>
+      Horizontal joint volume per ft² = (12 ÷ (brick height + joint)) × (12 × joint × brick depth) ÷ 1728<br/>
+      Vertical joint volume per ft² = (12 ÷ (brick length + joint)) × (brick height × joint × brick depth) ÷ 1728<br/>
+      Total mortar (cu ft) = Wall Area (ft²) × (H + V joint volume) × 1.10 waste<br/>
+      Bags (80lb) = Wall Area ÷ 37.5 sq ft per bag × 1.10
+    </div>
+
+    <h2>Mortar Coverage by Masonry Unit Type</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Unit Type</th>
+          <th class="p-2 text-left border border-slate-200">Dimensions (D×H×L)</th>
+          <th class="p-2 text-left border border-slate-200">80lb Bags per 100 sq ft</th>
+          <th class="p-2 text-left border border-slate-200">Joint Thickness</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">Standard Brick</td><td class="p-2 border border-slate-200">3.75"×2.25"×8"</td><td class="p-2 border border-slate-200">~3 bags</td><td class="p-2 border border-slate-200">3/8"</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Modular Brick</td><td class="p-2 border border-slate-200">3.625"×2.25"×7.625"</td><td class="p-2 border border-slate-200">~3 bags</td><td class="p-2 border border-slate-200">3/8"</td></tr>
+        <tr><td class="p-2 border border-slate-200">CMU Block (8")</td><td class="p-2 border border-slate-200">7.625"×7.625"×15.625"</td><td class="p-2 border border-slate-200">~1.5 bags</td><td class="p-2 border border-slate-200">3/8"</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Thin Brick</td><td class="p-2 border border-slate-200">0.75"×2.25"×7.625"</td><td class="p-2 border border-slate-200">~2 bags</td><td class="p-2 border border-slate-200">3/8"</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Mortar Types and Applications</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Type</th>
+          <th class="p-2 text-left border border-slate-200">Mix Ratio (cement:lime:sand)</th>
+          <th class="p-2 text-left border border-slate-200">Compressive Strength</th>
+          <th class="p-2 text-left border border-slate-200">Best Use</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">Type M</td><td class="p-2 border border-slate-200">1 : 0.25 : 3</td><td class="p-2 border border-slate-200">2,500 psi</td><td class="p-2 border border-slate-200">Below grade, retaining walls</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Type S</td><td class="p-2 border border-slate-200">1 : 0.5 : 4.5</td><td class="p-2 border border-slate-200">1,800 psi</td><td class="p-2 border border-slate-200">Exterior below-grade & above-grade</td></tr>
+        <tr><td class="p-2 border border-slate-200">Type N</td><td class="p-2 border border-slate-200">1 : 1 : 6</td><td class="p-2 border border-slate-200">750 psi</td><td class="p-2 border border-slate-200">Above-grade exterior, interior</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">Type O</td><td class="p-2 border border-slate-200">1 : 2 : 9</td><td class="p-2 border border-slate-200">350 psi</td><td class="p-2 border border-slate-200">Interior non-load-bearing only</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tips for Better Mortar Work</h2>
+    <ul>
+      <li>Always mix mortar to a consistent peanut butter consistency — if it slumps off the trowel it is too wet.</li>
+      <li>Wet bricks before laying in hot or dry conditions to prevent them from sucking moisture out of the mortar too fast.</li>
+      <li>Keep mortar out of direct sunlight and wind during hot weather to extend working time.</li>
+      <li>Do not mix more mortar than you can use in 1.5–2 hours.</li>
+      <li>Strike joints when the mortar is thumbprint-hard (not wet, not fully cured) for a clean finish.</li>
+      <li>Order 10% extra bags to account for mixing losses and waste at the end of batches.</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Always add <strong>10% extra</strong> mortar for waste and mixing loss</li>
+      <li>✅ Use <strong>Type S</strong> for all exterior and below-grade work</li>
+      <li>✅ Keep joint thickness at <strong>3/8"</strong> for structural integrity</li>
+      <li>✅ Mix in small batches — mortar has a <strong>~2 hour pot life</strong></li>
+    </ul>
+  </div>
+</CalculatorLayout>

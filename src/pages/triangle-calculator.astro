@@ -1,0 +1,128 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import TriangleCalc from '../components/calculators/TriangleCalc';
+
+const faqs = [
+  {
+    q: 'How do I calculate the area of a triangle?',
+    a: 'The most common method is Area = (Base × Height) ÷ 2, where height is the perpendicular distance from the base to the opposite vertex. If you know all three sides, use Heron\'s formula: s = (a+b+c)/2, then Area = √[s(s-a)(s-b)(s-c)]. If you know two sides and the included angle, use Area = 0.5 × a × b × sin(C).',
+  },
+  {
+    q: 'What is Heron\'s formula?',
+    a: "Heron's formula calculates the area of any triangle from its three side lengths without needing the height. First compute the semi-perimeter s = (a + b + c) ÷ 2. Then Area = √[s × (s−a) × (s−b) × (s−c)]. This is especially useful in construction when you can measure three sides of an irregular triangular area but cannot easily measure the perpendicular height.",
+  },
+  {
+    q: 'How do I know if a triangle is a right triangle?',
+    a: "A triangle is a right triangle if the square of its longest side (hypotenuse) equals the sum of the squares of the other two sides: a² + b² = c². This is the Pythagorean theorem. For example, a 3-4-5 triangle is a right triangle because 3² + 4² = 9 + 16 = 25 = 5². Our calculator automatically detects right triangles when you enter three side lengths.",
+  },
+  {
+    q: 'How is triangle area used in construction?',
+    a: 'Triangle calculations appear throughout construction: calculating the area of a gable end wall for siding, determining roofing material for hip and gable sections, laying out 90-degree corners using the 3-4-5 method, calculating the area of triangular landscaping beds, and computing the volume of triangular prism-shaped fill areas.',
+  },
+  {
+    q: 'What is the 3-4-5 rule in construction?',
+    a: 'The 3-4-5 rule is a field method for laying out perfectly square (90°) corners using the Pythagorean theorem. Measure 3 feet along one side, 4 feet along the perpendicular side, and the diagonal between those endpoints should measure exactly 5 feet. You can scale it up: 6-8-10, 9-12-15, or any multiple of 3-4-5 works for larger layouts.',
+  },
+];
+
+const related = [
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Area for rectangular spaces' },
+  { title: 'Circle Calculator',         href: '/circle-calculator/',         icon: '⭕', description: 'Area and circumference of circles' },
+  { title: 'Cubic Feet Calculator',     href: '/cubic-feet-calculator/',     icon: '📦', description: 'Add depth for volume' },
+  { title: 'Roofing Calculator',        href: '/roofing-calculator/',        icon: '🏠', description: 'Roof area including pitch' },
+];
+---
+
+<CalculatorLayout
+  title="Triangle Calculator – Area, Perimeter & Hypotenuse"
+  description="Calculate triangle area using base & height, three sides (Heron's formula), or two sides and an angle. Automatically detects right triangles."
+  heading="Triangle Calculator"
+  subheading="Calculate triangle area from base & height, three sides (Heron's formula), or two sides and an included angle. Detects right triangles automatically."
+  icon="📐"
+  category="Geometry"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <TriangleCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Triangle Area Formulas</h2>
+    <p>
+      Three different formulas cover every triangle scenario in construction. Choose the method
+      that matches the measurements you have available in the field.
+    </p>
+
+    <div class="formula-box">
+      <strong>Method 1 — Base & Height:</strong><br/>
+      Area = (Base × Height) ÷ 2<br/><br/>
+      <strong>Method 2 — Three Sides (Heron's Formula):</strong><br/>
+      s = (a + b + c) ÷ 2<br/>
+      Area = √[s × (s−a) × (s−b) × (s−c)]<br/><br/>
+      <strong>Method 3 — Two Sides & Included Angle (SAS):</strong><br/>
+      Area = 0.5 × a × b × sin(C)<br/><br/>
+      <strong>Pythagorean Theorem (Right Triangles):</strong><br/>
+      c² = a² + b² &nbsp;→&nbsp; c = √(a² + b²)
+    </div>
+
+    <h2>Common Right Triangles in Construction</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Side A</th>
+          <th class="p-2 text-left border border-slate-200">Side B</th>
+          <th class="p-2 text-left border border-slate-200">Hypotenuse C</th>
+          <th class="p-2 text-left border border-slate-200">Area</th>
+          <th class="p-2 text-left border border-slate-200">Use Case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">3</td><td class="p-2 border border-slate-200">4</td><td class="p-2 border border-slate-200">5</td><td class="p-2 border border-slate-200">6</td><td class="p-2 border border-slate-200">Layout square corners</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">5</td><td class="p-2 border border-slate-200">12</td><td class="p-2 border border-slate-200">13</td><td class="p-2 border border-slate-200">30</td><td class="p-2 border border-slate-200">Stair rise/run</td></tr>
+        <tr><td class="p-2 border border-slate-200">6</td><td class="p-2 border border-slate-200">8</td><td class="p-2 border border-slate-200">10</td><td class="p-2 border border-slate-200">24</td><td class="p-2 border border-slate-200">Larger layout checks</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">8</td><td class="p-2 border border-slate-200">15</td><td class="p-2 border border-slate-200">17</td><td class="p-2 border border-slate-200">60</td><td class="p-2 border border-slate-200">Rafter calculations</td></tr>
+        <tr><td class="p-2 border border-slate-200">9</td><td class="p-2 border border-slate-200">12</td><td class="p-2 border border-slate-200">15</td><td class="p-2 border border-slate-200">54</td><td class="p-2 border border-slate-200">Foundation layout</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">12</td><td class="p-2 border border-slate-200">16</td><td class="p-2 border border-slate-200">20</td><td class="p-2 border border-slate-200">96</td><td class="p-2 border border-slate-200">Large foundation diagonals</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Roof Pitch and Triangle Geometry</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Roof Pitch</th>
+          <th class="p-2 text-left border border-slate-200">Rise (per 12" run)</th>
+          <th class="p-2 text-left border border-slate-200">Slope Angle</th>
+          <th class="p-2 text-left border border-slate-200">Rafter Multiplier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">3/12</td><td class="p-2 border border-slate-200">3 inches</td><td class="p-2 border border-slate-200">14.0°</td><td class="p-2 border border-slate-200">1.031</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">4/12</td><td class="p-2 border border-slate-200">4 inches</td><td class="p-2 border border-slate-200">18.4°</td><td class="p-2 border border-slate-200">1.054</td></tr>
+        <tr><td class="p-2 border border-slate-200">5/12</td><td class="p-2 border border-slate-200">5 inches</td><td class="p-2 border border-slate-200">22.6°</td><td class="p-2 border border-slate-200">1.083</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">6/12</td><td class="p-2 border border-slate-200">6 inches</td><td class="p-2 border border-slate-200">26.6°</td><td class="p-2 border border-slate-200">1.118</td></tr>
+        <tr><td class="p-2 border border-slate-200">8/12</td><td class="p-2 border border-slate-200">8 inches</td><td class="p-2 border border-slate-200">33.7°</td><td class="p-2 border border-slate-200">1.202</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">12/12</td><td class="p-2 border border-slate-200">12 inches</td><td class="p-2 border border-slate-200">45.0°</td><td class="p-2 border border-slate-200">1.414</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Tips for Triangle Calculations in Construction</h2>
+    <ul>
+      <li>Use the 3-4-5 method on any job site to verify square corners quickly and without a calculator.</li>
+      <li>For gable end walls, calculate the triangle area separately from the rectangular wall below it, then add them together for total siding area.</li>
+      <li>When measuring an irregular triangular plot of land, Heron's formula is the most practical — just pace or tape the three sides.</li>
+      <li>The rafter multiplier in the roof pitch table above converts horizontal run to actual rafter length — multiply your roof span by the multiplier.</li>
+      <li>For hip roof sections, break the hip area into right triangles and calculate each one separately.</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ Use <strong>3-4-5 rule</strong> to verify 90° corners on site</li>
+      <li>✅ Heron's formula works when you can <strong>only measure sides</strong></li>
+      <li>✅ For gables, add triangle area to the <strong>rectangular wall below</strong></li>
+      <li>✅ The SAS method is best when you know the <strong>included angle</strong></li>
+    </ul>
+  </div>
+</CalculatorLayout>

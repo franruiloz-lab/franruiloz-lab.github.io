@@ -1,0 +1,111 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import CircleCalc from '../components/calculators/CircleCalc';
+
+const faqs = [
+  {
+    q: 'How do I calculate the area of a circle?',
+    a: 'The area of a circle equals π × r², where r is the radius (half the diameter) and π ≈ 3.14159. For example, a circle with a 10-foot diameter has a radius of 5 feet and an area of π × 5² = 78.54 square feet. Our calculator accepts radius, diameter, circumference, or area as input and derives all other values.',
+  },
+  {
+    q: 'What is the circumference of a circle?',
+    a: 'Circumference is the distance around the outside edge of a circle. It equals 2 × π × r, or equivalently π × diameter. A 10-foot diameter circle has a circumference of π × 10 = 31.42 feet. In construction, circumference is used when calculating fencing around a circular garden, edging around a circular patio, or forming material around a curved pour.',
+  },
+  {
+    q: 'What is the difference between radius and diameter?',
+    a: 'The diameter is the full width of a circle measured through its center. The radius is half the diameter — it is the distance from the center point to the edge. When measuring a circular area in the field (like a round pond or patio), it is usually easier to measure the diameter, then divide by 2 to get the radius for calculations.',
+  },
+  {
+    q: 'How do I find the area of a circle if I only know the circumference?',
+    a: 'First derive the radius from the circumference: r = circumference ÷ (2 × π). Then calculate area = π × r². For example, if circumference = 62.83 feet, then r = 62.83 ÷ 6.2832 = 10 feet, and area = π × 100 = 314.16 sq ft. Our calculator handles this automatically — just select "Circumference" as your input type.',
+  },
+  {
+    q: 'How is the circle calculator used in construction?',
+    a: 'Circle calculations are common in construction for round patios, circular driveways, round columns, curved formwork, circular pools, and curved landscape beds. The area tells you how much material (concrete, pavers, sod) you need. The circumference tells you how much edging, forming, or border material you need around the perimeter.',
+  },
+];
+
+const related = [
+  { title: 'Square Footage Calculator', href: '/square-footage-calculator/', icon: '📐', description: 'Area for rectangular spaces' },
+  { title: 'Cubic Feet Calculator',     href: '/cubic-feet-calculator/',     icon: '📦', description: 'Add depth for volume' },
+  { title: 'Cubic Yards Calculator',    href: '/cubic-yards-calculator/',    icon: '🧊', description: 'Convert to cubic yards' },
+  { title: 'Triangle Calculator',       href: '/triangle-calculator/',       icon: '📐', description: 'Area of triangular shapes' },
+];
+---
+
+<CalculatorLayout
+  title="Circle Calculator – Area, Circumference, Diameter & Radius"
+  description="Calculate circle area, circumference, diameter, and radius from any known value. Works with inches, feet, yards, meters, and centimeters."
+  heading="Circle Calculator"
+  subheading="Find area, circumference, diameter, and radius from any known value. Enter radius, diameter, circumference, or area — and get all four instantly."
+  icon="⭕"
+  category="Geometry"
+  faqs={faqs}
+  related={related}
+>
+  <div slot="calculator">
+    <CircleCalc client:load />
+  </div>
+
+  <div slot="content">
+    <h2>Circle Formulas</h2>
+    <p>
+      All four circle measurements are derived from a single value — the radius. Once you know
+      the radius, everything else follows directly from these standard formulas.
+    </p>
+
+    <div class="formula-box">
+      <strong>Core Formulas (r = radius, d = diameter)</strong><br/>
+      Diameter = 2 × r<br/>
+      Circumference = 2 × π × r &nbsp;=&nbsp; π × d<br/>
+      Area = π × r²<br/><br/>
+      <strong>Deriving radius from other inputs:</strong><br/>
+      From diameter: r = d ÷ 2<br/>
+      From circumference: r = C ÷ (2π)<br/>
+      From area: r = √(A ÷ π)
+    </div>
+
+    <h2>Circle Area Reference Table</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead>
+        <tr class="bg-slate-100">
+          <th class="p-2 text-left border border-slate-200">Diameter (ft)</th>
+          <th class="p-2 text-left border border-slate-200">Radius (ft)</th>
+          <th class="p-2 text-left border border-slate-200">Area (sq ft)</th>
+          <th class="p-2 text-left border border-slate-200">Circumference (ft)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-2 border border-slate-200">2</td><td class="p-2 border border-slate-200">1</td><td class="p-2 border border-slate-200">3.14</td><td class="p-2 border border-slate-200">6.28</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">4</td><td class="p-2 border border-slate-200">2</td><td class="p-2 border border-slate-200">12.57</td><td class="p-2 border border-slate-200">12.57</td></tr>
+        <tr><td class="p-2 border border-slate-200">6</td><td class="p-2 border border-slate-200">3</td><td class="p-2 border border-slate-200">28.27</td><td class="p-2 border border-slate-200">18.85</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">8</td><td class="p-2 border border-slate-200">4</td><td class="p-2 border border-slate-200">50.27</td><td class="p-2 border border-slate-200">25.13</td></tr>
+        <tr><td class="p-2 border border-slate-200">10</td><td class="p-2 border border-slate-200">5</td><td class="p-2 border border-slate-200">78.54</td><td class="p-2 border border-slate-200">31.42</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">12</td><td class="p-2 border border-slate-200">6</td><td class="p-2 border border-slate-200">113.10</td><td class="p-2 border border-slate-200">37.70</td></tr>
+        <tr><td class="p-2 border border-slate-200">16</td><td class="p-2 border border-slate-200">8</td><td class="p-2 border border-slate-200">201.06</td><td class="p-2 border border-slate-200">50.27</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">20</td><td class="p-2 border border-slate-200">10</td><td class="p-2 border border-slate-200">314.16</td><td class="p-2 border border-slate-200">62.83</td></tr>
+        <tr><td class="p-2 border border-slate-200">24</td><td class="p-2 border border-slate-200">12</td><td class="p-2 border border-slate-200">452.39</td><td class="p-2 border border-slate-200">75.40</td></tr>
+        <tr class="bg-slate-50"><td class="p-2 border border-slate-200">30</td><td class="p-2 border border-slate-200">15</td><td class="p-2 border border-slate-200">706.86</td><td class="p-2 border border-slate-200">94.25</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Construction Uses for Circle Calculations</h2>
+    <ul>
+      <li><strong>Round patios and slabs:</strong> Use area to calculate square footage for concrete, pavers, or tile orders.</li>
+      <li><strong>Circular pools and ponds:</strong> Area determines liner size and water volume; circumference determines coping material.</li>
+      <li><strong>Column forms:</strong> A 12-inch diameter column has an area of 0.785 sq ft — multiply by height for concrete volume.</li>
+      <li><strong>Circular garden beds:</strong> Area for soil and mulch orders; circumference for edging material.</li>
+      <li><strong>Curved driveways:</strong> Use circumference of partial arcs to calculate paving area and edging lengths.</li>
+      <li><strong>Pipe sizing:</strong> Cross-sectional area of a pipe determines flow capacity in plumbing and drainage design.</li>
+    </ul>
+  </div>
+
+  <div slot="tips">
+    <ul class="text-slate-600 text-sm space-y-2">
+      <li>✅ In the field, measure the <strong>diameter</strong> (easiest) then divide by 2 for radius</li>
+      <li>✅ Area grows with the <strong>square</strong> of radius — doubling radius = 4× the area</li>
+      <li>✅ For volume, multiply area by <strong>depth</strong> in the same unit</li>
+      <li>✅ π ≈ <strong>3.14159</strong> for all standard calculations</li>
+    </ul>
+  </div>
+</CalculatorLayout>

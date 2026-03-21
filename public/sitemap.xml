@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://constructioncalculate.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <!-- Hub pages -->
+  <url><loc>https://constructioncalculate.com/concrete-masonry/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/landscape-earthwork/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/framing-lumber/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/interior-finishes/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/exterior-structure/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/project-estimating/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- Tier 1 calculators -->
   <url><loc>https://constructioncalculate.com/concrete-calculator/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://constructioncalculate.com/square-footage-calculator/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://constructioncalculate.com/gravel-calculator/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
@@ -9,6 +17,7 @@
   <url><loc>https://constructioncalculate.com/stair-calculator/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://constructioncalculate.com/board-foot-calculator/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://constructioncalculate.com/construction-calculator/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <!-- Tier 2 calculators -->
   <url><loc>https://constructioncalculate.com/asphalt-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/fence-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/roofing-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -19,6 +28,7 @@
   <url><loc>https://constructioncalculate.com/tile-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/deck-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/pool-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- Tier 3 calculators -->
   <url><loc>https://constructioncalculate.com/wallpaper-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/sand-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/rebar-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -32,6 +42,21 @@
   <url><loc>https://constructioncalculate.com/retaining-wall-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/cubic-yards-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://constructioncalculate.com/grout-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- New calculators -->
+  <url><loc>https://constructioncalculate.com/mortar-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/concrete-footing-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/circle-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/triangle-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/topsoil-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/gutter-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/rafter-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/joist-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/lumber-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/carpet-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/insulation-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/baseboard-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://constructioncalculate.com/labor-cost-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <!-- Legal -->
   <url><loc>https://constructioncalculate.com/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://constructioncalculate.com/disclaimer/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

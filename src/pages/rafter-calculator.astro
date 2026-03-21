@@ -1,0 +1,72 @@
+---
+import CalculatorLayout from '../layouts/CalculatorLayout.astro';
+import RafterCalc from '../components/calculators/RafterCalc.tsx';
+import RelatedCalculators from '../components/RelatedCalculators.astro';
+import FAQ from '../components/FAQ.astro';
+const faqs = [
+  { q: "How do I calculate rafter length?", a: "Rafter length is calculated using the Pythagorean theorem. The run (horizontal distance) equals half the building width plus any overhang. The rafter length equals the run multiplied by the pitch multiplier: √(1 + (pitch/12)²). For a 6/12 pitch the multiplier is 1.118." },
+  { q: "What does roof pitch mean?", a: "Roof pitch describes the slope as rise over run, expressed as X/12. A 6/12 pitch rises 6 inches for every 12 inches of horizontal run. Low pitch (3/12–4/12) sheds water slowly and is common in dry climates. Steep pitch (8/12–12/12) sheds snow and rain rapidly." },
+  { q: "How far apart should rafters be spaced?", a: "Standard rafter spacing is 16\" on center for most residential construction. 12\" OC is used for heavy loads (metal roofing, tile) or long spans. 24\" OC reduces lumber cost but requires thicker sheathing and is only appropriate for lighter roofing materials." },
+  { q: "What size lumber do I need for rafters?", a: "Rafter size depends on span and spacing. For a 12 ft span at 16\" OC, 2×6 is typically sufficient. A 16 ft span at 16\" OC requires 2×8. An 18–20 ft span typically needs 2×10. Always verify with local building codes and a structural engineer for your specific loads." },
+  { q: "How many rafters do I need?", a: "Calculate by dividing the building length by the spacing and multiplying by 2 (for both sides of the roof), then add 2 for the gable-end rafters. Our calculator handles this automatically. Always buy 10–15% extra for waste from cuts." },
+];
+const related = [
+  { href: '/roofing-calculator/', label: 'Roofing Calculator', icon: '🏚️' },
+  { href: '/framing-calculator/', label: 'Framing Calculator', icon: '🏗️' },
+  { href: '/plywood-calculator/', label: 'Plywood Calculator', icon: '🪵' },
+  { href: '/stair-calculator/', label: 'Stair Calculator', icon: '🪜' },
+];
+---
+<CalculatorLayout
+  title="Rafter Calculator – Length, Count & Lumber Cost"
+  description="Calculate rafter length, number of rafters, ridge board, and lumber cost for any roof pitch and building size. Handles overhang and all common rafter spacings."
+  heading="Rafter Calculator"
+  subheading="Calculate rafter length, count, board feet, and lumber cost for any roof pitch"
+  icon="🏚️"
+  breadcrumb="Rafter Calculator"
+  schema={{
+    name: "Rafter Calculator",
+    description: "Calculate roof rafter length, count, and lumber cost for residential construction",
+    url: "https://constructioncalculate.com/rafter-calculator"
+  }}
+>
+  <RafterCalc client:load slot="calculator" />
+
+  <div slot="content" class="prose-content">
+    <h2>How to Calculate Rafter Length</h2>
+    <p>Rafter length is determined by the building's width, the roof pitch, and the desired overhang. The horizontal run equals half the building width plus the overhang distance. The rafter length is then found by multiplying the run by the appropriate pitch multiplier, which is derived from the Pythagorean theorem.</p>
+
+    <div class="formula-box">
+      <strong>Rafter Length Formula</strong><br/>
+      Run = (Building Width ÷ 2) + Overhang (ft)<br/>
+      Pitch Multiplier = √(1 + (Rise/12)²)<br/>
+      Rafter Length = Run × Pitch Multiplier<br/>
+      Number of Rafters = (Building Length ÷ Spacing) × 2 + 2
+    </div>
+
+    <h2>Pitch Multiplier Reference Table</h2>
+    <table class="w-full text-sm border-collapse mt-4 mb-6">
+      <thead><tr class="bg-slate-100"><th class="p-2 text-left border">Pitch</th><th class="p-2 text-left border">Multiplier</th><th class="p-2 text-left border">Angle</th><th class="p-2 text-left border">Common Use</th></tr></thead>
+      <tbody>
+        <tr><td class="p-2 border">3/12</td><td class="p-2 border">1.031</td><td class="p-2 border">14°</td><td class="p-2 border">Low slope, warm climates</td></tr>
+        <tr><td class="p-2 border">4/12</td><td class="p-2 border">1.054</td><td class="p-2 border">18°</td><td class="p-2 border">Minimum for asphalt shingles</td></tr>
+        <tr><td class="p-2 border">6/12</td><td class="p-2 border">1.118</td><td class="p-2 border">27°</td><td class="p-2 border">Standard residential</td></tr>
+        <tr><td class="p-2 border">8/12</td><td class="p-2 border">1.202</td><td class="p-2 border">34°</td><td class="p-2 border">Traditional / Cape Cod</td></tr>
+        <tr><td class="p-2 border">10/12</td><td class="p-2 border">1.302</td><td class="p-2 border">40°</td><td class="p-2 border">High slope / attic space</td></tr>
+        <tr><td class="p-2 border">12/12</td><td class="p-2 border">1.414</td><td class="p-2 border">45°</td><td class="p-2 border">Steep / decorative</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Rafter Sizing Tips</h2>
+    <ul>
+      <li>Always add 15% to your lumber order to account for waste from bird's-mouth and tail cuts</li>
+      <li>The ridge board should be one size larger than the rafters — use 2×10 ridge with 2×8 rafters</li>
+      <li>Bird's-mouth cuts (seat cut + plumb cut) must be no deeper than 1/3 of the rafter depth</li>
+      <li>In high-snow areas, use a minimum 5/12 pitch and check local codes for live load requirements</li>
+      <li>Collar ties or ceiling joists are required to resist outward thrust — space them to match rafter spacing</li>
+    </ul>
+  </div>
+
+  <RelatedCalculators slot="sidebar" calculators={related} />
+  <FAQ slot="faq" items={faqs} />
+</CalculatorLayout>

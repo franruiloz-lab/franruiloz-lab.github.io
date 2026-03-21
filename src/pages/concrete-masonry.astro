@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const calcs = [
+  { href: '/concrete-calculator/',        icon: '🏗️', title: 'Concrete Calculator',         description: 'Cubic yards, bags, and cost for slabs, footings, and columns.' },
+  { href: '/concrete-block-calculator/',  icon: '🧱', title: 'Concrete Block Calculator',    description: 'CMU blocks and mortar bags for concrete masonry unit walls.' },
+  { href: '/brick-calculator/',           icon: '🧱', title: 'Brick Calculator',             description: 'Brick count and mortar for walls, chimneys, and fireplaces.' },
+  { href: '/rebar-calculator/',           icon: '⚙️', title: 'Rebar Calculator',             description: 'Rebar linear feet, weight, and spacing for concrete slabs.' },
+  { href: '/mortar-calculator/',          icon: '🧱', title: 'Mortar Calculator',            description: 'Mortar bags and mix volume for brick and block masonry.' },
+  { href: '/concrete-footing-calculator/', icon: '🏗️', title: 'Concrete Footing Calculator', description: 'Concrete volume for round and square footings and piers.' },
+  { href: '/retaining-wall-calculator/', icon: '🪨', title: 'Retaining Wall Calculator',    description: 'Materials for concrete, natural stone, and timber retaining walls.' },
+  { href: '/sand-calculator/',            icon: '🏖️', title: 'Sand Calculator',             description: 'Sand cubic yards and tons for mortar base and construction.' },
+];
+---
+<BaseLayout
+  title="Concrete & Masonry Calculators | ConstructionCalc"
+  description="Free concrete and masonry calculators for contractors and DIY. Calculate concrete yards, blocks, bricks, rebar, mortar, and footings."
+>
+  <main class="min-h-screen bg-slate-50">
+    <!-- Hero -->
+    <section class="bg-navy-900 text-white py-12">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <nav class="text-sm text-slate-400 mb-4">
+          <a href={`${base}/`} class="hover:text-white transition-colors">Home</a>
+          <span class="mx-2">›</span>
+          <span class="text-white">Concrete & Masonry</span>
+        </nav>
+        <h1 class="text-3xl sm:text-4xl font-black mb-3">Concrete & Masonry Calculators</h1>
+        <p class="text-slate-300 text-lg max-w-2xl">Concrete and masonry work forms the structural backbone of nearly every construction project. Use these free calculators to estimate materials, quantities, and costs before you order.</p>
+      </div>
+    </section>
+
+    <!-- Calculator Grid -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {calcs.map(c => (
+          <a href={`${base}${c.href}`} class="bg-white border border-slate-200 rounded-2xl p-5 hover:border-brand-400 hover:shadow-md transition-all group">
+            <div class="flex items-start gap-3">
+              <span class="text-3xl">{c.icon}</span>
+              <div>
+                <h2 class="font-bold text-navy-900 group-hover:text-brand-600 transition-colors">{c.title}</h2>
+                <p class="text-slate-500 text-sm mt-1">{c.description}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- SEO content -->
+      <div class="mt-12 prose max-w-none">
+        <h2 class="text-2xl font-bold text-navy-900 mb-4">About Concrete & Masonry Calculators</h2>
+        <p class="text-slate-600 mb-4">Concrete is one of the most widely used construction materials in the world, prized for its compressive strength, durability, and versatility. Whether you're pouring a backyard slab, building a block foundation wall, or laying a brick veneer, accurate material estimates prevent costly over-orders and frustrating shortfalls mid-project.</p>
+        <p class="text-slate-600 mb-4">Masonry work — bricks, CMU blocks, natural stone — requires careful planning for both unit counts and mortar volumes. Mortar joints vary from 3/8 inch to 1/2 inch depending on the application, and even small variations in joint thickness can meaningfully change how many bags of mortar you'll need. Our calculators account for standard joint sizing and automatically add waste factors.</p>
+        <p class="text-slate-600">Concrete is ordered by the cubic yard (27 cubic feet). Most residential slabs are 4 inches thick; driveways are typically 4–6 inches; footings are sized by the structural engineer's design. When ordering from a ready-mix supplier, always round up to the nearest quarter yard and confirm the minimum order quantity — most suppliers have a 1-yard minimum, and short loads carry a surcharge.</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

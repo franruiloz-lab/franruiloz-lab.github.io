@@ -1,20 +1,28 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const calculators = [
+const popularCalcs = [
   { label: 'Concrete Calculator', href: '/concrete-calculator/' },
   { label: 'Square Footage Calculator', href: '/square-footage-calculator/' },
   { label: 'Gravel Calculator', href: '/gravel-calculator/' },
-  { label: 'Cubic Feet Calculator', href: '/cubic-feet-calculator/' },
-  { label: 'Mulch Calculator', href: '/mulch-calculator/' },
+  { label: 'Roofing Calculator', href: '/roofing-calculator/' },
   { label: 'Stair Calculator', href: '/stair-calculator/' },
   { label: 'Board Foot Calculator', href: '/board-foot-calculator/' },
-  { label: 'Construction Calculator', href: '/construction-calculator/' },
+  { label: 'Lumber Calculator', href: '/lumber-calculator/' },
+  { label: 'Insulation Calculator', href: '/insulation-calculator/' },
+];
+const hubs = [
+  { label: 'Concrete & Masonry', href: '/concrete-masonry/' },
+  { label: 'Landscape & Earthwork', href: '/landscape-earthwork/' },
+  { label: 'Framing & Lumber', href: '/framing-lumber/' },
+  { label: 'Interior & Finishes', href: '/interior-finishes/' },
+  { label: 'Exterior & Structure', href: '/exterior-structure/' },
+  { label: 'Project Estimating', href: '/project-estimating/' },
 ];
 ---
 
 <footer class="bg-navy-900 text-slate-400 mt-16">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-navy-800">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b border-navy-800">
       <!-- Brand -->
       <div>
         <a href={`${base}/`} class="flex items-center gap-2.5 mb-4">
@@ -31,7 +39,7 @@ const calculators = [
         <p class="text-sm leading-relaxed text-slate-500">
           Free, accurate construction calculators built for professionals and serious DIYers. Estimate materials, costs and dimensions with confidence.
         </p>
-        <div class="flex items-center gap-3 mt-5">
+        <div class="flex flex-wrap items-center gap-2 mt-5">
           <div class="flex items-center gap-1.5 text-xs bg-navy-800 px-3 py-1.5 rounded-full">
             <span class="text-green-400">✓</span>
             <span>Free forever</span>
@@ -43,11 +51,11 @@ const calculators = [
         </div>
       </div>
 
-      <!-- Calculators -->
+      <!-- Popular Calculators -->
       <div>
-        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Calculators</h3>
+        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Popular Calculators</h3>
         <ul class="space-y-2">
-          {calculators.map(calc => (
+          {popularCalcs.map(calc => (
             <li>
               <a href={`${base}${calc.href}`} class="text-sm hover:text-brand-400 transition-colors duration-150">
                 {calc.label}
@@ -57,12 +65,26 @@ const calculators = [
         </ul>
       </div>
 
+      <!-- Categories -->
+      <div>
+        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Categories</h3>
+        <ul class="space-y-2">
+          {hubs.map(hub => (
+            <li>
+              <a href={`${base}${hub.href}`} class="text-sm hover:text-brand-400 transition-colors duration-150">
+                {hub.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <!-- Info -->
       <div>
-        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">About</h3>
+        <h3 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Legal</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/privacy/" class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
-          <li><a href="/disclaimer/" class="hover:text-brand-400 transition-colors">Disclaimer</a></li>
+          <li><a href={`${base}/privacy/`} class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
+          <li><a href={`${base}/disclaimer/`} class="hover:text-brand-400 transition-colors">Disclaimer</a></li>
         </ul>
         <div class="mt-6 p-4 bg-navy-800 rounded-xl">
           <p class="text-xs text-slate-500 leading-relaxed">
