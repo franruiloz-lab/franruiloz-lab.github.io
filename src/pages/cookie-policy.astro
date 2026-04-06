@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lastUpdated = 'April 6, 2025';
+---
+<BaseLayout
+  title="Cookie Policy | ConstructionCalc"
+  description="Cookie policy for ConstructionCalc.com — what cookies we use and how you can control them."
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-navy-900 mb-2">Cookie Policy</h1>
+    <p class="text-slate-500 text-sm mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="prose prose-slate max-w-none space-y-6 text-slate-700 leading-relaxed">
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">1. What are cookies?</h2>
+        <p>
+          Cookies are small text files that a website stores on your device when you visit. They are widely
+          used to make websites work, to work more efficiently, and to provide information to the website owner.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">2. How we use cookies</h2>
+        <p>ConstructionCalc uses a minimal set of cookies and browser storage to provide a functional experience:</p>
+        <ul class="list-disc pl-6 space-y-2 mt-2">
+          <li>
+            <strong>Consent preference (localStorage):</strong> We store your cookie consent choice
+            (key: <code class="bg-slate-100 px-1 rounded text-sm">cookie_consent</code>) locally in your
+            browser so we do not ask you again on subsequent visits. This data never leaves your device.
+          </li>
+          <li>
+            <strong>No tracking or analytics cookies:</strong> We do not use cookies for analytics,
+            advertising, or user tracking. All calculations are performed entirely in your browser.
+          </li>
+          <li>
+            <strong>No third-party cookies:</strong> We do not embed third-party scripts, ad networks,
+            or social media widgets that would place cookies on your device.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">3. Types of cookies we use</h2>
+        <div class="overflow-x-auto mt-2">
+          <table class="w-full text-sm border border-slate-200 rounded-md">
+            <thead class="bg-slate-50 text-slate-600 uppercase text-xs">
+              <tr>
+                <th class="text-left px-4 py-2 border-b border-slate-200">Name</th>
+                <th class="text-left px-4 py-2 border-b border-slate-200">Type</th>
+                <th class="text-left px-4 py-2 border-b border-slate-200">Purpose</th>
+                <th class="text-left px-4 py-2 border-b border-slate-200">Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd:bg-white even:bg-slate-50">
+                <td class="px-4 py-2 font-mono text-xs">cookie_consent</td>
+                <td class="px-4 py-2">Necessary</td>
+                <td class="px-4 py-2">Stores your cookie consent choice to avoid repeated prompts.</td>
+                <td class="px-4 py-2">Persistent (localStorage)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">4. Hosting provider</h2>
+        <p>
+          This site is hosted on <strong>GitHub Pages</strong> (GitHub, Inc., a Microsoft subsidiary).
+          GitHub may collect standard server-side logs (IP address, browser user agent, referring URL, timestamp)
+          as part of their infrastructure operations. This is outside our control and governed by
+          <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+             class="text-brand-600 hover:underline" target="_blank" rel="noopener">GitHub's Privacy Statement</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">5. Managing and withdrawing consent</h2>
+        <p>You can manage or withdraw your cookie consent at any time using any of the following methods:</p>
+        <ul class="list-disc pl-6 space-y-1 mt-2">
+          <li>
+            <strong>Clear browser storage:</strong> Open your browser's developer tools (F12 &rarr; Application
+            &rarr; Local Storage) and delete the <code class="bg-slate-100 px-1 rounded text-sm">cookie_consent</code> key.
+            The consent banner will reappear on your next visit.
+          </li>
+          <li>
+            <strong>Clear all site data:</strong> Use your browser's built-in option to clear cookies and
+            site data for this domain.
+          </li>
+          <li>
+            <strong>Browser settings:</strong> Most browsers allow you to block or delete cookies through
+            their privacy or security settings.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">6. Your rights under GDPR</h2>
+        <p>
+          If you are located in the European Economic Area, you have the right to access, rectify, or erase
+          any personal data we hold, and to object to or restrict its processing. Since ConstructionCalc stores
+          no personal data on our servers, there is nothing for us to provide or delete. For any questions,
+          contact us at <a href="mailto:franruizlozano31@gmail.com" class="text-brand-600 hover:underline">franruizlozano31@gmail.com</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">7. Changes to this policy</h2>
+        <p>
+          We may update this Cookie Policy from time to time. Changes will be published on this page with
+          an updated date. Continued use of the site after changes constitutes your acceptance of the revised policy.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-navy-900 mb-2">8. Contact</h2>
+        <p>
+          For any questions about this Cookie Policy, please contact:
+          <a href="mailto:franruizlozano31@gmail.com" class="text-brand-600 hover:underline">franruizlozano31@gmail.com</a>
+        </p>
+      </section>
+
+    </div>
+
+    <div class="mt-10 pt-6 border-t border-slate-200">
+      <a href={`${base}/`} class="text-brand-600 hover:underline text-sm">← Back to Home</a>
+    </div>
+  </div>
+</BaseLayout>

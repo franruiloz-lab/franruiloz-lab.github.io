@@ -1,0 +1,64 @@
+---
+// CookieBanner.astro — GDPR cookie consent banner
+// localStorage key: "cookie_consent" | values: "accepted" | "rejected"
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 right-0 z-50 hidden bg-white border-t-4 border-blue-500 shadow-lg"
+  role="dialog"
+  aria-label="Cookie consent"
+  aria-live="polite"
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+    <!-- Text -->
+    <p class="flex-1 text-sm text-slate-600 leading-relaxed">
+      We use cookies to improve your experience on this site. You can accept all cookies or
+      choose to allow necessary cookies only. Learn more in our
+      <a
+        href="/cookie-policy"
+        class="text-blue-600 underline underline-offset-2 hover:text-blue-800 font-medium whitespace-nowrap"
+      >Cookie Policy</a>.
+    </p>
+
+    <!-- Buttons -->
+    <div class="flex flex-col xs:flex-row gap-2 shrink-0 w-full sm:w-auto">
+      <button
+        id="cookie-accept"
+        type="button"
+        class="w-full sm:w-auto px-5 py-2 rounded-md bg-blue-500 text-white text-sm font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-colors cursor-pointer"
+      >
+        Accept All
+      </button>
+      <button
+        id="cookie-reject"
+        type="button"
+        class="w-full sm:w-auto px-5 py-2 rounded-md border border-slate-300 bg-white text-slate-700 text-sm font-semibold hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-2 transition-colors cursor-pointer"
+      >
+        Necessary Only
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var CONSENT_KEY = 'cookie_consent';
+    var banner = document.getElementById('cookie-banner');
+
+    // Show banner only if no consent stored yet
+    if (!localStorage.getItem(CONSENT_KEY)) {
+      banner.classList.remove('hidden');
+    }
+
+    document.getElementById('cookie-accept').addEventListener('click', function () {
+      localStorage.setItem(CONSENT_KEY, 'accepted');
+      banner.classList.add('hidden');
+    });
+
+    document.getElementById('cookie-reject').addEventListener('click', function () {
+      localStorage.setItem(CONSENT_KEY, 'rejected');
+      banner.classList.add('hidden');
+    });
+  })();
+</script>
