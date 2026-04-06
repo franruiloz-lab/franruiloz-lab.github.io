@@ -2,10 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const lastUpdated = 'March 16, 2025';
+const siteUrl = 'https://constructioncalc.com';
+const pageSchema = [
+  { "@context": "https://schema.org", "@type": "WebPage", "name": "Disclaimer", "description": "Disclaimer for ConstructionCalc.com — important information about the accuracy and intended use of our construction calculators.", "url": `${siteUrl}/disclaimer/` }
+];
 ---
 <BaseLayout
   title="Disclaimer | ConstructionCalc"
   description="Disclaimer for ConstructionCalc.com — important information about the accuracy and intended use of our construction calculators."
+  schema={pageSchema}
 >
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h1 class="text-3xl font-extrabold text-navy-900 mb-2">Disclaimer</h1>

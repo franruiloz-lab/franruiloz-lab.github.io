@@ -9,12 +9,14 @@ interface Props {
   description: string;
   canonical?: string;
   ogImage?: string;
+  schema?: object | object[];
 }
 
-const { title, description, canonical, ogImage } = Astro.props;
+const { title, description, canonical, ogImage, schema } = Astro.props;
 const siteUrl = 'https://constructioncalc.com';
 const fullTitle = title.includes('ConstructionCalc') ? title : `${title} | ConstructionCalc`;
 const ogImg = ogImage || `${siteUrl}/og-default.png`;
+const schemaItems = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 ---
 
 <!doctype html>
@@ -49,20 +51,29 @@ const ogImg = ogImage || `${siteUrl}/og-default.png`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Schema: WebSite -->
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "ConstructionCalc",
-        "url": siteUrl,
-        "description": "Free professional construction calculators for contractors and DIYers",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": `${siteUrl}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string"
-        }
-      })}
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ConstructionCalc",
+      "url": siteUrl,
+      "description": "Free professional construction calculators for contractors and DIYers",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${siteUrl}/search?q={search_term_string}`,
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ConstructionCalc",
+      "url": siteUrl,
+      "description": "Free professional construction calculators for contractors and DIYers",
+      "logo": { "@type": "ImageObject", "url": `${siteUrl}/favicon.svg` }
+    })} />
+    {schemaItems.map(s => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
 
     <!-- Google Search Console -->
     <!-- <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> -->

@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = 'https://constructioncalc.com';
 const calcs = [
   { href: '/concrete-calculator/',        icon: '🏗️', title: 'Concrete Calculator',         description: 'Cubic yards, bags, and cost for slabs, footings, and columns.' },
   { href: '/concrete-block-calculator/',  icon: '🧱', title: 'Concrete Block Calculator',    description: 'CMU blocks and mortar bags for concrete masonry unit walls.' },
@@ -13,10 +14,15 @@ const calcs = [
   { href: '/retaining-wall-calculator/', icon: '🪨', title: 'Retaining Wall Calculator',    description: 'Materials for concrete, natural stone, and timber retaining walls.' },
   { href: '/sand-calculator/',            icon: '🏖️', title: 'Sand Calculator',             description: 'Sand cubic yards and tons for mortar base and construction.' },
 ];
+const pageSchema = [
+  { "@context": "https://schema.org", "@type": "CollectionPage", "name": "Concrete & Masonry Calculators", "description": "Free concrete and masonry calculators for contractors and DIY. Calculate concrete yards, blocks, bricks, rebar, mortar, and footings.", "url": `${siteUrl}/concrete-masonry/`, "hasPart": calcs.map(c => ({ "@type": "SoftwareApplication", "name": c.title, "description": c.description, "url": `${siteUrl}${c.href}`, "applicationCategory": "UtilityApplication" })) },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl }, { "@type": "ListItem", "position": 2, "name": "Concrete & Masonry Calculators", "item": `${siteUrl}/concrete-masonry/` }] }
+];
 ---
 <BaseLayout
   title="Concrete & Masonry Calculators | ConstructionCalc"
   description="Free concrete and masonry calculators for contractors and DIY. Calculate concrete yards, blocks, bricks, rebar, mortar, and footings."
+  schema={pageSchema}
 >
   <main class="min-h-screen bg-slate-50">
     <!-- Hero -->

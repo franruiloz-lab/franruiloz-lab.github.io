@@ -91,6 +91,18 @@ const calcGroups = [
   },
 ];
 
+const siteUrl = 'https://constructioncalc.com';
+const homeSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Free Construction Calculators for Pros & DIYers | ConstructionCalc",
+    "description": "Free, accurate construction calculators for concrete, gravel, square footage, stairs, board feet and more. Built for contractors and serious DIYers.",
+    "url": siteUrl,
+    "hasPart": calcGroups.flatMap(g => g.items.map(c => ({ "@type": "SoftwareApplication", "name": c.title, "description": c.description, "url": `${siteUrl}${c.href}`, "applicationCategory": "UtilityApplication" })))
+  }
+];
+
 const stats = [
   { value: '44+', label: 'Free Calculators' },
   { value: '100%', label: 'Free Forever' },
@@ -103,6 +115,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <BaseLayout
   title="Free Construction Calculators for Pros & DIYers | ConstructionCalc"
   description="Free, accurate construction calculators for concrete, gravel, square footage, stairs, board feet and more. Built for contractors and serious DIYers."
+  schema={homeSchema}
 >
   <!-- Hero -->
   <section class="bg-navy-900 hero-grid overflow-hidden">

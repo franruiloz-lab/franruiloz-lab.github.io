@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = 'https://constructioncalc.com';
 const calcs = [
   { href: '/roofing-calculator/',         icon: '🏚️', title: 'Roofing Calculator',          description: 'Shingle squares and bundles for any roof pitch and material type.' },
   { href: '/siding-calculator/',          icon: '🏠', title: 'Siding Calculator',           description: 'Siding squares for vinyl, fiber cement, and wood lap siding.' },
@@ -13,10 +14,15 @@ const calcs = [
   { href: '/asphalt-calculator/',         icon: '🛣️', title: 'Asphalt Calculator',          description: 'Tons of asphalt for driveways, parking lots, and paving projects.' },
   { href: '/retaining-wall-calculator/', icon: '🪨', title: 'Retaining Wall Calculator',   description: 'Block count and materials for concrete, stone, and timber walls.' },
 ];
+const pageSchema = [
+  { "@context": "https://schema.org", "@type": "CollectionPage", "name": "Exterior & Structure Calculators", "description": "Free exterior construction calculators for roofing, siding, fencing, decking, gutters, pools, and more.", "url": `${siteUrl}/exterior-structure/`, "hasPart": calcs.map(c => ({ "@type": "SoftwareApplication", "name": c.title, "description": c.description, "url": `${siteUrl}${c.href}`, "applicationCategory": "UtilityApplication" })) },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl }, { "@type": "ListItem", "position": 2, "name": "Exterior & Structure Calculators", "item": `${siteUrl}/exterior-structure/` }] }
+];
 ---
 <BaseLayout
   title="Exterior & Structure Calculators | ConstructionCalc"
   description="Free exterior construction calculators for roofing, siding, fencing, decking, gutters, pools, and more."
+  schema={pageSchema}
 >
   <main class="min-h-screen bg-slate-50">
     <!-- Hero -->

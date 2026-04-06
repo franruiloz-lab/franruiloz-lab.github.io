@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteUrl = 'https://constructioncalc.com';
 const calcs = [
   { href: '/board-foot-calculator/', icon: '🪵', title: 'Board Foot Calculator',    description: 'Lumber volume in board feet with cost estimates by species.' },
   { href: '/lumber-calculator/',     icon: '🪵', title: 'Lumber Calculator',        description: 'Board feet and total cost for any dimension lumber order.' },
@@ -12,10 +13,15 @@ const calcs = [
   { href: '/rafter-calculator/',     icon: '🏚️', title: 'Rafter Calculator',        description: 'Rafter length, count, and ridge board for any roof pitch.' },
   { href: '/joist-calculator/',      icon: '🔨', title: 'Floor Joist Calculator',   description: 'Joist count, spacing, and board feet for floors and decks.' },
 ];
+const pageSchema = [
+  { "@context": "https://schema.org", "@type": "CollectionPage", "name": "Framing & Lumber Calculators", "description": "Free lumber and framing calculators. Calculate board feet, studs, rafters, joists, and stair stringers for any construction project.", "url": `${siteUrl}/framing-lumber/`, "hasPart": calcs.map(c => ({ "@type": "SoftwareApplication", "name": c.title, "description": c.description, "url": `${siteUrl}${c.href}`, "applicationCategory": "UtilityApplication" })) },
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": siteUrl }, { "@type": "ListItem", "position": 2, "name": "Framing & Lumber Calculators", "item": `${siteUrl}/framing-lumber/` }] }
+];
 ---
 <BaseLayout
   title="Framing & Lumber Calculators | ConstructionCalc"
   description="Free lumber and framing calculators. Calculate board feet, studs, rafters, joists, and stair stringers for any construction project."
+  schema={pageSchema}
 >
   <main class="min-h-screen bg-slate-50">
     <!-- Hero -->

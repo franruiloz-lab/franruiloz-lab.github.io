@@ -2,10 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const lastUpdated = 'April 6, 2025';
+const siteUrl = 'https://constructioncalc.com';
+const pageSchema = [
+  { "@context": "https://schema.org", "@type": "WebPage", "name": "Cookie Policy", "description": "Cookie policy for ConstructionCalc.com — what cookies we use and how you can control them.", "url": `${siteUrl}/cookie-policy/` }
+];
 ---
 <BaseLayout
   title="Cookie Policy | ConstructionCalc"
   description="Cookie policy for ConstructionCalc.com — what cookies we use and how you can control them."
+  schema={pageSchema}
 >
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h1 class="text-3xl font-extrabold text-navy-900 mb-2">Cookie Policy</h1>
